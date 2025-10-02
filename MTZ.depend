@@ -661,3 +661,144 @@
 	"clsArchivoActividad.h"
 	"rlutil.h"
 
+1759432994 source:c:\users\trabajo\documents\mtz-\cargarcadena.cpp
+	<iostream>
+	"cargarCadena.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\cargarcadena.h
+
+1759438419 source:c:\users\trabajo\documents\mtz-\clsactividad.cpp
+	<iostream>
+	"clsActividad.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\clsactividad.h
+
+1759438419 source:c:\users\trabajo\documents\mtz-\clsarchivoactividad.cpp
+	<iostream>
+	<cstring>
+	"clsArchivoActividad.h"
+	"clsActividad.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\clsarchivoactividad.h
+	"clsActividad.h"
+
+1759438419 source:c:\users\trabajo\documents\mtz-\clsarchivocliente.cpp
+	<iostream>
+	<cstring>
+	"clsArchivoCliente.h"
+
+1759438419 c:\users\trabajo\documents\mtz-\clsarchivocliente.h
+	"clsPersona.h"
+	"clsFichaMedica.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\clspersona.h
+	<iostream>
+	<cstring>
+	"clsFecha.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\clsfecha.h
+
+1759432994 c:\users\trabajo\documents\mtz-\clsfichamedica.h
+	<iostream>
+	<cstring>
+	"clsDomicilio.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\clsdomicilio.h
+
+1759432994 source:c:\users\trabajo\documents\mtz-\clsarchivofichamedica.cpp
+
+1759432994 source:c:\users\trabajo\documents\mtz-\clsdomicilio.cpp
+	<iostream>
+	<cstring>
+	"cargarCadena.h"
+	"clsDomicilio.h"
+
+1759432994 source:c:\users\trabajo\documents\mtz-\clsfecha.cpp
+	<iostream>
+	"clsFecha.h"
+
+1759432994 source:c:\users\trabajo\documents\mtz-\clsfichamedica.cpp
+	<iostream>
+	"cargarCadena.h"
+	"clsFichaMedica.h"
+	"clsDomicilio.h"
+
+1759432994 source:c:\users\trabajo\documents\mtz-\clspersona.cpp
+	<iostream>
+	"clsFecha.h"
+	"clsPersona.h"
+	"cargarCadena.h"
+
+1759438418 source:c:\users\trabajo\documents\mtz-\main.cpp
+	<iostream>
+	"cargarCadena.h"
+	"clsActividad.h"
+	"clsDomicilio.h"
+	"clsFecha.h"
+	"clsPersona.h"
+	"cargarDatos.h"
+	"clsFichaMedica.h"
+	"clsArchivoCliente.h"
+	"menuGestion.h"
+	"rlutil.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\cargardatos.h
+
+1759432994 c:\users\trabajo\documents\mtz-\menugestion.h
+	<iostream>
+	"cargarCadena.h"
+	"clsActividad.h"
+	"clsDomicilio.h"
+	"clsFecha.h"
+	"clsPersona.h"
+	"clsFichaMedica.h"
+	"clsArchivoCliente.h"
+	"Cliente.h"
+	"rlutil.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\cliente.h
+	"clsPersona.h"
+	"clsActividad.h"
+	"clsFichaMedica.h"
+
+1759432994 c:\users\trabajo\documents\mtz-\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1759438419 source:c:\users\trabajo\documents\mtz-\menugestion.cpp
+	<iostream>
+	"cargarCadena.h"
+	"clsActividad.h"
+	"clsDomicilio.h"
+	"clsFecha.h"
+	"clsPersona.h"
+	"clsFichaMedica.h"
+	"clsArchivoCliente.h"
+	"clsArchivoActividad.h"
+	"mostrarMenu.h"
+	"rlutil.h"
+
+1759438419 c:\users\trabajo\documents\mtz-\mostrarmenu.h
+
+1759438419 source:c:\users\trabajo\documents\mtz-\mostrarmenu.cpp
+	<iostream>
+	"cargarCadena.h"
+	"clsActividad.h"
+	"clsDomicilio.h"
+	"clsFecha.h"
+	"clsPersona.h"
+	"clsFichaMedica.h"
+	"clsArchivoCliente.h"
+	"clsArchivoActividad.h"
+	"rlutil.h"
+
