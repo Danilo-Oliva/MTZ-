@@ -12,26 +12,33 @@
 
 using namespace std;
 
+void resaltarMenu(const char* texto, int posX, int posY, bool seleccionado)
+{
+    if(seleccionado)
+    {
+    rlutil::setBackgroundColor(rlutil::LIGHTRED);
+    rlutil::setColor(rlutil::BLACK);
+    }
+    else
+    {
+    rlutil::setBackgroundColor(rlutil::BLACK);
+    rlutil::setColor(rlutil::LIGHTRED);
+    }
+    rlutil::locate(posX,posY);
+    cout << texto << endl;
+}
 
 int main()
 {
     rlutil::setBackgroundColor(rlutil::BLACK);
     rlutil::setColor(rlutil::LIGHTRED);
     rlutil::hidecursor();
-    int opcion_menu, y = 0;
+    int opcion_menu = -1, y = 0;
     while(true)
     {
 
-
-        rlutil::locate(34,6);
-        cout << "MENU DE INICIO" << endl;
-        rlutil::locate(30,9);
-        cout << "INGRESO DE USUARIOS" << endl;
-        rlutil::locate(30,10);
-        cout << " GESTIONAR CLIENTES" << endl;
-        rlutil::locate(30,11);
-        cout << "       SALIR       " << endl;
-        rlutil::locate(30,12);
+        resaltarMenu("MENU DE INICIO", 33, 6, false);
+        resaltarMenu("INGRESO DE USUARIOS", 30, 9, y == 0);        resaltarMenu("GESTIONAR CLIENTES ", 30, 10, y == 1);        resaltarMenu("SALIR DEL PROGRAMA ", 30, 11, y == 2);
 
         /// CURSOR
         rlutil::locate(28,9 + y); ///y CONTROLA LA POSICION DEL CURSOR (arriba y abajo)
@@ -80,27 +87,27 @@ int main()
         }
             default:
                 cout << "Esto no tendria que estar aca" << endl;
+                break;
     }
+    ///FIN SWITCH MENU
 
-/*
-        switch(opcion_menu)
+        if (opcion_menu != -1)
         {
-        case 1:
-            system("cls");
-            cout << "Por ahora nada :v" << endl;
-            break;
-        case 2:
-        {
-            accionarMenu();
-        }
-        break;
-        case 0:
-            return 0;
-        default:
-            cout << "Opcion invalida." << endl;
-            break;
-        }
-*/
-    } /// FINAL WHILE TRUE
-    return 0;
+            switch(opcion_menu)
+            {
+                case 1:
+                    system("cls");
+                    cout << "Por ahora nada :v" << endl;
+                    break;
+                case 2:
+                    accionarMenu();
+                    break;
+                case 0:
+                    return 0;
+            }
+                    system("pause");
+                    system("cls");
+            opcion_menu = -1; // reset para esperar nueva tecla
+        } /// CIERRA IF
+    } ///FIN WHILE TRUE
 }
