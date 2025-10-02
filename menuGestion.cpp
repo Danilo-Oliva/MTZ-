@@ -7,6 +7,7 @@
 #include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
+#include "mostrarMenu.h"
 #include "rlutil.h"
 
 using namespace std;
@@ -30,7 +31,7 @@ void accionarMenu()
 {
     ArchivoCliente arc;
     ArchivoActividad arcAct;
-    Cliente cli;
+    Persona per;
     Actividad act;
     int opcion;
     do
@@ -42,13 +43,13 @@ void accionarMenu()
         {
             system("cls");
             /// ---- Cargar cliente ----
-            cli.p1.cargar();
+            per.cargar();
+            act.cargar();
 
             /// ---- Elegir actividad
-            //GUARDAR EL CLIENTE EN EL .TXT
-            arc.inscribirCliente(cli);
+            //GUARDAR EL CLIENTE EN EL .dat
+            arc.inscribirCliente(per);
 
-            act.cargar();
             arcAct.inscribirActividad(act);
 
             cout << "\nCliente cargado con exito.\n";
@@ -58,32 +59,9 @@ void accionarMenu()
         }
         case 2:
             system("cls");
-            int opc_mostrar;
-            cout << "¿Que archivo quiere mostrar?" << endl;
-            cout << "1. Mostrar Cliente" << endl;
-            cout << "2. Mostrar Actividad" << endl;
-            cout << "3. Mostrar Ficha Medica" << endl;
-            cout << "0. Salir del menu" << endl;
-            cout << "Elegir opcion: ";
-            cin >> opc_mostrar;
-            switch(opc_mostrar)
-            {
-            case 1:
-                arc.listar();
-                break;
-            case 2:
-                arcAct.listar();
-                break;
-            case 3:
-                /// PONER ACA MOSTRAR FICHA MEDICA ///
-                break;
-            case 0:
-                cout << "Saliendo... " << endl;
-                break;
-            default:
-                cout << "Opcion incorrecta" << endl;
-                break;
-            }
+
+            accionarMenuMostrar();
+
             system("pause");
             system("cls");
             break;
@@ -97,11 +75,11 @@ void accionarMenu()
             int pos = arc.buscarCliente(dni);
             if (pos >= 0)
             {
-                Cliente cli = arc.leerArchivo(pos);
+                Persona per = arc.leerArchivo(pos);
                 cout << "\n=== Cliente encontrado ===\n";
-                cli.p1.mostrar();
-                cli.act.mostrar();
-                cli.fm.mostrar();
+                per.mostrar();
+                per.mostrar();
+                per.mostrar();
             }
             else
             {
@@ -124,12 +102,12 @@ void accionarMenu()
                     cout << "No hay cliente con el DNI: " << dniBuscar << endl;
                     return;
                 }
-                Cliente cli = arc.leerArchivo(pos);
+                Persona per = arc.leerArchivo(pos);
                 char nuevoEmail[30];
                 cout << "Ingrese el mail: ";
                     cin >> nuevoEmail;
-                cli.p1.setEmail(nuevoEmail);
-                arc.modificarCliente(cli, pos);
+                per.setEmail(nuevoEmail);
+                arc.modificarCliente(per, pos);
                 system("pause");
                 system("cls");
             break;

@@ -73,10 +73,12 @@ bool ArchivoActividad::inscribirActividad(Actividad act)
 void ArchivoActividad::listar()
 {
     Actividad act;
-    for(int i = 0; i < 3; i++)
+    int cantAct = contarActividades();
+    for(int i = 0; i < cantAct; i++)
     {
         act = leerArchivo(i);
         act.mostrar();
         cout << endl;
     }
 }
+

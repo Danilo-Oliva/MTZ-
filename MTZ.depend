@@ -274,70 +274,69 @@
 	"clsActividad.h"
 	"clsFichaMedica.h"
 
-1759082041 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\cargarcadena.cpp
+1759368065 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\cargarcadena.cpp
 	<iostream>
 	"cargarCadena.h"
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\cargarcadena.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\cargarcadena.h
 
-1759082041 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsactividad.cpp
+1759431856 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsactividad.cpp
 	<iostream>
 	"clsActividad.h"
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsactividad.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsactividad.h
 
-1759092313 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsarchivocliente.cpp
+1759432383 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsarchivocliente.cpp
 	<iostream>
 	<cstring>
 	"clsArchivoCliente.h"
 
-1759091892 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsarchivocliente.h
+1759432370 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsarchivocliente.h
 	"clsPersona.h"
 	"clsFichaMedica.h"
-	"Cliente.h"
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clspersona.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clspersona.h
 	<iostream>
 	<cstring>
 	"clsFecha.h"
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsfecha.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsfecha.h
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsfichamedica.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsfichamedica.h
 	<iostream>
 	<cstring>
 	"clsDomicilio.h"
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsdomicilio.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsdomicilio.h
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\cliente.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\cliente.h
 	"clsPersona.h"
 	"clsActividad.h"
 	"clsFichaMedica.h"
 
-1759082041 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsdomicilio.cpp
+1759368065 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsdomicilio.cpp
 	<iostream>
 	<cstring>
 	"cargarCadena.h"
 	"clsDomicilio.h"
 
-1759082041 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsfecha.cpp
+1759368065 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsfecha.cpp
 	<iostream>
 	"clsFecha.h"
 
-1759082041 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsfichamedica.cpp
+1759368065 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsfichamedica.cpp
 	<iostream>
 	"cargarCadena.h"
 	"clsFichaMedica.h"
 	"clsDomicilio.h"
 
-1759082041 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clspersona.cpp
+1759429636 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clspersona.cpp
 	<iostream>
 	"clsFecha.h"
 	"clsPersona.h"
 	"cargarCadena.h"
 
-1759104773 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\main.cpp
+1759368065 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\main.cpp
 	<iostream>
 	"cargarCadena.h"
 	"clsActividad.h"
@@ -350,13 +349,13 @@
 	"menuGestion.h"
 	"rlutil.h"
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\cargardatos.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\cargardatos.h
 
 1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\buscarclientes.h
 	"cargarDatos.h"
 	"clsPersona.h"
 
-1759104137 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\menugestion.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\menugestion.h
 	<iostream>
 	"cargarCadena.h"
 	"clsActividad.h"
@@ -368,7 +367,7 @@
 	"Cliente.h"
 	"rlutil.h"
 
-1759082041 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\rlutil.h
+1759368065 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -382,7 +381,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1759082041 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\menugestion.cpp
+1759433357 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\menugestion.cpp
 	<iostream>
 	"cargarCadena.h"
 	"clsActividad.h"
@@ -391,6 +390,8 @@
 	"clsPersona.h"
 	"clsFichaMedica.h"
 	"clsArchivoCliente.h"
+	"clsArchivoActividad.h"
+	"mostrarMenu.h"
 	"rlutil.h"
 
 1759106816 source:c:\users\admin\documents\mtz-project\mtz--main\cargarcadena.cpp
@@ -634,4 +635,29 @@
 
 1759430216 c:\users\admin\documents\mtz-\clsarchivoactividad.h
 	"clsActividad.h"
+
+1759433357 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsarchivoactividad.cpp
+	<iostream>
+	<cstring>
+	"clsArchivoActividad.h"
+	"clsActividad.h"
+
+1759429636 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsarchivoactividad.h
+	"clsActividad.h"
+
+1759429636 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\clsarchivofichamedica.cpp
+
+1759430354 c:\users\danil\onedrive\escritorio\utn programación ii\mtz\mostrarmenu.h
+
+1759432639 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\mostrarmenu.cpp
+	<iostream>
+	"cargarCadena.h"
+	"clsActividad.h"
+	"clsDomicilio.h"
+	"clsFecha.h"
+	"clsPersona.h"
+	"clsFichaMedica.h"
+	"clsArchivoCliente.h"
+	"clsArchivoActividad.h"
+	"rlutil.h"
 

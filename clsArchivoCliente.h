@@ -3,20 +3,20 @@
 
 #include "clsPersona.h"
 #include "clsFichaMedica.h"
-#include "Cliente.h"
+
 
 class ArchivoCliente
 {
 private:
     char nombreArchivo[30];
-    Cliente cli;
+    Persona per;
 public:
-    ArchivoCliente(const char *n = "clientes.dat", Cliente _cli = Cliente());
+    ArchivoCliente(const char *n = "clientes.dat", Persona _per = Persona());
     int contarClientes();
     int buscarCliente(int);
-    Cliente leerArchivo(int);
-    bool inscribirCliente(Cliente);
-    bool modificarCliente(Cliente, int);
+    Persona leerArchivo(int);
+    bool inscribirCliente(Persona);
+    bool modificarCliente(Persona, int);
     void listar();
 };
 

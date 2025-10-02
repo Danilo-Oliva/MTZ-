@@ -68,15 +68,19 @@ void Actividad::mostrar(){
     cout << "Modalidad: " << (Libre ? "Libre" : "3 veces por semana") << endl;
     cout << "Cuota Final: $" << calcularCuota() << endl;
 }
-Funcional::Funcional(bool Libre){
+Funcional::Funcional(bool modalidadLibre) {
     CuotaBase = 28000.0f;
-    Libre = Libre;
+    Libre = modalidadLibre;
+    opcion_act = 1;
 }
-Musculacion::Musculacion(bool Libre){
+
+Musculacion::Musculacion(bool modalidadLibre){
     CuotaBase = 32000.0f;
-    Libre = Libre;
+    Libre = modalidadLibre;
+    opcion_act = 2;
 }
-Boxeo::Boxeo(bool Libre){
+Boxeo::Boxeo(bool modalidadLibre){
     CuotaBase = 25000.0f;
-    Libre = Libre;
+    Libre = modalidadLibre;
+    opcion_act = 3;
 }
