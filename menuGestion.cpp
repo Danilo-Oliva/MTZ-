@@ -6,6 +6,7 @@
 #include "clsPersona.h"
 #include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
+#include "clsArchivoActividad.h"
 #include "rlutil.h"
 
 using namespace std;
@@ -28,6 +29,7 @@ int menuGestion()
 void accionarMenu()
 {
     ArchivoCliente arc;
+    ArchivoActividad arcAct;
     Cliente cli;
     int opcion;
     do
@@ -57,6 +59,7 @@ void accionarMenu()
             system("cls");
             cout << "Mostrando el archivo" << endl;
             arc.listar();
+            arcAct.listar();
             system("pause");
             system("cls");
             break;
@@ -87,6 +90,7 @@ void accionarMenu()
         }
         case 4:
             {
+            system("cls");
             int dniBuscar;
             cout << "Ingrese DNI del cliente a modificar: ";
                 cin >> dniBuscar;
@@ -98,10 +102,12 @@ void accionarMenu()
                 }
                 Cliente cli = arc.leerArchivo(pos);
                 char nuevoEmail[30];
-                cout << "Ingrese el mail";
+                cout << "Ingrese el mail: ";
                     cin >> nuevoEmail;
                 cli.p1.setEmail(nuevoEmail);
                 arc.modificarCliente(cli, pos);
+                system("pause");
+                system("cls");
             break;
             }
         case 5:

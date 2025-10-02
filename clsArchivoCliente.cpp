@@ -62,6 +62,10 @@ bool ArchivoCliente::inscribirCliente(Cliente cli)
     {
         return false;
     }
+
+    int numSocio = contarClientes() + 1;
+    cli.p1.setNumeroSocio(numSocio);
+
     bool escribio = fwrite(&cli, sizeof cli, 1, p);
     fclose(p);
     return escribio;
