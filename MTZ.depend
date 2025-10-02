@@ -336,7 +336,7 @@
 	"clsPersona.h"
 	"cargarCadena.h"
 
-1759368065 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\main.cpp
+1759437027 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\main.cpp
 	<iostream>
 	"cargarCadena.h"
 	"clsActividad.h"
@@ -381,7 +381,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1759433357 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\menugestion.cpp
+1759437027 source:c:\users\danil\onedrive\escritorio\utn programación ii\mtz\menugestion.cpp
 	<iostream>
 	"cargarCadena.h"
 	"clsActividad.h"
