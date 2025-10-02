@@ -54,6 +54,8 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="menuGestion.cpp" />
 		<Unit filename="menuGestion.h" />
+		<Unit filename="mostrarMenu.cpp" />
+		<Unit filename="mostrarMenu.h" />
 		<Unit filename="rlutil.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
