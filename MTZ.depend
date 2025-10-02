@@ -607,7 +607,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1759423320 source:c:\users\admin\documents\mtz-\menugestion.cpp
+1759429609 source:c:\users\admin\documents\mtz-\menugestion.cpp
 	<iostream>
 	"cargarCadena.h"
 	"clsActividad.h"
@@ -619,19 +619,19 @@
 	"clsArchivoActividad.h"
 	"rlutil.h"
 
-1759420815 source:c:\users\admin\documents\mtz-\clsarchivocliente.cpp
+1759430160 source:c:\users\admin\documents\mtz-\clsarchivocliente.cpp
 	<iostream>
 	<cstring>
 	"clsArchivoCliente.h"
 
 1759419916 source:c:\users\admin\documents\mtz-\clsarchivofichamedica.cpp
 
-1759423078 source:c:\users\admin\documents\mtz-\clsarchivoactividad.cpp
+1759430160 source:c:\users\admin\documents\mtz-\clsarchivoactividad.cpp
 	<iostream>
 	<cstring>
 	"clsArchivoActividad.h"
 	"clsActividad.h"
 
-1759423084 c:\users\admin\documents\mtz-\clsarchivoactividad.h
+1759430216 c:\users\admin\documents\mtz-\clsarchivoactividad.h
 	"clsActividad.h"
 

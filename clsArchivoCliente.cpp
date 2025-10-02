@@ -90,8 +90,6 @@ void ArchivoCliente::listar()
     {
         cli = leerArchivo(i);
         cli.p1.mostrar();
-        cli.act.mostrar();
-        cli.fm.mostrar();
         cout << endl;
     }
 }

@@ -31,6 +31,7 @@ void accionarMenu()
     ArchivoCliente arc;
     ArchivoActividad arcAct;
     Cliente cli;
+    Actividad act;
     int opcion;
     do
     {
@@ -44,11 +45,11 @@ void accionarMenu()
             cli.p1.cargar();
 
             /// ---- Elegir actividad
-            cli.act.cargar();
-            /// --- FICHA MEDICA ---
-            cli.fm.cargar();
             //GUARDAR EL CLIENTE EN EL .TXT
             arc.inscribirCliente(cli);
+
+            act.cargar();
+            arcAct.inscribirActividad(act);
 
             cout << "\nCliente cargado con exito.\n";
             system("pause");
@@ -57,9 +58,32 @@ void accionarMenu()
         }
         case 2:
             system("cls");
-            cout << "Mostrando el archivo" << endl;
-            arc.listar();
-            arcAct.listar();
+            int opc_mostrar;
+            cout << "¿Que archivo quiere mostrar?" << endl;
+            cout << "1. Mostrar Cliente" << endl;
+            cout << "2. Mostrar Actividad" << endl;
+            cout << "3. Mostrar Ficha Medica" << endl;
+            cout << "0. Salir del menu" << endl;
+            cout << "Elegir opcion: ";
+            cin >> opc_mostrar;
+            switch(opc_mostrar)
+            {
+            case 1:
+                arc.listar();
+                break;
+            case 2:
+                arcAct.listar();
+                break;
+            case 3:
+                /// PONER ACA MOSTRAR FICHA MEDICA ///
+                break;
+            case 0:
+                cout << "Saliendo... " << endl;
+                break;
+            default:
+                cout << "Opcion incorrecta" << endl;
+                break;
+            }
             system("pause");
             system("cls");
             break;
