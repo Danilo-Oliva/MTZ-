@@ -30,8 +30,6 @@ void resaltarMenu(const char* texto, int posX, int posY, bool seleccionado)
 
 int main()
 {
-    rlutil::setBackgroundColor(rlutil::BLACK);
-    rlutil::setColor(rlutil::LIGHTRED);
     rlutil::hidecursor();
     int opcion_menu = -1, y = 0;
     while(true)
@@ -40,10 +38,12 @@ int main()
         resaltarMenu("MENU DE INICIO", 33, 6, false);
         resaltarMenu("INGRESO DE USUARIOS", 30, 9, y == 0);        resaltarMenu("GESTIONAR CLIENTES ", 30, 10, y == 1);        resaltarMenu("SALIR DEL PROGRAMA ", 30, 11, y == 2);
 
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::LIGHTRED); ///SE ESTABLECE FONDO DE VUELTA PARA EVITAR QUE SE RESALTE TODO EL RESTO
+
         /// CURSOR
         rlutil::locate(28,9 + y); ///y CONTROLA LA POSICION DEL CURSOR (arriba y abajo)
         cout << (char)175 << endl;
-
 
     switch(rlutil::getkey()) /// VALORES EN ASCII
     {
