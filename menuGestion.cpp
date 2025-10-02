@@ -29,6 +29,7 @@ int menuGestion()
 
 void accionarMenu()
 {
+    system("cls");
     ArchivoCliente arc;
     ArchivoActividad arcAct;
     Persona per;

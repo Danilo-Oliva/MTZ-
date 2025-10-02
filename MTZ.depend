@@ -557,7 +557,7 @@
 	<cstring>
 	"clsFecha.h"
 
-1759417857 source:c:\users\admin\documents\mtz-\main.cpp
+1759444535 source:c:\users\admin\documents\mtz-\main.cpp
 	<iostream>
 	"cargarCadena.h"
 	"clsActividad.h"
@@ -608,7 +608,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1759429609 source:c:\users\admin\documents\mtz-\menugestion.cpp
+1759444657 source:c:\users\admin\documents\mtz-\menugestion.cpp
 	<iostream>
 	"cargarCadena.h"
 	"clsActividad.h"
