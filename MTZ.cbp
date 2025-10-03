@@ -57,6 +57,8 @@
 		<Unit filename="mostrarMenu.cpp" />
 		<Unit filename="mostrarMenu.h" />
 		<Unit filename="rlutil.h" />
+		<Unit filename="tunearMenu.cpp" />
+		<Unit filename="tunearMenu.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
