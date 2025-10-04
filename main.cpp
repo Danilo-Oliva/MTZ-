@@ -41,11 +41,13 @@ int main()
             {
                 case 0:
                 {
-                    return 1; /// INGRESA CLIENTE AL GIMNASIO
+                    opcion_menu = 1; /// INGRESA CLIENTE AL GIMNASIO
+                    break;
                 }
                 case 1:
                 {
-                    return 2; /// MANEJO DE DATOS
+                    opcion_menu = 2; /// MANEJO DE DATOS
+                    break;
                 }
                 case 2:
                 {
@@ -68,8 +70,6 @@ int main()
             case 2:
                 accionarMenu();
                 break;
-            case 0:
-                return 0;
             }
             system("pause");
             system("cls");
