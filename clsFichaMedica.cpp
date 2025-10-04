@@ -58,7 +58,7 @@ const char *FichaMedica::getObraSocial(){
     return ObraSocial;
 }
 void FichaMedica::cargar(){
-    cout << "======= INGRESO FICHA MEDICA =======" << endl;
+    cout << "======= FICHA MEDICA =======" << endl;
     cout << "Ingrese su domicilio: " << endl;
     domicilio.Cargar();
     cout << "Ingrese su peso: ";
