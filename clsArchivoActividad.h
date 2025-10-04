@@ -12,11 +12,12 @@ public:
     ArchivoActividad(const char *n = "actividad.dat", Actividad _act = Actividad(0, false, 0), int _idAct = 0);
     void setIdAct(int _idAct);
     int getIdAct();
-    int contarActividades();
-    Actividad leerArchivo(int pos);
+
     bool inscribirActividad(Actividad);
-    bool modificarActividad(Actividad, int);
+    Actividad leerArchivo(int pos);
+    int contarActividades();
     void listar();
+    bool modificarActividad(Actividad, int);
 };
 
 #endif // CLSARCHIVOACTIVIDAD_H_INCLUDED
