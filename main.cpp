@@ -13,51 +13,58 @@
 
 using namespace std;
 
+int menuTeclas(int &opcion_menu, int &y)
+{
+    parteArribaMenu(24, 5);
+    bordesMenu(24, 6);
+    separarMenues(24, 7);
+    for (int i = 0; i < 7; i ++) bordesMenu(24, 8 + i);
+    parteAbajoMenu(24, 15);
+
+
+    resaltarMenu("M E N U  G E S T O R", 30, 6, false);
+    resaltarMenu("INGRESO DE USUARIOS", 30, 9, y == 0);
+    resaltarMenu("GESTIONAR CLIENTES ", 30, 11, y == 1);
+    resaltarMenu("SALIR DEL PROGRAMA ", 30, 13, y == 2);
+
+
+    mostrarCursor(28, 50, 9, y);
+    int tecla = rlutil::getkey();
+    if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
+    {
+        switch(y)
+        {
+        case 0:
+        {
+            opcion_menu = 1; /// INGRESA CLIENTE AL GIMNASIO
+            break;
+        }
+        case 1:
+        {
+            opcion_menu = 2; /// MANEJO DE DATOS
+            break;
+        }
+        case 2:
+        {
+            opcion_menu = 0;
+            break; /// SALIDA DEL PROGRAMA
+        }
+        }
+    }
+    else if(tecla > 13) y = accionarCursor(y, tecla);
+
+    return opcion_menu;
+
+}
 
 int main()
 {
     rlutil::hidecursor();
     int opcion_menu = -1, y = 0;
+
     while(true)
     {
-        parteArribaMenu(24, 5);
-        bordesMenu(24, 6);
-        separarMenues(24, 7);
-        for (int i = 0; i < 7; i ++) bordesMenu(24, 8 + i);
-        parteAbajoMenu(24, 15);
-
-
-        resaltarMenu("M E N U  G E S T O R", 30, 6, false);
-        resaltarMenu("INGRESO DE USUARIOS", 30, 9, y == 0);
-        resaltarMenu("GESTIONAR CLIENTES ", 30, 11, y == 1);
-        resaltarMenu("SALIR DEL PROGRAMA ", 30, 13, y == 2);
-
-
-        mostrarCursor(28, 50, 9, y);
-        int tecla = rlutil::getkey();
-        if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
-        {
-            switch(y)
-            {
-                case 0:
-                {
-                    opcion_menu = 1; /// INGRESA CLIENTE AL GIMNASIO
-                    break;
-                }
-                case 1:
-                {
-                    opcion_menu = 2; /// MANEJO DE DATOS
-                    break;
-                }
-                case 2:
-                {
-                    return 0; /// SALIDA DEL PROGRAMA
-                }
-            }
-        }
-        else if(tecla > 13) y = accionarCursor(y, tecla);
-
-
+        menuTeclas(opcion_menu, y);
 
         if (opcion_menu != -1)
         {
@@ -67,13 +74,20 @@ int main()
                 system("cls");
                 cout << "Por ahora nada :v" << endl;
                 break;
+
             case 2:
                 accionarMenu();
                 break;
+
+            case 0:
+                return 0;
             }
+
             system("pause");
             system("cls");
+
             opcion_menu = -1; // reset para esperar nueva tecla
         } /// CIERRA IF
+
     } ///FIN WHILE TRUE
 }

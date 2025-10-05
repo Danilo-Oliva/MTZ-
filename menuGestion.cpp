@@ -28,6 +28,22 @@ int menuGestion()
     return opcion;
 }
 
+void cargarCliente(Persona per, Actividad act, FichaMedica fm, ArchivoCliente arc, ArchivoActividad arcAct, ArchivoFichaMedica arcFM)
+{
+    /// ---- Cargar cliente ----
+    per.cargar();
+    act.cargar();
+    fm.cargar();
+
+    /// ---- Elegir actividad
+    //GUARDAR EL CLIENTE EN EL .dat
+    arc.inscribirCliente(per);
+    arcAct.inscribirActividad(act);
+    arcFM.inscribirFichaMedica(fm);
+
+    cout << "\nCliente cargado con exito.\n";
+}
+
 void accionarMenu()
 {
     system("cls");
@@ -50,18 +66,9 @@ void accionarMenu()
         case 1:
         {
             system("cls");
-            /// ---- Cargar cliente ----
-            per.cargar();
-            act.cargar();
-            fm.cargar();
 
-            /// ---- Elegir actividad
-            //GUARDAR EL CLIENTE EN EL .dat
-            arc.inscribirCliente(per);
-            arcAct.inscribirActividad(act);
-            arcFM.inscribirFichaMedica(fm);
+            cargarCliente(per, act, fm, arc, arcAct, arcFM);
 
-            cout << "\nCliente cargado con exito.\n";
             system("pause");
             system("cls");
             break;
@@ -74,7 +81,8 @@ void accionarMenu()
             system("pause");
             system("cls");
             break;
-        case 3:{
+        case 3:
+        {
             system("cls");
 
             int dni;
@@ -102,27 +110,27 @@ void accionarMenu()
             break;
         }
         case 4:
-            {
+        {
             system("cls");
             int dniBuscar;
             cout << "Ingrese DNI del cliente a modificar: ";
-                cin >> dniBuscar;
-                int pos = arc.buscarCliente(dniBuscar);
-                if (pos < 0)
-                {
-                    cout << "No hay cliente con el DNI: " << dniBuscar << endl;
-                    return;
-                }
-                Persona per = arc.leerArchivo(pos);
-                char nuevoEmail[30];
-                cout << "Ingrese el mail: ";
-                    cin >> nuevoEmail;
-                per.setEmail(nuevoEmail);
-                arc.modificarCliente(per, pos);
-                system("pause");
-                system("cls");
-            break;
+            cin >> dniBuscar;
+            int pos = arc.buscarCliente(dniBuscar);
+            if (pos < 0)
+            {
+                cout << "No hay cliente con el DNI: " << dniBuscar << endl;
+                return;
             }
+            Persona per = arc.leerArchivo(pos);
+            char nuevoEmail[30];
+            cout << "Ingrese el mail: ";
+            cin >> nuevoEmail;
+            per.setEmail(nuevoEmail);
+            arc.modificarCliente(per, pos);
+            system("pause");
+            system("cls");
+            break;
+        }
         case 5:
             break;
         case 0:
