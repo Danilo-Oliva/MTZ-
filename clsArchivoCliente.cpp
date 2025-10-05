@@ -15,6 +15,7 @@ int ArchivoCliente::contarClientes()
     FILE *p = fopen(nombreArchivo, "rb");
     if(p == nullptr)
     {
+        cout << "No se ha cargado clientes en el sistema" << endl;
         return -1;
     }
     fseek(p, SEEK_SET, SEEK_END); /// BUSCAR REGISTROS
@@ -86,6 +87,8 @@ void ArchivoCliente::listar()
 {
     Persona per;
     int contarCli = contarClientes();
+
+
     for(int i = 0; i < contarCli; i++)
     {
         per = leerArchivo(i);

@@ -7,6 +7,7 @@
 #include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
+#include "clsArchivoFichaMedica.h"
 #include "rlutil.h"
 using namespace std;
 
@@ -23,9 +24,10 @@ int gestionMenuMostrar(){
 }
 
 void accionarMenuMostrar(){
-    Actividad act;
     ArchivoCliente arc;
     ArchivoActividad arcAct;
+    ArchivoFichaMedica arcFM;
+
     int opc_mostrar;
 
     do {
@@ -50,10 +52,15 @@ void accionarMenuMostrar(){
                     system("cls");
                     break;
                 case 3:
-                    /// PONER ACA MOSTRAR FICHA MEDICA ///
+                    system("cls");
+
+                    arcFM.listar();
+
+                    system("pause");
+                    system("cls");
                     break;
                 case 0:
-                    cout << "Saliendo... " << endl;
+                    cout << "Volviendo... " << endl;
                     break;
                 default:
                     cout << "Opcion incorrecta" << endl;

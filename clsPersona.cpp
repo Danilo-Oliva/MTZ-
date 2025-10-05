@@ -80,8 +80,9 @@ void Persona::cargar(){
 
 }
 void Persona::mostrar(){
-    cout << "DNI: " << DNI << endl;
+    cout << "======= DATOS PERSONALES =======" << endl;
     cout << "Numero de Socio: " << NumeroSocio << endl;
+    cout << "DNI: " << DNI << endl;
     cout << "Nombre: " << Nombre << endl;
     cout << "Apellido: " << Apellido << endl;
     cout << "Telefono: " << Telefono << endl;

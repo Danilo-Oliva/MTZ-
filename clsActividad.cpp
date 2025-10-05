@@ -2,11 +2,14 @@
 #include "clsActividad.h"
 using namespace std;
 
-Actividad::Actividad(float _Cuota, bool _Libre, int _opcion_act){
+Actividad::Actividad(float _Cuota, bool _Libre, int _opcion_act, int _idAct){
     CuotaBase = _Cuota;
     Libre = _Libre;
 }
 
+void Actividad::setIdAct(int _idAct){
+    idAct = _idAct;
+}
 void Actividad::setCuotaBase(float _Cuota){
     CuotaBase = _Cuota;
 }
@@ -15,6 +18,10 @@ void Actividad::setLibre(bool _Libre){
 }
 void Actividad::setOpcion_act(int _opcion_act){
     opcion_act = _opcion_act;
+}
+
+int Actividad::getIdAct(){
+    return idAct;
 }
 float Actividad::getCuotaBase(){
     return CuotaBase;
@@ -49,6 +56,7 @@ void Actividad::cargar(){
     Libre = (opcion_mod == 1);
 }
 void Actividad::mostrar(){
+    cout << "======= ACTIVIDAD/ES =======" << endl;
     switch(getOpcion_act())
     {
     case 1:

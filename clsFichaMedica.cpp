@@ -5,7 +5,8 @@
 
 using namespace std;
 
-FichaMedica::FichaMedica(Domicilio dom, float _peso, float _altura, const char *nroemerg, const char *nomemerg , const char *paren, const char *obraSoc){
+FichaMedica::FichaMedica(int _idFM, Domicilio dom, float _peso, float _altura, const char *nroemerg, const char *nomemerg , const char *paren, const char *obraSoc){
+    idFM = _idFM;
     domicilio = dom;
     Peso = _peso;
     Altura = _altura;
@@ -14,7 +15,9 @@ FichaMedica::FichaMedica(Domicilio dom, float _peso, float _altura, const char *
     strcpy(Parentesco, paren);
     strcpy(ObraSocial, obraSoc);
 }
-
+void FichaMedica::setIdFM(int _idFM){
+    idFM = _idFM;
+}
 void FichaMedica::setDomicilio(Domicilio dom){
     domicilio = dom;
 }
@@ -35,6 +38,10 @@ void FichaMedica::setParentesco(const char *paren){
 }
 void FichaMedica::setObraSocial(const char *obraSoc){
     strcpy(ObraSocial, obraSoc);
+}
+
+int FichaMedica::getIdFM(){
+    return idFM;
 }
 Domicilio FichaMedica::getDomicilio(){
     return domicilio;
@@ -76,7 +83,7 @@ void FichaMedica::cargar(){
     cout << "====================================" << endl;
 }
 void FichaMedica::mostrar(){
-    cout << "======= INGRESO FICHA MEDICA =======" << endl;
+    cout << "======= FICHA MEDICA =======" << endl;
     cout << "Domicilio: " << endl;
     domicilio.Mostrar();
     cout << "Peso: " << Peso << "kg" << endl;

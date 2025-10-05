@@ -5,21 +5,10 @@
 
 using namespace std;
 
-ArchivoActividad::ArchivoActividad(const char *n, Actividad _act, int _idAct)
+ArchivoActividad::ArchivoActividad(const char *n, Actividad _act)
 {
     strcpy(nombreArchivo, n);
     act = _act;
-    idAct = _idAct;
-}
-
-void ArchivoActividad::setIdAct(int _idAct)
-{
-    idAct = _idAct;
-}
-
-int ArchivoActividad::getIdAct()
-{
-    return idAct;
 }
 
 int ArchivoActividad::contarActividades()
@@ -27,6 +16,7 @@ int ArchivoActividad::contarActividades()
     FILE *p = fopen(nombreArchivo, "rb");
     if(p == nullptr)
     {
+        cout << "No se ha cargado clientes en el sistema" << endl;
         return -1;
     }
     fseek(p, SEEK_SET, SEEK_END); /// BUSCAR REGISTROS
@@ -41,14 +31,14 @@ int ArchivoActividad::contarActividades()
 Actividad ArchivoActividad::leerArchivo(int pos)
 {
     FILE *p = fopen(nombreArchivo, "rb");
-    Actividad act;
+
     if(p == nullptr)
     {
-        setIdAct(-1);
-        return idAct;
+        act.setIdAct(-1);
+        return act;
     }
     fseek(p, pos * sizeof act, 0); ///MOVER EL PUNTERO DEL ARCHIVO A LA POSICION DESEADA, POS LO CALCULA EN BYTES, 0 ES QUE VA DEL INICIO
-    setIdAct(-2);
+    act.setIdAct(-2);
     fread(&act, sizeof act, 1, p); /// LEE EL ARCHIVO Y GUARDA EL DNI QUE SE BUSCA
     fclose(p);
     return act; /// RETORNA DNI QUE SE BUSCA (o errores si los hay)
@@ -63,7 +53,7 @@ bool ArchivoActividad::inscribirActividad(Actividad act)
     }
 
     int idAct = act.getOpcion_act();
-    setIdAct(idAct);
+    act.setIdAct(idAct);
 
     bool escribio = fwrite(&act, sizeof act, 1, p);
     fclose(p);
@@ -72,7 +62,6 @@ bool ArchivoActividad::inscribirActividad(Actividad act)
 
 void ArchivoActividad::listar()
 {
-    Actividad act;
     int cantAct = contarActividades();
     for(int i = 0; i < cantAct; i++)
     {
@@ -82,3 +71,15 @@ void ArchivoActividad::listar()
     }
 }
 
+bool ArchivoActividad::modificarActividad(Actividad act, int pos)
+{
+    FILE *p = fopen(nombreArchivo, "rb+");
+    if(p == nullptr)
+    {
+        return false;
+    }
+    fseek(p, pos * sizeof act, 0);
+    bool escribio = fwrite(&act, sizeof act, 1, p);
+    fclose(p);
+    return escribio;
+}

@@ -3,17 +3,20 @@
 
 class Actividad{
 protected:
+    int idAct;
     float CuotaBase;
     int opcion_act;
     bool Libre;
 public:
-    Actividad(float _Cuota = 0.0f, bool _Libre = false, int _opcion_act = 0);
+    Actividad(float _Cuota = 0.0f, bool _Libre = false, int _opcion_act = 0, int _idAct = 0);
     //setters
+    void setIdAct(int);
     void setCuotaBase(float);
     void setLibre(bool);
     void setOpcion_act(int);
 
     //getters
+    int getIdAct();
     float getCuotaBase();
     bool getLibre();
     int getOpcion_act();

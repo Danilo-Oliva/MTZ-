@@ -7,11 +7,8 @@ class ArchivoActividad
 private:
     char nombreArchivo[30];
     Actividad act;
-    int idAct;
 public:
-    ArchivoActividad(const char *n = "actividad.dat", Actividad _act = Actividad(0, false, 0), int _idAct = 0);
-    void setIdAct(int _idAct);
-    int getIdAct();
+    ArchivoActividad(const char *n = "actividad.dat", Actividad _act = Actividad());
 
     bool inscribirActividad(Actividad);
     Actividad leerArchivo(int pos);

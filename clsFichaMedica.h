@@ -6,6 +6,7 @@
 
 class FichaMedica{
 private:
+    int idFM;
     Domicilio domicilio;
     float Peso;
     float Altura;
@@ -14,7 +15,8 @@ private:
     char Parentesco[30];
     char ObraSocial[15];
 public:
-    FichaMedica(Domicilio dom = Domicilio("sin registrar", "sin registrar", "sin registrar",  "sin registrar", 0), float _peso = 0, float _altura = 0, const char *nroemerg = "911", const char *nomemerg = "Hospital", const char *paren = "Doctor", const char *obraSoc = "sin registrar");
+    FichaMedica(int _idFM = 0, Domicilio dom = Domicilio("sin registrar", "sin registrar", "sin registrar",  "sin registrar", 0), float _peso = 0, float _altura = 0, const char *nroemerg = "911", const char *nomemerg = "Hospital", const char *paren = "Doctor", const char *obraSoc = "sin registrar");
+    void setIdFM(int);
     void setDomicilio(Domicilio);
     void setPeso(float);
     void setAltura(float);
@@ -24,6 +26,7 @@ public:
     void setObraSocial(const char *);
 
     //getters
+    int getIdFM();
     Domicilio getDomicilio();
     float getPeso();
     float getAltura();

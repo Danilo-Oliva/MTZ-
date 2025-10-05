@@ -7,6 +7,7 @@
 #include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
+#include "clsArchivoFichaMedica.h"
 #include "mostrarMenu.h"
 #include "rlutil.h"
 
@@ -30,10 +31,16 @@ int menuGestion()
 void accionarMenu()
 {
     system("cls");
+    //archivos
     ArchivoCliente arc;
     ArchivoActividad arcAct;
+    ArchivoFichaMedica arcFM;
+
+    //objetos (ya se que archivos son objetos, pero es para guiarnos)
     Persona per;
     Actividad act;
+    FichaMedica fm;
+
     int opcion;
     do
     {
@@ -46,12 +53,13 @@ void accionarMenu()
             /// ---- Cargar cliente ----
             per.cargar();
             act.cargar();
+            fm.cargar();
 
             /// ---- Elegir actividad
             //GUARDAR EL CLIENTE EN EL .dat
             arc.inscribirCliente(per);
-
             arcAct.inscribirActividad(act);
+            arcFM.inscribirFichaMedica(fm);
 
             cout << "\nCliente cargado con exito.\n";
             system("pause");
@@ -77,14 +85,16 @@ void accionarMenu()
             if (pos >= 0)
             {
                 Persona per = arc.leerArchivo(pos);
-                cout << "\n=== Cliente encontrado ===\n";
+                Actividad act = arcAct.leerArchivo(pos);
+                FichaMedica fm = arcFM.leerArchivo(pos);
+                cout << "\n=== Cliente encontrado ===\n" << endl;;
                 per.mostrar();
-                per.mostrar();
-                per.mostrar();
+                act.mostrar();
+                fm.mostrar();
             }
             else
             {
-                cout << "No se encontró un cliente con DNI " << dni << endl;
+                cout << "No se encontro un cliente con DNI " << dni << endl;
             }
 
             system("pause");
