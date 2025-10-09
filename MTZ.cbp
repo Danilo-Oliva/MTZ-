@@ -49,6 +49,8 @@
 		<Unit filename="clsFecha.h" />
 		<Unit filename="clsFichaMedica.cpp" />
 		<Unit filename="clsFichaMedica.h" />
+		<Unit filename="clsInscripcionActividad.cpp" />
+		<Unit filename="clsInscripcionActividad.h" />
 		<Unit filename="clsPersona.cpp" />
 		<Unit filename="clsPersona.h" />
 		<Unit filename="main.cpp" />
