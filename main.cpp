@@ -1,11 +1,7 @@
 #include <iostream>
-#include "cargarCadena.h"
 #include "clsActividad.h"
-#include "clsDomicilio.h"
-#include "clsFecha.h"
 #include "clsPersona.h"
 #include "cargarDatos.h"
-#include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
 #include "menuGestion.h"
 #include "rlutil.h"

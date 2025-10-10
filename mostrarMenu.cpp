@@ -1,13 +1,9 @@
 #include<iostream>
-#include "cargarCadena.h"
 #include "clsActividad.h"
-#include "clsDomicilio.h"
 #include "clsFecha.h"
 #include "clsPersona.h"
-#include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
-#include "clsArchivoFichaMedica.h"
 #include "rlutil.h"
 using namespace std;
 
@@ -16,7 +12,6 @@ int gestionMenuMostrar(){
     cout << "Que archivo quiere mostrar?" << endl;
     cout << "1. Mostrar Cliente" << endl;
     cout << "2. Mostrar Actividad" << endl;
-    cout << "3. Mostrar Ficha Medica" << endl;
     cout << "0. Salir del menu" << endl;
     cout << "Elegir opcion: ";
     cin >> opc_mostrar;
@@ -26,7 +21,6 @@ int gestionMenuMostrar(){
 void accionarMenuMostrar(){
     ArchivoCliente arc;
     ArchivoActividad arcAct;
-    ArchivoFichaMedica arcFM;
 
     int opc_mostrar;
 
@@ -51,19 +45,16 @@ void accionarMenuMostrar(){
                     system("pause");
                     system("cls");
                     break;
-                case 3:
-                    system("cls");
-
-                    arcFM.listar();
-
-                    system("pause");
-                    system("cls");
-                    break;
                 case 0:
                     cout << "Volviendo... " << endl;
                     break;
                 default:
+                    system("cls");
+
                     cout << "Opcion incorrecta" << endl;
+
+                    system("pause");
+                    system("cls");
                     break;
                 }
     }while(opc_mostrar != 0);

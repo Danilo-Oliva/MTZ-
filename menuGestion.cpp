@@ -1,13 +1,9 @@
 #include <iostream>
-#include "cargarCadena.h"
 #include "clsActividad.h"
-#include "clsDomicilio.h"
-#include "clsFecha.h"
 #include "clsPersona.h"
 #include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
-#include "clsArchivoFichaMedica.h"
 #include "mostrarMenu.h"
 #include "menuModificar.h"
 #include "rlutil.h"
@@ -29,18 +25,16 @@ int menuGestion()
     return opcion;
 }
 
-void cargarCliente(Persona per, Actividad act, FichaMedica fm, ArchivoCliente arc, ArchivoActividad arcAct, ArchivoFichaMedica arcFM)
+void cargarCliente(Persona per, Actividad act, ArchivoCliente arc, ArchivoActividad arcAct)
 {
     /// ---- Cargar cliente ----
     per.cargar();
     act.cargar();
-    fm.cargar();
 
     /// ---- Elegir actividad
     //GUARDAR EL CLIENTE EN EL .dat
     arc.inscribirCliente(per);
     arcAct.inscribirActividad(act);
-    arcFM.inscribirFichaMedica(fm);
 
     cout << "\nCliente cargado con exito.\n";
 }
@@ -51,12 +45,10 @@ void accionarMenu()
     //archivos
     ArchivoCliente arc;
     ArchivoActividad arcAct;
-    ArchivoFichaMedica arcFM;
 
     //objetos (ya se que archivos son objetos, pero es para guiarnos)
     Persona per;
     Actividad act;
-    FichaMedica fm;
 
     int opcion;
     do
@@ -68,7 +60,7 @@ void accionarMenu()
         {
             system("cls");
 
-            cargarCliente(per, act, fm, arc, arcAct, arcFM);
+            cargarCliente(per, act, arc, arcAct);
 
             system("pause");
             system("cls");
@@ -95,11 +87,9 @@ void accionarMenu()
             {
                 Persona per = arc.leerArchivo(pos);
                 Actividad act = arcAct.leerArchivo(pos);
-                FichaMedica fm = arcFM.leerArchivo(pos);
                 cout << "\n=== Cliente encontrado ===\n" << endl;;
                 per.mostrar();
                 act.mostrar();
-                fm.mostrar();
             }
             else
             {
@@ -113,7 +103,9 @@ void accionarMenu()
         case 4:
         {
             system("cls");
+
             menuModificar();
+
             system("pause");
             system("cls");
             break;
@@ -124,7 +116,12 @@ void accionarMenu()
             cout << "\nSaliendo...\n";
             return;
         default:
+            system("cls");
+
             cout << "\nOpcion invalida.\n";
+
+            system("pause");
+            system("cls");
         }
     }
     while(opcion != 0);

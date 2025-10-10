@@ -6,10 +6,9 @@ using namespace std;
 int imprimirModificar()
 {
     int opcModificar;
-    cout << "¿Que archivo queres modificar?" << endl;
+    cout << "Que archivo desea modificar?" << endl;
     cout << "1. Clientes" << endl;
     cout << "2. Actividades" << endl;
-    cout << "3. Ficha Medica" << endl;
     cout << "0. Salir" << endl;
     cout << "Elegir opcion: ";
     cin >> opcModificar;
@@ -18,29 +17,28 @@ int imprimirModificar()
 
 void menuModificar()
 {
-    int opcModificar = imprimirModificar();
+    int opcModificar;
+    do{
+        opcModificar = imprimirModificar();
+        switch(opcModificar)
+        {
+        case 1:
+            cout << "Elegiste Cliente" << endl;
+            break;
+        case 2:
+            cout << "Elegiste Actividad" << endl;
+            break;
+        case 0:
+            cout << "Saliendo...." << endl;
+            break;
+        default:
+            system("cls");
 
-    switch(opcModificar)
-    {
-    case 1:
-    {
-        cout << "Elegiste Cliente" << endl;
-        break;
-    }
-    case 2:
-    {
-        cout << "Elegiste Actividad" << endl;
-        break;
-    }
-    case 3:
-    {
-        cout << "Elegiste Ficha Medica" << endl;
-        break;
-    }
-    case 0:
-    {
-        cout << "Saliendo...." << endl;
-        return;
-    }
-    }
+            cout << "Opcion incorrecta" << endl;
+
+            system("pause");
+            system("cls");
+            break;
+        }
+    }while(opcModificar != 0);
 }
