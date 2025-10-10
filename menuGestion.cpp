@@ -9,6 +9,7 @@
 #include "clsArchivoActividad.h"
 #include "clsArchivoFichaMedica.h"
 #include "mostrarMenu.h"
+#include "menuModificar.h"
 #include "rlutil.h"
 
 using namespace std;
@@ -112,21 +113,7 @@ void accionarMenu()
         case 4:
         {
             system("cls");
-            int dniBuscar;
-            cout << "Ingrese DNI del cliente a modificar: ";
-            cin >> dniBuscar;
-            int pos = arc.buscarCliente(dniBuscar);
-            if (pos < 0)
-            {
-                cout << "No hay cliente con el DNI: " << dniBuscar << endl;
-                return;
-            }
-            Persona per = arc.leerArchivo(pos);
-            char nuevoEmail[30];
-            cout << "Ingrese el mail: ";
-            cin >> nuevoEmail;
-            per.setEmail(nuevoEmail);
-            arc.modificarCliente(per, pos);
+            menuModificar();
             system("pause");
             system("cls");
             break;

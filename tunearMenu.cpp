@@ -89,9 +89,6 @@ int accionarCursor(int y, int tecla)
         if(y > 2) y = 2; ///IMPIDE IR A OPCIONES POR DEBAJO DEL MENU
         break;
     }
-    default:
-        cout << "Esto no tendria que estar aca" << endl;
-        return -1;
     } /// FIN SWITCH
     return y;
 }

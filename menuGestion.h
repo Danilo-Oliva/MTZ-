@@ -9,6 +9,7 @@
 #include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
 #include "Cliente.h"
+#include "menuModificar.h"
 #include "rlutil.h"
 
 int menuGestion();
