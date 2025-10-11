@@ -2,7 +2,6 @@
 #define GUARDARDATOS_H_INCLUDED
 
 #include "clsPersona.h"
-#include "clsFichaMedica.h"
 
 
 class ArchivoCliente

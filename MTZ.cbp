@@ -32,7 +32,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Cliente.h" />
 		<Unit filename="cargarCadena.cpp" />
 		<Unit filename="cargarCadena.h" />
 		<Unit filename="clsActividad.cpp" />
@@ -41,14 +40,10 @@
 		<Unit filename="clsArchivoActividad.h" />
 		<Unit filename="clsArchivoCliente.cpp" />
 		<Unit filename="clsArchivoCliente.h" />
-		<Unit filename="clsArchivoFichaMedica.cpp" />
-		<Unit filename="clsArchivoFichaMedica.h" />
 		<Unit filename="clsDomicilio.cpp" />
 		<Unit filename="clsDomicilio.h" />
 		<Unit filename="clsFecha.cpp" />
 		<Unit filename="clsFecha.h" />
-		<Unit filename="clsFichaMedica.cpp" />
-		<Unit filename="clsFichaMedica.h" />
 		<Unit filename="clsInscripcionActividad.cpp" />
 		<Unit filename="clsInscripcionActividad.h" />
 		<Unit filename="clsPersona.cpp" />
@@ -58,6 +53,8 @@
 		<Unit filename="menuGestion.h" />
 		<Unit filename="menuModificar.cpp" />
 		<Unit filename="menuModificar.h" />
+		<Unit filename="menuModificarCliente.cpp" />
+		<Unit filename="menuModificarCliente.h" />
 		<Unit filename="mostrarMenu.cpp" />
 		<Unit filename="mostrarMenu.h" />
 		<Unit filename="rlutil.h" />

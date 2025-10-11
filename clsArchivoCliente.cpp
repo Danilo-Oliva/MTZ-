@@ -85,13 +85,11 @@ bool ArchivoCliente::modificarCliente(Persona per, int pos)
 }
 void ArchivoCliente::listar()
 {
-    Persona per;
     int contarCli = contarClientes();
-
 
     for(int i = 0; i < contarCli; i++)
     {
-        per = leerArchivo(i);
+    Persona per = leerArchivo(i);
         per.mostrar();
         cout << endl;
     }

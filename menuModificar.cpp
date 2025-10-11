@@ -6,10 +6,13 @@ using namespace std;
 int imprimirModificar()
 {
     int opcModificar;
-    cout << "Que archivo desea modificar?" << endl;
+    cout << "===============================" << endl;
+    cout << "  ARCHIVO A MODIFICAR" << endl;
+    cout << "===============================" << endl;
     cout << "1. Clientes" << endl;
     cout << "2. Actividades" << endl;
     cout << "0. Salir" << endl;
+    cout << "===============================" << endl;
     cout << "Elegir opcion: ";
     cin >> opcModificar;
     return opcModificar;
@@ -23,7 +26,7 @@ void menuModificar()
         switch(opcModificar)
         {
         case 1:
-            cout << "Elegiste Cliente" << endl;
+            menuModificarCliente();
             break;
         case 2:
             cout << "Elegiste Actividad" << endl;

@@ -1,7 +1,6 @@
 #include <iostream>
 #include "clsActividad.h"
 #include "clsPersona.h"
-#include "clsFichaMedica.h"
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
 #include "mostrarMenu.h"
@@ -13,13 +12,16 @@ using namespace std;
 int menuGestion()
 {
     int opcion;
-    cout << "===== MENU GIMNASIO =====\n";
+    cout << "===============================" << endl;
+    cout << "  MENU GIMNASIO" << endl;
+    cout << "===============================" << endl;
     cout << "1. Cargar cliente\n";
     cout << "2. Mostrar Clientes\n";
     cout << "3. Buscar cliente\n";
     cout << "4. Modificar cliente\n";
     cout << "5. Borrar cliente\n";
     cout << "0. Volver a Inicio\n";
+    cout << "===============================" << endl;
     cout << "Ingrese opcion: ";
     cin >> opcion;
     return opcion;
