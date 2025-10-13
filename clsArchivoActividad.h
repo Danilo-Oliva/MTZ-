@@ -11,6 +11,7 @@ public:
     ArchivoActividad(const char *n = "actividad.dat", Actividad _act = Actividad());
 
     bool inscribirActividad(Actividad);
+    int buscarActividad(int);
     Actividad leerArchivo(int pos);
     int contarActividades();
     void listar();

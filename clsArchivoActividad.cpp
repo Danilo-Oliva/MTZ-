@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstring>
 #include "clsArchivoActividad.h"
-#include "clsActividad.h"
 
 using namespace std;
 
@@ -16,33 +15,45 @@ int ArchivoActividad::contarActividades()
     FILE *p = fopen(nombreArchivo, "rb");
     if(p == nullptr)
     {
-        cout << "No se ha cargado clientes en el sistema" << endl;
-        return -1;
+        return 0;
     }
-    fseek(p, SEEK_SET, SEEK_END); /// BUSCAR REGISTROS
-
-    int bytes = ftell(p); /// ESTABLECE LOS BYTES DE LA ULTIMA POSICION DEL ULTIMO REGISTRO
-
+    fseek(p, 0, SEEK_END);
+    int bytes = ftell(p);
     fclose(p);
-    return bytes/sizeof(act); /// DIVIDE LOS BYTES ESTABLECIDOS ANTES POR LOS BYTES TOTALES DE UN (1) REGISTRO
-    /// EJ: 340/170 = 2 REGISTROS (el ejemplo es para guiarnos, no es realista)
+    return bytes/sizeof(Actividad);
 }
+
+
+int ArchivoActividad::buscarActividad(int idBuscado)
+{
+    int cantReg = contarActividades();
+    for (int i = 0; i < cantReg; i++)
+    {
+        act = leerArchivo(i);
+        if(act.getIdAct() == idBuscado)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 
 Actividad ArchivoActividad::leerArchivo(int pos)
 {
     FILE *p = fopen(nombreArchivo, "rb");
-
+    Actividad aux;
     if(p == nullptr)
     {
-        act.setIdAct(-1);
-        return act;
+        return aux;
     }
-    fseek(p, pos * sizeof act, 0); ///MOVER EL PUNTERO DEL ARCHIVO A LA POSICION DESEADA, POS LO CALCULA EN BYTES, 0 ES QUE VA DEL INICIO
-    act.setIdAct(-2);
-    fread(&act, sizeof act, 1, p); /// LEE EL ARCHIVO Y GUARDA EL DNI QUE SE BUSCA
+    fseek(p, pos * sizeof(Actividad), 0);
+    fread(&aux, sizeof(Actividad), 1, p);
     fclose(p);
-    return act; /// RETORNA DNI QUE SE BUSCA (o errores si los hay)
+    return aux;
 }
+
+
 
 bool ArchivoActividad::inscribirActividad(Actividad act)
 {
@@ -52,17 +63,20 @@ bool ArchivoActividad::inscribirActividad(Actividad act)
         return false;
     }
 
-    int idAct = act.getOpcion_act();
-    act.setIdAct(idAct);
-
-    bool escribio = fwrite(&act, sizeof act, 1, p);
+    // El ID ya debe venir asignado desde el menú que llamó a esta función.
+    bool escribio = fwrite(&act, sizeof(Actividad), 1, p);
     fclose(p);
     return escribio;
 }
 
+
 void ArchivoActividad::listar()
 {
     int cantAct = contarActividades();
+    if (cantAct == 0) {
+        cout << "No hay actividades registradas." << endl;
+        return;
+    }
     for(int i = 0; i < cantAct; i++)
     {
         act = leerArchivo(i);
@@ -78,8 +92,8 @@ bool ArchivoActividad::modificarActividad(Actividad act, int pos)
     {
         return false;
     }
-    fseek(p, pos * sizeof act, 0);
-    bool escribio = fwrite(&act, sizeof act, 1, p);
+    fseek(p, pos * sizeof(Actividad), 0);
+    bool escribio = fwrite(&act, sizeof(Actividad), 1, p);
     fclose(p);
     return escribio;
 }

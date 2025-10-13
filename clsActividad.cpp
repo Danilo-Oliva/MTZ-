@@ -1,37 +1,34 @@
-#include<iostream>
+#include <iostream>
+#include <cstring>
 #include "clsActividad.h"
+#include "cargarCadena.h"
+
 using namespace std;
 
-Actividad::Actividad(float _Cuota, bool _Libre, int _opcion_act, int _idAct){
-    CuotaBase = _Cuota;
-    Libre = _Libre;
+Actividad::Actividad(const char* nombre, float cuota, bool libre, bool estado) {
+    idAct = 0;
+    strcpy(Nombre, nombre);
+    Nombre[49] = '\0';
+    CuotaBase = cuota;
+    Libre = libre;
+    Estado = estado;
 }
 
-void Actividad::setIdAct(int _idAct){
-    idAct = _idAct;
-}
-void Actividad::setCuotaBase(float _Cuota){
-    CuotaBase = _Cuota;
-}
-void Actividad::setLibre(bool _Libre){
-    Libre = _Libre;
-}
-void Actividad::setOpcion_act(int _opcion_act){
-    opcion_act = _opcion_act;
-}
 
-int Actividad::getIdAct(){
-    return idAct;
-}
-float Actividad::getCuotaBase(){
-    return CuotaBase;
-}
-bool Actividad::getLibre(){
-    return Libre;
-}
-int Actividad::getOpcion_act(){
-    return opcion_act;
-}
+// Setters
+void Actividad::setIdAct(int id) { idAct = id; }
+void Actividad::setNombre(const char* n) { strcpy(Nombre, n); }
+void Actividad::setCuotaBase(float c) { CuotaBase = c; }
+void Actividad::setLibre(bool l) { Libre = l; }
+void Actividad::setEstado(bool e) { Estado = e; }
+
+// Getters
+int Actividad::getIdAct() { return idAct; }
+const char* Actividad::getNombre() { return Nombre; }
+float Actividad::getCuotaBase() { return CuotaBase; }
+bool Actividad::getLibre() { return Libre; }
+bool Actividad::getEstado() { return Estado; }
+
 
 float Actividad::calcularCuota(){
     if(Libre){
@@ -40,55 +37,30 @@ float Actividad::calcularCuota(){
         return CuotaBase * 0.75;
     }
 }
-void Actividad::cargar(){
-    int opcion_mod;
-    cout << "Elegir actividad: " << endl;
-    cout << "1 - Funcional" << endl;
-    cout << "2 - Musculacion" << endl;
-    cout << "3 - Boxeo" << endl;
-    cout << "opcion: ";
-    cin >> opcion_act;
 
-    cout << "Ingrese cuota base: ";
+void Actividad::cargar(int proximoId){
+    idAct = proximoId;
+    cout << "ID DE LA NUEVA ACTIVIDAD: " << idAct << endl;
+
+    cout << "Ingrese el nombre de la actividad: ";
+    cargarCadena(Nombre, 49);
+
+    cout << "Ingrese la cuota base: $";
     cin >> CuotaBase;
-    cout << "Modalidad (1 si es libre, 2 si es 3 veces por semana): ";
+
+    int opcion_mod;
+    cout << "Modalidad (1 para Pase Libre, 2 para 3 veces por semana): ";
     cin >> opcion_mod;
     Libre = (opcion_mod == 1);
-}
-void Actividad::mostrar(){
-    cout << "======= ACTIVIDAD/ES =======" << endl;
-    switch(getOpcion_act())
-    {
-    case 1:
-        cout << "Actividad: Funcional" << endl;
-        break;
-    case 2:
-        cout << "Actividad: Musculacion" << endl;
-        break;
-    case 3:
-        cout << "Actividad: Boxeo" << endl;
-        break;
-    default:
-        cout << "No se ha registrado la actividad" << endl;
-        break;
-    }
-    cout << "Couta base: $" << CuotaBase << endl;
-    cout << "Modalidad: " << (Libre ? "Libre" : "3 veces por semana") << endl;
-    cout << "Cuota Final: $" << calcularCuota() << endl;
-}
-Funcional::Funcional(bool modalidadLibre) {
-    CuotaBase = 28000.0f;
-    Libre = modalidadLibre;
-    opcion_act = 1;
+    Estado = true;
 }
 
-Musculacion::Musculacion(bool modalidadLibre){
-    CuotaBase = 32000.0f;
-    Libre = modalidadLibre;
-    opcion_act = 2;
-}
-Boxeo::Boxeo(bool modalidadLibre){
-    CuotaBase = 25000.0f;
-    Libre = modalidadLibre;
-    opcion_act = 3;
+void Actividad::mostrar(){
+    cout << "======= DATOS DE LA ACTIVIDAD =======" << endl;
+    cout << "ID: " << idAct << endl;
+    cout << "Actividad: " << Nombre << endl;
+    cout << "Couta base: $" << CuotaBase << endl;
+    cout << "Modalidad: " << (Libre ? "Pase Libre" : "3 veces por semana") << endl;
+    cout << "Cuota Final: $" << calcularCuota() << endl;
+    cout << "Estado: " << (Estado ? "Activa" : "Inactiva") << endl;
 }

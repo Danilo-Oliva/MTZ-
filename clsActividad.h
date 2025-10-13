@@ -2,43 +2,35 @@
 #define CLSACTIVIDAD_H_INCLUDED
 
 class Actividad{
-protected:
+private:
     int idAct;
+    char Nombre[50];
     float CuotaBase;
-    int opcion_act;
     bool Libre;
+    bool Estado;
+
 public:
-    Actividad(float _Cuota = 0.0f, bool _Libre = false, int _opcion_act = 0, int _idAct = 0);
-    //setters
+    // Constructores
+    Actividad(const char* nombre = "Sin nombre", float cuota = 0.0f, bool libre = true, bool estado = true);
+
+    // Setters
     void setIdAct(int);
+    void setNombre(const char*);
     void setCuotaBase(float);
     void setLibre(bool);
-    void setOpcion_act(int);
+    void setEstado(bool);
 
-    //getters
+    // Getters
     int getIdAct();
+    const char* getNombre();
     float getCuotaBase();
     bool getLibre();
-    int getOpcion_act();
+    bool getEstado();
 
-    //metodos
+    // Métodos
     float calcularCuota();
-    void cargar();
+    void cargar(int proximoId);
     void mostrar();
 };
 
-class Musculacion : public Actividad{
-public:
-    Musculacion(bool Libre = false);
-};
-
-class Funcional : public Actividad{
-public:
-    Funcional(bool Libre = false);
-};
-
-class Boxeo : public Actividad{
-public:
-    Boxeo(bool Libre = false);
-};
 #endif // CLSACTIVIDAD_H_INCLUDED
