@@ -63,7 +63,6 @@ bool ArchivoActividad::inscribirActividad(Actividad act)
         return false;
     }
 
-    // El ID ya debe venir asignado desde el menú que llamó a esta función.
     bool escribio = fwrite(&act, sizeof(Actividad), 1, p);
     fclose(p);
     return escribio;

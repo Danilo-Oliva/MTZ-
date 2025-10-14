@@ -40,6 +40,8 @@
 		<Unit filename="clsArchivoActividad.h" />
 		<Unit filename="clsArchivoCliente.cpp" />
 		<Unit filename="clsArchivoCliente.h" />
+		<Unit filename="clsArchivoInscripcion.cpp" />
+		<Unit filename="clsArchivoInscripcion.h" />
 		<Unit filename="clsDomicilio.cpp" />
 		<Unit filename="clsDomicilio.h" />
 		<Unit filename="clsFecha.cpp" />
@@ -51,12 +53,14 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="menuGestion.cpp" />
 		<Unit filename="menuGestion.h" />
+		<Unit filename="menuInscripciones.cpp" />
+		<Unit filename="menuInscripciones.h" />
 		<Unit filename="menuModificar.cpp" />
 		<Unit filename="menuModificar.h" />
+		<Unit filename="menuModificarActividad.cpp" />
+		<Unit filename="menuModificarActividad.h" />
 		<Unit filename="menuModificarCliente.cpp" />
 		<Unit filename="menuModificarCliente.h" />
-		<Unit filename="mostrarMenu.cpp" />
-		<Unit filename="mostrarMenu.h" />
 		<Unit filename="rlutil.h" />
 		<Unit filename="tunearMenu.cpp" />
 		<Unit filename="tunearMenu.h" />

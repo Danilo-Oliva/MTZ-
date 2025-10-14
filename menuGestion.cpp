@@ -3,6 +3,7 @@
 #include "clsActividad.h"
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
+#include "menuInscripciones.h"
 #include "menuModificarCliente.h"
 #include "menuModificarActividad.h"
 #include "rlutil.h"
@@ -16,7 +17,7 @@ void mostrarMenuGestion()
     cout << "===============================" << endl;
     cout << "1. Gestion de Clientes" << endl;
     cout << "2. Gestion de Actividades" << endl;
-    cout << "3. Gestion de Inscripciones (PROXIMAMENTE SOLO EN CINES Y EN 3D)" << endl;
+    cout << "3. Gestion de Inscripciones" << endl;
     cout << "4. Reportes (PROXIMAMENTE SOLO EN CINES Y EN 3D)" << endl;
     cout << "-------------------------------" << endl;
     cout << "0. SALIR DEL PROGRAMA" << endl;
@@ -44,7 +45,7 @@ void menuClientes() {
 
         switch (opcion) {
             case 1: {
-                per.cargar(); // Carga los datos de la persona
+                per.cargar();
                 int proximoNroSocio = arch.contarClientes() + 1;
                 per.setNumeroSocio(proximoNroSocio);
 
@@ -98,9 +99,7 @@ void menuActividades() {
 
         switch (opcion) {
             case 1: {
-                // 1. Calculamos cuál será el próximo ID
                 int proximoID = arch.contarActividades() + 1;
-                // 2. Se lo pasamos a la función cargar
                 act.cargar(proximoID);
 
                 if (arch.inscribirActividad(act)) {
@@ -141,7 +140,9 @@ void accionarMenu()
             break;
         case 3:
             system("cls");
-            cout << "Modulo de inscripciones en construccion." << endl;
+
+            menuInscripciones();
+
             system("pause");
             break;
         case 4:

@@ -41,13 +41,10 @@ float Actividad::calcularCuota(){
 void Actividad::cargar(int proximoId){
     idAct = proximoId;
     cout << "ID DE LA NUEVA ACTIVIDAD: " << idAct << endl;
-
     cout << "Ingrese el nombre de la actividad: ";
     cargarCadena(Nombre, 49);
-
     cout << "Ingrese la cuota base: $";
     cin >> CuotaBase;
-
     int opcion_mod;
     cout << "Modalidad (1 para Pase Libre, 2 para 3 veces por semana): ";
     cin >> opcion_mod;

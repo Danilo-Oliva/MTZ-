@@ -74,7 +74,7 @@ void menuModificarActividad() {
             case 4:
                 {
                     bool estadoActual = act.getEstado();
-                    act.setEstado(!estadoActual); // Invierte el estado
+                    act.setEstado(!estadoActual);
                     cout << "Estado cambiado a: " << (act.getEstado() ? "Activo" : "Inactivo") << endl;
                 }
                 break;
