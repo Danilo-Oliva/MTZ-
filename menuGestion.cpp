@@ -6,11 +6,68 @@
 #include "menuInscripciones.h"
 #include "menuModificarCliente.h"
 #include "menuModificarActividad.h"
+#include "tunearMenu.h"
 #include "rlutil.h"
 
 using namespace std;
 
-void mostrarMenuGestion()
+int menuGestion(int &opcionMenu, int &y)
+{
+    parteArribaMenu(24, 5, 35);
+    bordesMenu(24, 6, 35);
+    separarMenues(24, 7, 35);
+    for (int i = 0; i < 11; i ++) bordesMenu(24, 8 + i, 35);
+    parteAbajoMenu(24, 19, 35);
+
+
+    resaltarMenu("M E N U  D E  G E S T I O N", 29, 6, false);
+    resaltarMenu("GESTIONAR    LOS   CLIENTES", 30, 9, y == 0);
+    resaltarMenu("GESTIONAR  LAS  ACTIVIDADES", 30, 11, y == 1);
+    resaltarMenu("GESTIONAR LAS INSCRIPCIONES", 30, 13, y == 2);
+    resaltarMenu("  REPORTES  DEL  PROGRAMA  ", 30, 15, y == 3);
+    resaltarMenu("  VOLVER AL MENU PRICIPAL  ", 30, 17, y == 4);
+
+
+    mostrarCursor(28, 58, 9, y);
+    int tecla = rlutil::getkey();
+    if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
+    {
+        switch(y)
+        {
+        case 0:
+        {
+            opcionMenu = 1; /// INGRESA CLIENTE AL GIMNASIO
+            break;
+        }
+        case 1:
+        {
+            opcionMenu = 2; /// MANEJO DE DATOS
+            break;
+        }
+        case 2:
+        {
+            opcionMenu = 3; /// MANEJO DE DATOS
+            break;
+        }case 3:
+        {
+            opcionMenu = 4; /// MANEJO DE DATOS
+            break;
+        }
+        case 4:
+        {
+            opcionMenu = 0;
+            break; /// SALIDA DEL PROGRAMA
+        }
+        }
+    }
+    else if(tecla > 13) y = accionarCursor(y, tecla, 4);
+
+    return opcionMenu;
+
+}
+
+
+/*void mostrarMenuGestion()
 {
     cout << "===============================" << endl;
     cout << "        MENU PRINCIPAL" << endl;
@@ -24,6 +81,7 @@ void mostrarMenuGestion()
     cout << "===============================" << endl;
     cout << "Ingrese opcion: ";
 }
+    */
 
 
 void menuClientes() {
@@ -123,14 +181,13 @@ void menuActividades() {
 
 void accionarMenu()
 {
-    int opcion;
+    int opcionMenu = -1, y = 0;
     do
     {
         system("cls");
-        mostrarMenuGestion();
-        cin >> opcion;
+        menuGestion(opcionMenu, y);
 
-        switch(opcion)
+        switch(opcionMenu)
         {
         case 1:
             menuClientes();
@@ -150,13 +207,8 @@ void accionarMenu()
             cout << "Modulo de reportes en construccion." << endl;
             system("pause");
             break;
-        case 0:
-            cout << "\nSaliendo del programa...\n";
-            break;
-        default:
-            cout << "\nOpcion invalida.\n";
-            system("pause");
         }
+        if(opcionMenu != 0) opcionMenu = -1;
     }
-    while(opcion != 0);
+    while(opcionMenu != 0);
 }

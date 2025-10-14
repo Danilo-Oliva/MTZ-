@@ -9,7 +9,7 @@
 #include "menuModificar.h"
 #include "rlutil.h"
 
-int menuGestion();
+int menuGestion(int &opcion_menu, int &y);
 void accionarMenu();
 
 
