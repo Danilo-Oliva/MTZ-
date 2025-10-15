@@ -34,7 +34,7 @@ InscripcionActividad ArchivoInscripcion::leerInscripcion(int pos) {
     InscripcionActividad ins;
     FILE *p = fopen(nombreArchivo, "rb");
     if (p == nullptr) {
-        return ins; // Devuelve objeto vacío con estado en false por defecto
+        return ins;
     }
     fseek(p, pos * sizeof(InscripcionActividad), 0);
     fread(&ins, sizeof(InscripcionActividad), 1, p);
@@ -46,12 +46,11 @@ int ArchivoInscripcion::buscarInscripcion(int nroSocio, int idAct) {
     int cant = contarInscripciones();
     for (int i = 0; i < cant; i++) {
         InscripcionActividad ins = leerInscripcion(i);
-        // La condición ahora es más estricta:
         if (ins.getNumeroSocio() == nroSocio && ins.getIdAct() == idAct && ins.getEstado() == true) {
-            return i; // Solo la devuelve si está ACTIVA
+            return i;
         }
     }
-    return -1; // No encontró una inscripción activa
+    return -1;
 }
 
 bool ArchivoInscripcion::modificarInscripcion(InscripcionActividad ins, int pos) {

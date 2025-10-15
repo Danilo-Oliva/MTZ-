@@ -37,7 +37,7 @@ int main()
             }
             system("cls");
 
-            opcionMenu = -1; // reset para esperar nueva tecla
+            opcionMenu = -1;
         } /// CIERRA IF
 
     } ///FIN WHILE TRUE

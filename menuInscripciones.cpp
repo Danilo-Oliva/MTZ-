@@ -18,20 +18,19 @@ void nuevaInscripcion() {
     archClientes.listar();
     cout << "---------------------------------------" << endl;
 
-    // --- CAMBIO #1: Pedimos el DNI en lugar del Nro de Socio ---
+
     cout << "Ingrese el DNI del cliente a inscribir: ";
     cin >> dni;
 
-    // Validación de cliente por DNI
+
     posCliente = archClientes.buscarCliente(dni);
     if (posCliente == -1) {
         cout << "ERROR: No se encontro ningun cliente con ese DNI." << endl;
         return;
     }
 
-    // Si encontramos al cliente, leemos sus datos completos
     per = archClientes.leerArchivo(posCliente);
-    int nroSocio = per.getNumeroSocio(); // Obtenemos el Nro de Socio correcto
+    int nroSocio = per.getNumeroSocio();
 
     system("cls");
 
@@ -52,10 +51,9 @@ void nuevaInscripcion() {
     }
 
     InscripcionActividad nuevaIns;
-    // --- CAMBIO #2: Usamos el Nro de Socio que obtuvimos del cliente ---
     nuevaIns.setNumeroSocio(nroSocio);
     nuevaIns.setIdAct(idAct);
-    nuevaIns.setFechaInscripcion(Fecha()); // Fecha actual
+    nuevaIns.setFechaInscripcion(Fecha());
     nuevaIns.setEstado(true);
 
     system("cls");
@@ -68,7 +66,7 @@ void nuevaInscripcion() {
 }
 
 void anularInscripcion(){
-    // Esta función ya estaba bien, pero la dejo para que tengas el archivo completo
+
     ArchivoInscripcion archInscripciones("inscripciones.dat");
     int nroSocio, idAct, pos;
 
@@ -109,9 +107,6 @@ void listarInscripciones(){
     for(int i=0; i<cant; i++){
         InscripcionActividad ins = archInscripciones.leerInscripcion(i);
 
-        // --- CAMBIO #3: Buscamos la posición del cliente usando su DNI para luego leerlo ---
-        // Esto asume que tienes una función para buscar por Nro de Socio o que DNI es la clave principal
-        // Para mantenerlo simple, y ya que no tenemos buscarPorNroSocio, leeremos todos hasta encontrarlo.
 
         Persona per;
         int cantClientes = archClientes.contarClientes();
@@ -137,7 +132,6 @@ void listarInscripciones(){
 
 
 void menuInscripciones() {
-    // Esta función no necesita cambios
     int opcion;
     do {
         system("cls");

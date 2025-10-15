@@ -17,6 +17,7 @@ public:
     bool inscribirCliente(Persona);
     bool modificarCliente(Persona, int);
     void listar();
+    bool eliminarCliente(int dni);
 };
 
 #endif // GUARDARDATOS_H_INCLUDED

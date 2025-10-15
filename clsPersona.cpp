@@ -64,6 +64,7 @@ bool Persona::getEstado(){
     return Estado;
 }
 void Persona::cargar(){
+
     cout << "Ingrese el nombre: ";
     char nomAux[30];
     cargarCadena(nomAux, 29),
@@ -81,8 +82,6 @@ void Persona::cargar(){
     cout << "Ingrese la fecha de nacimiento: " << endl;
     FechaNacimiento.cargar();
 
-    cout << "Ingrese el DNI: ";
-    cin >> DNI;
 
 }
 void Persona::mostrar(){

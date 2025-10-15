@@ -100,3 +100,34 @@ void ArchivoCliente::listar()
         cout << "No hay clientes activos para mostrar." << endl;
     }
 }
+bool ArchivoCliente::eliminarCliente(int dni) {
+    int pos = buscarCliente(dni);
+    if (pos == -1) {
+        return false;
+    }
+
+    int cant = contarClientes();
+    FILE *pOriginal = fopen(nombreArchivo, "rb");
+    if (pOriginal == nullptr) return false;
+
+    FILE *pTemporal = fopen("clientes.tmp", "wb");
+    if (pTemporal == nullptr) {
+        fclose(pOriginal);
+        return false;
+    }
+
+    for (int i = 0; i < cant; i++) {
+        Persona per = leerArchivo(i);
+        if (per.getDNI() != dni) {
+            fwrite(&per, sizeof(Persona), 1, pTemporal);
+        }
+    }
+
+    fclose(pOriginal);
+    fclose(pTemporal);
+
+    if (remove(nombreArchivo) != 0) return false;
+    if (rename("clientes.tmp", nombreArchivo) != 0) return false;
+
+    return true;
+}

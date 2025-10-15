@@ -6,13 +6,12 @@
 
 class InscripcionActividad {
 private:
-    int numeroSocio;   // FK -> Cliente (Persona.NumeroSocio)
-    int idAct;         // FK -> Actividad (Actividad.idAct)
+    int numeroSocio;
+    int idAct;
     Fecha fechaInscripcion;
-    bool estado;       // true = activa, false = inactiva/baja
+    bool estado;
 
 public:
-    // Constructor
     InscripcionActividad(int numSoc = 0, int idA = 0, Fecha f = Fecha(), bool est = true);
 
     // Setters
