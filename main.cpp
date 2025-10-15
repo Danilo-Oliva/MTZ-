@@ -17,7 +17,7 @@ int main()
 
     while(true)
     {
-        menuPrincipal(opcionMenu, y);
+        mostrarMenuPrincipal(opcionMenu, y);
 
         if (opcionMenu != -1)
         {
@@ -35,8 +35,6 @@ int main()
             case 0:
                 return 0;
             }
-
-            system("pause");
             system("cls");
 
             opcionMenu = -1; // reset para esperar nueva tecla

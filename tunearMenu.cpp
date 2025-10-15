@@ -81,7 +81,7 @@ int accionarCursor(int y, int tecla, int limiteCursor)
         rlutil::locate(28, 9 + y);
         cout << " " << endl;
         y--;
-        if (y < 0) y = 0; ///IMPIDE IR A OPCIONES POR ENCIMA DEL MENU
+        if (y < 0) y = limiteCursor; ///IMPIDE IR A OPCIONES POR ENCIMA DEL MENU
         break;
     }
     case 15: /// ABAJO
@@ -89,14 +89,14 @@ int accionarCursor(int y, int tecla, int limiteCursor)
         rlutil::locate(28, 9 + y);
         cout << " " << endl;
         y++;
-        if(y > limiteCursor) y = limiteCursor; ///IMPIDE IR A OPCIONES POR DEBAJO DEL MENU
+        if(y > limiteCursor) y = 0; ///IMPIDE IR A OPCIONES POR DEBAJO DEL MENU
         break;
     }
     } /// FIN SWITCH
     return y;
 }
 
-int menuPrincipal(int &opcionMenu, int &y)
+int mostrarMenuPrincipal(int &opcionMenu, int &y)
 {
     parteArribaMenu(24, 5, 29);
     bordesMenu(24, 6, 29);

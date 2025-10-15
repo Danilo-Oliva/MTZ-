@@ -9,6 +9,6 @@ void separarMenues(int posX, int posY, int espacios);
 void parteAbajoMenu(int posX, int posY, int espacios);
 void mostrarCursor(int posX1, int posX2, int posY, int y);
 int accionarCursor(int y, int tecla, int limiteCursor);
-int menuPrincipal(int &opcionMenu, int &y);
+int mostrarMenuPrincipal(int &opcionMenu, int &y);
 
 #endif // TUNEARMENU_H_INCLUDED

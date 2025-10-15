@@ -11,16 +11,16 @@
 
 using namespace std;
 
-int menuGestion(int &opcionMenu, int &y)
+int mostrarMenuGestion(int &opcionMenu, int &y)
 {
-    parteArribaMenu(24, 5, 35);
-    bordesMenu(24, 6, 35);
-    separarMenues(24, 7, 35);
-    for (int i = 0; i < 11; i ++) bordesMenu(24, 8 + i, 35);
-    parteAbajoMenu(24, 19, 35);
+    parteArribaMenu(24, 5, 37);
+    bordesMenu(24, 6, 37);
+    separarMenues(24, 7, 37);
+    for (int i = 0; i < 11; i ++) bordesMenu(24, 8 + i, 37);
+    parteAbajoMenu(24, 19, 37);
 
 
-    resaltarMenu("M E N U  D E  G E S T I O N", 29, 6, false);
+    resaltarMenu("M E N U  D E  G E S T I O N", 30, 6, false);
     resaltarMenu("GESTIONAR    LOS   CLIENTES", 30, 9, y == 0);
     resaltarMenu("GESTIONAR  LAS  ACTIVIDADES", 30, 11, y == 1);
     resaltarMenu("GESTIONAR LAS INSCRIPCIONES", 30, 13, y == 2);
@@ -66,22 +66,117 @@ int menuGestion(int &opcionMenu, int &y)
 
 }
 
-
-/*void mostrarMenuGestion()
+int mostrarMenuClientes(int &opcionMenu, int &y)
 {
-    cout << "===============================" << endl;
-    cout << "        MENU PRINCIPAL" << endl;
-    cout << "===============================" << endl;
-    cout << "1. Gestion de Clientes" << endl;
-    cout << "2. Gestion de Actividades" << endl;
-    cout << "3. Gestion de Inscripciones" << endl;
-    cout << "4. Reportes (PROXIMAMENTE SOLO EN CINES Y EN 3D)" << endl;
-    cout << "-------------------------------" << endl;
-    cout << "0. SALIR DEL PROGRAMA" << endl;
-    cout << "===============================" << endl;
-    cout << "Ingrese opcion: ";
+    parteArribaMenu(24, 5, 33);
+    bordesMenu(24, 6, 33);
+    separarMenues(24, 7, 33);
+    for (int i = 0; i < 13; i ++) bordesMenu(24, 8 + i, 33);
+    parteAbajoMenu(24, 21, 33);
+
+
+    resaltarMenu("M E N U  D E  C L I E N T E S", 27, 6, false);
+    resaltarMenu("INGRESAR NUEVO CLIENTE ", 30, 9, y == 0);
+    resaltarMenu("  MODIFICAR  CLIENTES  ", 30, 11, y == 1);
+    resaltarMenu("LISTAR CLIENTES ACTIVOS", 30, 13, y == 2);
+    resaltarMenu("BUSCAR CLIENTES POR DNI", 30, 15, y == 3);
+    resaltarMenu("  ELIMINAR   CLIENTES  ", 30, 17, y == 4);
+    resaltarMenu("VOLVER AL  MENU GESTION", 30, 19, y == 5);
+
+
+    mostrarCursor(28, 54, 9, y);
+    int tecla = rlutil::getkey();
+    if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
+    {
+        switch(y)
+        {
+        case 0:
+        {
+            opcionMenu = 1; /// INGRESA CLIENTE AL GIMNASIO
+            break;
+        }
+        case 1:
+        {
+            opcionMenu = 2; /// MANEJO DE DATOS
+            break;
+        }
+        case 2:
+        {
+            opcionMenu = 3; /// MANEJO DE DATOS
+            break;
+        }case 3:
+        {
+            opcionMenu = 4; /// MANEJO DE DATOS
+            break;
+        }
+        case 4:
+        {
+            opcionMenu = 5;
+            break; /// SALIDA DEL PROGRAMA
+        }
+        case 5:
+            {
+                opcionMenu = 0;
+            }
+        }
+    }
+    else if(tecla > 13) y = accionarCursor(y, tecla, 5);
+
+    return opcionMenu;
+
 }
-    */
+
+
+int mostrarMenuActividades(int &opcionMenu, int &y)
+{
+    parteArribaMenu(24, 5, 31);
+    bordesMenu(24, 6, 31);
+    separarMenues(24, 7, 31);
+    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 31);
+    parteAbajoMenu(24, 17, 31);
+
+
+    resaltarMenu("M E N U   A C T I V I D A D E S", 25, 6, false);
+    resaltarMenu("CREAR NUEVA ACTIVIDAD", 30, 9, y == 0);
+    resaltarMenu("MODIFICAR   ACTIVIDAD", 30, 11, y == 1);
+    resaltarMenu(" LISTAR  ACTIVIDADES ", 30, 13, y == 2);
+    resaltarMenu("VOLVER A MENU GESTION", 30, 15, y == 3);
+
+
+    mostrarCursor(28, 52, 9, y);
+    int tecla = rlutil::getkey();
+    if(tecla == 1)
+    {
+        switch(y)
+        {
+        case 0:
+        {
+            opcionMenu = 1; /// INGRESA CLIENTE AL GIMNASIO
+            break;
+        }
+        case 1:
+        {
+            opcionMenu = 2; /// MANEJO DE DATOS
+            break;
+        }
+        case 2:
+        {
+            opcionMenu = 3;
+            break;
+        }
+        case 3:
+            {
+                opcionMenu = 0; /// SALIDA DEL PROGRAMA
+                break;
+            }
+        }
+    }
+    else if(tecla > 13) y = accionarCursor(y, tecla, 3);
+
+    return opcionMenu;
+
+}
+
 
 void darDeBajaCliente() {
     ArchivoCliente arch("clientes.dat");
@@ -127,20 +222,16 @@ void darDeBajaCliente() {
 void menuClientes() {
     ArchivoCliente arch("clientes.dat");
     Persona per;
-    int opcion;
+    int opcion, y = 0;
 
     do {
+        opcion = -1;
+
+
         system("cls");
-        cout << "--- GESTION DE CLIENTES ---" << endl;
-        cout << "1. Nuevo Cliente" << endl;
-        cout << "2. Modificar Cliente" << endl;
-        cout << "3. Listar Clientes Activos" << endl;
-        cout << "4. Buscar Cliente por DNI" << endl;
-        cout << "5. Aniquilar cliente" << endl;
-        cout << "0. Volver al Menu Principal" << endl;
-        cout << "Opcion: ";
-        cin >> opcion;
+        opcion = mostrarMenuClientes(opcion, y);
         system("cls");
+
 
         switch (opcion) {
             case 1: {
@@ -186,24 +277,23 @@ void menuClientes() {
 
                 system("cls");
         }
+        system("cls");
     } while (opcion != 0);
 }
 
 void menuActividades() {
     ArchivoActividad arch("actividad.dat");
     Actividad act;
-    int opcion;
+    int opcion, y = 0;
 
     do {
+        opcion = -1;
+
         system("cls");
-        cout << "--- GESTION DE ACTIVIDADES ---" << endl;
-        cout << "1. Nueva Actividad" << endl;
-        cout << "2. Modificar Actividad" << endl;
-        cout << "3. Listar Actividades" << endl;
-        cout << "0. Volver al Menu Principal" << endl;
-        cout << "Opcion: ";
-        cin >> opcion;
+        mostrarMenuActividades(opcion, y);
         system("cls");
+
+
 
         switch (opcion) {
             case 1: {
@@ -222,9 +312,9 @@ void menuActividades() {
                 break;
             case 3:
                 arch.listar();
+                system("pause");
                 break;
         }
-        if (opcion != 0) system("pause");
     } while (opcion != 0);
 }
 
@@ -235,7 +325,7 @@ void accionarMenu()
     do
     {
         system("cls");
-        menuGestion(opcionMenu, y);
+        mostrarMenuGestion(opcionMenu, y);
 
         switch(opcionMenu)
         {
@@ -249,13 +339,10 @@ void accionarMenu()
             system("cls");
 
             menuInscripciones();
-
-            system("pause");
             break;
         case 4:
             system("cls");
             cout << "Modulo de reportes en construccion." << endl;
-            system("pause");
             break;
         }
         if(opcionMenu != 0) opcionMenu = -1;

@@ -8,7 +8,8 @@
 #include "clsArchivoCliente.h"
 #include "rlutil.h"
 
-int menuGestion(int &opcion_menu, int &y);
+int mostrarMenuGestion(int &opcion_menu, int &y);
+int mostrarMenuClientes(int &opcionMenu, int &y);
 void accionarMenu();
 
 
