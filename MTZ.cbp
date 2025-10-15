@@ -55,7 +55,6 @@
 		<Unit filename="menuGestion.h" />
 		<Unit filename="menuInscripciones.cpp" />
 		<Unit filename="menuInscripciones.h" />
-		<Unit filename="menuModificar.cpp" />
 		<Unit filename="menuModificar.h" />
 		<Unit filename="menuModificarActividad.cpp" />
 		<Unit filename="menuModificarActividad.h" />

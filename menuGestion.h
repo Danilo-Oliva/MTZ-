@@ -6,7 +6,6 @@
 #include "clsFecha.h"
 #include "clsPersona.h"
 #include "clsArchivoCliente.h"
-#include "menuModificar.h"
 #include "rlutil.h"
 
 int menuGestion(int &opcion_menu, int &y);

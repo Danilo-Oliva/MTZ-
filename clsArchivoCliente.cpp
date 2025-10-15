@@ -86,11 +86,17 @@ bool ArchivoCliente::modificarCliente(Persona per, int pos)
 void ArchivoCliente::listar()
 {
     int contarCli = contarClientes();
-
+    int contadorMostrados = 0;
     for(int i = 0; i < contarCli; i++)
     {
-    Persona per = leerArchivo(i);
-        per.mostrar();
-        cout << endl;
+        Persona per = leerArchivo(i);
+        if (per.getEstado() == true) {
+            per.mostrar();
+            cout << endl;
+            contadorMostrados++;
+        }
+    }
+    if (contadorMostrados == 0) {
+        cout << "No hay clientes activos para mostrar." << endl;
     }
 }

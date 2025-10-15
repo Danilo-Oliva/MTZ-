@@ -13,6 +13,7 @@ Persona::Persona(const char *nom, const char *ape, const char *tel,const char *e
     FechaNacimiento = fecNac;
     DNI = d;
     NumeroSocio = numSoc;
+    Estado = true;
 }
 void Persona::setNombre(const char *nom){
     strcpy(Nombre, nom);
@@ -35,6 +36,9 @@ void Persona::setDNI(int d){
 void Persona::setNumeroSocio(int numSoc){
     NumeroSocio = numSoc;
 }
+void Persona::setEstado(bool e){
+    Estado = e;
+}
 const char *Persona::getNombre(){
     return Nombre;
 }
@@ -56,7 +60,9 @@ int Persona::getDNI(){
 int Persona::getNumeroSocio(){
     return NumeroSocio;
 }
-
+bool Persona::getEstado(){
+    return Estado;
+}
 void Persona::cargar(){
     cout << "Ingrese el nombre: ";
     char nomAux[30];
@@ -89,4 +95,5 @@ void Persona::mostrar(){
     cout << "Email: " << Email << endl;
     cout << "Fecha de Nacimiento: ";
     FechaNacimiento.mostrar();
+    cout << "Estado: " << (Estado ? "Activo" : "Inactivo") << endl;
 }

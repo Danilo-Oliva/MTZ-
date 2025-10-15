@@ -6,6 +6,7 @@
 
 class Persona{
 protected:
+    bool Estado;
     char Nombre[30];
     char Apellido[30];
     char Telefono[15];
@@ -24,6 +25,7 @@ public:
     void setFechaNacimiento(Fecha);
     void setDNI(int);
     void setNumeroSocio(int);
+    void setEstado(bool);
 
     //Getters
     const char *getNombre();
@@ -33,6 +35,7 @@ public:
     Fecha getFechaNacimiento();
     int getDNI();
     int getNumeroSocio();
+    bool getEstado();
 
     //metods
     void cargar();

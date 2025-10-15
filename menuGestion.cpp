@@ -83,6 +83,46 @@ int menuGestion(int &opcionMenu, int &y)
 }
     */
 
+void darDeBajaCliente() {
+    ArchivoCliente arch("clientes.dat");
+    int dni, pos;
+    char confirmacion;
+
+    cout << "Ingrese el DNI del cliente a dar de baja: ";
+    cin >> dni;
+
+    pos = arch.buscarCliente(dni);
+    if (pos == -1) {
+        cout << "ERROR: No se encontro un cliente con ese DNI." << endl;
+        system("pause");
+        return;
+    }
+
+    Persona per = arch.leerArchivo(pos);
+    cout << "Se encontro el siguiente cliente:" << endl;
+    per.mostrar();
+
+    if (per.getEstado() == false) {
+        cout << "\nEste cliente ya se encuentra inactivo." << endl;
+        system("pause");
+        return;
+    }
+
+    cout << "\nEsta seguro de que desea dar de baja a este cliente? (S/N): ";
+    cin >> confirmacion;
+
+    if (confirmacion == 'S' || confirmacion == 's') {
+        per.setEstado(false);
+        if (arch.modificarCliente(per, pos)) {
+            cout << "Cliente dado de baja con exito." << endl;
+        } else {
+            cout << "ERROR: No se pudo modificar el registro." << endl;
+        }
+    } else {
+        cout << "La operacion ha sido cancelada." << endl;
+    }
+    system("pause");
+}
 
 void menuClientes() {
     ArchivoCliente arch("clientes.dat");
@@ -94,8 +134,9 @@ void menuClientes() {
         cout << "--- GESTION DE CLIENTES ---" << endl;
         cout << "1. Nuevo Cliente" << endl;
         cout << "2. Modificar Cliente" << endl;
-        cout << "3. Listar Clientes" << endl;
+        cout << "3. Listar Clientes Activos" << endl;
         cout << "4. Buscar Cliente por DNI" << endl;
+        cout << "5. Aniquilar cliente" << endl;
         cout << "0. Volver al Menu Principal" << endl;
         cout << "Opcion: ";
         cin >> opcion;
@@ -112,13 +153,16 @@ void menuClientes() {
                 } else {
                     cout << "Error al guardar el cliente." << endl;
                 }
+                system("pause");
                 break;
             }
             case 2:
                 menuModificarCliente();
+                system("pause");
                 break;
             case 3:
                 arch.listar();
+                system("pause");
                 break;
             case 4: {
                 int dni, pos;
@@ -132,10 +176,16 @@ void menuClientes() {
                 } else {
                     cout << "No se encontro cliente con el DNI " << dni << endl;
                 }
+                system("pause");
                 break;
             }
+            case 5:
+                system("cls");
+
+                darDeBajaCliente();
+
+                system("cls");
         }
-        if (opcion != 0) system("pause");
     } while (opcion != 0);
 }
 
