@@ -209,13 +209,13 @@ void GestionarEstadoCliente() {
     if (per.getEstado() == false) {
 
         cout << "Este cliente se encuentra INACTIVO en el sistema." << endl;
-        cout << "¿Desea reactivarlo en este momento? (S/N): ";
+        cout << "Desea reactivarlo en este momento? (S/N): ";
         cin >> confirmacion;
 
         if (confirmacion == 'S' || confirmacion == 's') {
             per.setEstado(true);
             if (arch.modificarCliente(per, pos)) {
-                cout << "\n¡Cliente reactivado con exito!" << endl;
+                cout << "\nCliente reactivado con exito!" << endl;
             } else {
                 cout << "\nERROR: No se pudo modificar el registro." << endl;
             }
@@ -262,7 +262,6 @@ void EliminarClientePermanente() {
 
     cout << "\n\nADVERTENCIA: Esta accion es IRREVERSIBLE y eliminara al cliente del sistema para siempre." << endl;
     cout << "Esta absolutamente seguro de que desea continuar? (S/N): ";
-    cout << "Seguriririsimo?: ";
     cin >> confirmacion;
 
     if (confirmacion == 'S' || confirmacion == 's') {
