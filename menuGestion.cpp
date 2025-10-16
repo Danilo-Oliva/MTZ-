@@ -80,8 +80,8 @@ int mostrarMenuClientes(int &opcionMenu, int &y)
     resaltarMenu("  MODIFICAR  CLIENTES  ", 30, 11, y == 1);
     resaltarMenu("LISTAR CLIENTES ACTIVOS", 30, 13, y == 2);
     resaltarMenu("BUSCAR CLIENTES POR DNI", 30, 15, y == 3);
-    resaltarMenu("  ESTADO   CLIENTES  ", 30, 17, y == 4);
-    resaltarMenu("BORRAR DEFINITIVAMENTE Y PERMANENTEMENTE CLIENTE",30, 19, y == 5 );
+    resaltarMenu("   ESTADO   CLIENTES   ", 30, 17, y == 4);
+    resaltarMenu("  BORRAR  UN  CLIENTE  ",30, 19, y == 5 );
     resaltarMenu("VOLVER AL  MENU GESTION", 30, 21, y == 6);
 
 
@@ -286,9 +286,9 @@ void menuClientes() {
         opcion = -1;
 
 
-        system("cls");
+        rlutil::cls();
         opcion = mostrarMenuClientes(opcion, y);
-        system("cls");
+        rlutil::cls();
 
 
         switch (opcion) {
