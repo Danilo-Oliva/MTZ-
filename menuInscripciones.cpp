@@ -3,6 +3,7 @@
 #include "clsArchivoActividad.h"
 #include "clsArchivoInscripcion.h"
 #include "clsFecha.h"
+#include "tunearMenu.h"
 
 using namespace std;
 
@@ -130,18 +131,71 @@ void listarInscripciones(){
     }
 }
 
+int mostrarMenuInscripciones(int &opcionMenu, int &y)
+{
+    parteArribaMenu(24, 5, 31);
+    bordesMenu(24, 6, 31);
+    separarMenues(24, 7, 31);
+    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 31);
+    parteAbajoMenu(24, 17, 31);
+
+
+    resaltarMenu("M E N U   A C T I V I D A D E S", 25, 6, false);
+    resaltarMenu(" NUEVA   INSCRIPCION ", 30, 9, y == 0);
+    resaltarMenu(" ANULAR  INSCRIPCION ", 30, 11, y == 1);
+    resaltarMenu("LISTAR  INSCRIPCIONES", 30, 13, y == 2);
+    resaltarMenu("VOLVER A MENU GESTION", 30, 15, y == 3);
+
+
+    mostrarCursor(28, 52, 9, y);
+    int tecla = rlutil::getkey();
+    if(tecla == 1)
+    {
+        switch(y)
+        {
+        case 0:
+        {
+            opcionMenu = 1; /// NUEVA
+            break;
+        }
+        case 1:
+        {
+            opcionMenu = 2; /// ANULAR
+            break;
+        }
+        case 2:
+        {
+            opcionMenu = 3; /// LISTAR
+            break;
+        }
+        case 3:
+            {
+                opcionMenu = 0; /// SALIDA
+                break;
+            }
+        }
+    }
+    else if(tecla > 13) y = accionarCursor(y, tecla, 3);
+
+    return opcionMenu;
+
+}
 
 void menuInscripciones() {
-    int opcion;
+    int opcion, y = 0;
     do {
         system("cls");
+        opcion = -1;
+
+        mostrarMenuInscripciones(opcion, y);
+        /*
         cout << "--- GESTION DE INSCRIPCIONES ---" << endl;
         cout << "1. Nueva Inscripcion" << endl;
         cout << "2. Anular Inscripcion" << endl;
         cout << "3. Listar Todas las Inscripciones" << endl;
         cout << "0. Volver al Menu Principal" << endl;
         cout << "Opcion: ";
-        cin >> opcion;
+        cin >> opcion;*/
         system("cls");
 
         switch (opcion) {
