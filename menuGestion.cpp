@@ -445,7 +445,9 @@ void accionarMenu()
             break;
         case 4:
             system("cls");
-            cout << "Modulo de reportes en construccion." << endl;
+            cout << "Bob el constructor esta chambeando en esta opcion." << endl;
+            system("pause");
+
             break;
         }
         if(opcionMenu != 0) opcionMenu = -1;

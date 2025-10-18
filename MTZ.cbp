@@ -42,8 +42,6 @@
 		<Unit filename="clsArchivoCliente.h" />
 		<Unit filename="clsArchivoInscripcion.cpp" />
 		<Unit filename="clsArchivoInscripcion.h" />
-		<Unit filename="clsDomicilio.cpp" />
-		<Unit filename="clsDomicilio.h" />
 		<Unit filename="clsFecha.cpp" />
 		<Unit filename="clsFecha.h" />
 		<Unit filename="clsInscripcionActividad.cpp" />
@@ -55,7 +53,6 @@
 		<Unit filename="menuGestion.h" />
 		<Unit filename="menuInscripciones.cpp" />
 		<Unit filename="menuInscripciones.h" />
-		<Unit filename="menuModificar.h" />
 		<Unit filename="menuModificarActividad.cpp" />
 		<Unit filename="menuModificarActividad.h" />
 		<Unit filename="menuModificarCliente.cpp" />

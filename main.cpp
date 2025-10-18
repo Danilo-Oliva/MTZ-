@@ -26,6 +26,7 @@ int main()
             case 1:
                 system("cls");
                 cout << "Por ahora nada :v" << endl;
+                system("pause");
                 break;
 
             case 2:
