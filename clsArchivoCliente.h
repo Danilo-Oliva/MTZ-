@@ -16,7 +16,7 @@ public:
     Persona leerArchivo(int);
     bool inscribirCliente(Persona);
     bool modificarCliente(Persona, int);
-    void listar();
+    void listar(int modoListado = 1);
     bool eliminarCliente(int dni);
 };
 

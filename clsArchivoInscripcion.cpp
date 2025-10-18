@@ -52,6 +52,16 @@ int ArchivoInscripcion::buscarInscripcion(int nroSocio, int idAct) {
     }
     return -1;
 }
+int ArchivoInscripcion::buscarInscripcionGlobal(int nroSocio, int idAct) {
+    int cant = contarInscripciones();
+    for (int i = 0; i < cant; i++) {
+        InscripcionActividad ins = leerInscripcion(i);
+        if (ins.getNumeroSocio() == nroSocio && ins.getIdAct() == idAct) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 bool ArchivoInscripcion::modificarInscripcion(InscripcionActividad ins, int pos) {
     FILE *p = fopen(nombreArchivo, "rb+");

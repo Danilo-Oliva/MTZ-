@@ -19,14 +19,13 @@ void nuevaInscripcion() {
     archClientes.listar();
     cout << "---------------------------------------" << endl;
 
-
     cout << "Ingrese el DNI del cliente a inscribir: ";
     cin >> dni;
-
 
     posCliente = archClientes.buscarCliente(dni);
     if (posCliente == -1) {
         cout << "ERROR: No se encontro ningun cliente con ese DNI." << endl;
+        system("pause");
         return;
     }
 
@@ -43,53 +42,85 @@ void nuevaInscripcion() {
 
     if (archActividades.buscarActividad(idAct) == -1) {
         cout << "ERROR: El ID de actividad no existe." << endl;
+        system("pause");
         return;
     }
 
     if(archInscripciones.buscarInscripcion(nroSocio, idAct) != -1){
         cout << "ERROR: El cliente ya se encuentra inscripto en esa actividad." << endl;
+        system("pause");
         return;
     }
+
+    Fecha fechaInsc;
+    cout << "\nIngrese la fecha de inscripcion:" << endl;
+    fechaInsc.cargar();
 
     InscripcionActividad nuevaIns;
     nuevaIns.setNumeroSocio(nroSocio);
     nuevaIns.setIdAct(idAct);
-    nuevaIns.setFechaInscripcion(Fecha());
+    nuevaIns.setFechaInscripcion(fechaInsc);
     nuevaIns.setEstado(true);
 
-    system("cls");
-
     if (archInscripciones.grabarInscripcion(nuevaIns)) {
-        cout << "Inscripcion realizada con exito!" << endl;
+        cout << "\nInscripcion realizada con exito!" << endl;
     } else {
-        cout << "ERROR: No se pudo realizar la inscripcion." << endl;
+        cout << "\nERROR: No se pudo realizar la inscripcion." << endl;
     }
 }
 
-void anularInscripcion(){
-
+void gestionarEstadoInscripcion(){
     ArchivoInscripcion archInscripciones("inscripciones.dat");
     int nroSocio, idAct, pos;
+    char confirmacion;
+    int cantInscrip = archInscripciones.contarInscripciones();
+    if(cantInscrip == 0){
+        cout << "ERROR: No hay inscripciones. Por favor ingrese inscripciones" << endl;
+        return;
+    }
 
     cout << "Ingrese el Numero de Socio: ";
     cin >> nroSocio;
-    cout << "Ingrese el ID de la actividad de la inscripcion a anular: ";
+    cout << "Ingrese el ID de la actividad de la inscripcion a gestionar: ";
     cin >> idAct;
 
-    pos = archInscripciones.buscarInscripcion(nroSocio, idAct);
+    pos = archInscripciones.buscarInscripcionGlobal(nroSocio, idAct);
 
     if(pos == -1){
-        cout << "ERROR: No se encontro una inscripcion activa para ese socio y actividad." << endl;
+        cout << "ERROR: No se encontro ninguna inscripcion para ese socio y actividad." << endl;
         return;
     }
 
     InscripcionActividad ins = archInscripciones.leerInscripcion(pos);
-    ins.setEstado(false);
 
-    if(archInscripciones.modificarInscripcion(ins, pos)){
-        cout << "Inscripcion anulada con exito." << endl;
+    if (ins.getEstado() == true) {
+        cout << "\nLa inscripcion se encuentra ACTIVA." << endl;
+        cout << "Desea anularla en este momento? (S/N): ";
+        cin >> confirmacion;
+        if (confirmacion == 'S' || confirmacion == 's') {
+            ins.setEstado(false);
+            if(archInscripciones.modificarInscripcion(ins, pos)){
+                cout << "Inscripcion anulada con exito." << endl;
+            } else {
+                cout << "ERROR: No se pudo anular la inscripcion." << endl;
+            }
+        } else {
+            cout << "Operacion cancelada." << endl;
+        }
     } else {
-        cout << "ERROR: No se pudo anular la inscripcion." << endl;
+        cout << "\nLa inscripcion se encuentra INACTIVA." << endl;
+        cout << "Desea reactivarla en este momento? (S/N): ";
+        cin >> confirmacion;
+        if (confirmacion == 'S' || confirmacion == 's') {
+            ins.setEstado(true);
+            if(archInscripciones.modificarInscripcion(ins, pos)){
+                cout << "Inscripcion reactivada con exito." << endl;
+            } else {
+                cout << "ERROR: No se pudo reactivar la inscripcion." << endl;
+            }
+        } else {
+            cout << "Operacion cancelada." << endl;
+        }
     }
 }
 
@@ -142,12 +173,12 @@ int mostrarMenuInscripciones(int &opcionMenu, int &y)
 
     resaltarMenu("M E N U   A C T I V I D A D E S", 25, 6, false);
     resaltarMenu(" NUEVA   INSCRIPCION ", 30, 9, y == 0);
-    resaltarMenu(" ANULAR  INSCRIPCION ", 30, 11, y == 1);
+    resaltarMenu(" CAMBIAR ESTADO INSCRIPCION ", 27, 11, y == 1);
     resaltarMenu("LISTAR  INSCRIPCIONES", 30, 13, y == 2);
     resaltarMenu("VOLVER A MENU GESTION", 30, 15, y == 3);
 
 
-    mostrarCursor(28, 52, 9, y);
+    mostrarCursor(26, 55, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
     {
@@ -188,14 +219,7 @@ void menuInscripciones() {
         opcion = -1;
 
         mostrarMenuInscripciones(opcion, y);
-        /*
-        cout << "--- GESTION DE INSCRIPCIONES ---" << endl;
-        cout << "1. Nueva Inscripcion" << endl;
-        cout << "2. Anular Inscripcion" << endl;
-        cout << "3. Listar Todas las Inscripciones" << endl;
-        cout << "0. Volver al Menu Principal" << endl;
-        cout << "Opcion: ";
-        cin >> opcion;*/
+
         system("cls");
 
         switch (opcion) {
@@ -210,7 +234,7 @@ void menuInscripciones() {
             case 2:
                 system("cls");
 
-                anularInscripcion();
+                gestionarEstadoInscripcion();
 
                 system("pause");
                 system("cls");

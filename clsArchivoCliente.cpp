@@ -83,21 +83,42 @@ bool ArchivoCliente::modificarCliente(Persona per, int pos)
     fclose(p);
     return escribio;
 }
-void ArchivoCliente::listar()
+void ArchivoCliente::listar(int modoListado)
 {
+/* Modo de listado:
+  - modoListado = 1 : Muestra solo clientes ACTIVOS (por defecto)
+  - modoListado = 2 : Muestra solo clientes INACTIVOS
+  - Cualquier otro valor (ej. 0): Muestra TODOS los clientes
+*/
     int contarCli = contarClientes();
     int contadorMostrados = 0;
+
     for(int i = 0; i < contarCli; i++)
     {
         Persona per = leerArchivo(i);
-        if (per.getEstado() == true) {
+        bool mostrar = false;
+
+        switch (modoListado) {
+            case 1: // Activos
+                if (per.getEstado() == true) mostrar = true;
+                break;
+            case 2: // Inactivos
+                if (per.getEstado() == false) mostrar = true;
+                break;
+            default: // Todos
+                mostrar = true;
+                break;
+        }
+
+        if (mostrar) {
             per.mostrar();
             cout << endl;
             contadorMostrados++;
         }
     }
+
     if (contadorMostrados == 0) {
-        cout << "No hay clientes activos para mostrar." << endl;
+        cout << "No hay clientes que coincidan con el filtro seleccionado." << endl;
     }
 }
 bool ArchivoCliente::eliminarCliente(int dni) {

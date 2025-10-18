@@ -78,7 +78,7 @@ int mostrarMenuClientes(int &opcionMenu, int &y)
     resaltarMenu("M E N U  D E  C L I E N T E S", 27, 6, false);
     resaltarMenu("INGRESAR NUEVO CLIENTE ", 30, 9, y == 0);
     resaltarMenu("  MODIFICAR  CLIENTES  ", 30, 11, y == 1);
-    resaltarMenu("LISTAR CLIENTES ACTIVOS", 30, 13, y == 2);
+    resaltarMenu("    LISTAR   CLIENTES   ", 30, 13, y == 2);
     resaltarMenu("BUSCAR CLIENTES POR DNI", 30, 15, y == 3);
     resaltarMenu("   ESTADO   CLIENTES   ", 30, 17, y == 4);
     resaltarMenu("  BORRAR  UN  CLIENTE  ",30, 19, y == 5 );
@@ -275,7 +275,34 @@ void EliminarClientePermanente() {
     }
     system("pause");
 }
+void menuListarClientes() {
+    ArchivoCliente arch("clientes.dat");
+    int opcion;
 
+    do {
+        system("cls");
+        cout << "--- OPCIONES DE LISTADO DE CLIENTES ---" << endl;
+        cout << "1. Listar Clientes Activos" << endl;
+        cout << "2. Listar Clientes Inactivos" << endl;
+        cout << "3. Listar Todos" << endl;
+        cout << "---------------------------------------" << endl;
+        cout << "0. Volver al menu anterior" << endl;
+        cout << "\nSeleccione una opcion: ";
+        cin >> opcion;
+        system("cls");
+
+        if (opcion > 0 && opcion < 4) {
+            // Si el usuario elige 1 -> modo 1 (activos)
+            // Si el usuario elige 2 -> modo 2 (inactivos)
+            // Si el usuario elige 3 -> modo 0 (todos)
+            arch.listar(opcion % 3);
+            system("pause");
+        } else if (opcion != 0) {
+            cout << "Opcion incorrecta." << endl;
+            system("pause");
+        }
+    } while (opcion != 0);
+}
 
 void menuClientes() {
     ArchivoCliente arch("clientes.dat");
@@ -321,7 +348,7 @@ void menuClientes() {
                 system("pause");
                 break;
             case 3:
-                arch.listar();
+                menuListarClientes();
 
                 system("pause");
                 break;

@@ -13,6 +13,7 @@ public:
     int contarInscripciones();
     InscripcionActividad leerInscripcion(int pos);
     int buscarInscripcion(int nroSocio, int idAct);
+    int buscarInscripcionGlobal(int nroSocio, int idAct);
     bool modificarInscripcion(InscripcionActividad, int pos);
 };
 
