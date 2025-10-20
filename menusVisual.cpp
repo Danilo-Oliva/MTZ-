@@ -32,28 +32,28 @@ int mostrarMenuGestion(int &opcionMenu, int &y)
         {
         case 0:
         {
-            opcionMenu = 1; /// INGRESA CLIENTE AL GIMNASIO
+            opcionMenu = 1; /// GESTIONAR LOS CLIENTES
             break;
         }
         case 1:
         {
-            opcionMenu = 2; /// MANEJO DE DATOS
+            opcionMenu = 2; /// GESTIONAR LAS ACTIVIDADES
             break;
         }
         case 2:
         {
-            opcionMenu = 3; /// MANEJO DE DATOS
+            opcionMenu = 3; /// GESTIONAR LAS INSCRIPCIONES
             break;
         }
         case 3:
         {
-            opcionMenu = 4; /// MANEJO DE DATOS
+            opcionMenu = 4; /// REPORTES DEL PROGRAMA
             break;
         }
         case 4:
         {
-            opcionMenu = 0;
-            break; /// SALIDA DEL PROGRAMA
+            opcionMenu = 0; /// VOLVER AL MENU PRICIPAL
+            break;
         }
         }
     }
@@ -74,52 +74,52 @@ int mostrarMenuClientes(int &opcionMenu, int &y)
     resaltarMenu("M E N U  D E  C L I E N T E S", 27, 6, false);
     resaltarMenu("INGRESAR NUEVO CLIENTE ", 30, 9, y == 0);
     resaltarMenu("  MODIFICAR  CLIENTES  ", 30, 11, y == 1);
-    resaltarMenu("    LISTAR   CLIENTES   ", 30, 13, y == 2);
+    resaltarMenu("   LISTAR   CLIENTES   ", 30, 13, y == 2);
     resaltarMenu("BUSCAR CLIENTES POR DNI", 30, 15, y == 3);
-    resaltarMenu("   ESTADO   CLIENTES   ", 30, 17, y == 4);
+    resaltarMenu("CAMBIAR ESTADO CLIENTES", 30, 17, y == 4);
     resaltarMenu("  BORRAR  UN  CLIENTE  ",30, 19, y == 5 );
     resaltarMenu("VOLVER AL  MENU GESTION", 30, 21, y == 6);
 
 
     mostrarCursor(28, 54, 9, y);
     int tecla = rlutil::getkey();
-    if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
+    if(tecla == 1)
     {
         switch(y)
         {
         case 0:
         {
-            opcionMenu = 1; /// INGRESA CLIENTE AL GIMNASIO
+            opcionMenu = 1; /// INGRESA NUEVO CLIENTE
             break;
         }
         case 1:
         {
-            opcionMenu = 2; /// MANEJO DE DATOS
+            opcionMenu = 2; /// MODIFICAR CLIENTES
             break;
         }
         case 2:
         {
-            opcionMenu = 3; /// MANEJO DE DATOS
+            opcionMenu = 3; /// LISTAR   CLIENTES
             break;
         }
         case 3:
         {
-            opcionMenu = 4; /// MANEJO DE DATOS
+            opcionMenu = 4; /// BUSCAR CLIENTES POR DNI
             break;
         }
         case 4:
         {
-            opcionMenu = 5;
+            opcionMenu = 5; /// CAMBIAR ESTADO CLIENTES
             break;
         }
         case 5:
         {
-            opcionMenu = 6;
+            opcionMenu = 6; /// BORRAR  UN  CLIENTE
             break;
         }
         case 6:
         {
-            opcionMenu = 0;
+            opcionMenu = 0; /// VOLVER
             break;
         }
         }
@@ -153,22 +153,22 @@ int mostrarMenuActividades(int &opcionMenu, int &y)
         {
         case 0:
         {
-            opcionMenu = 1; /// INGRESA CLIENTE AL GIMNASIO
+            opcionMenu = 1; /// CREAR NUEVA ACTIVIDAD
             break;
         }
         case 1:
         {
-            opcionMenu = 2; /// MANEJO DE DATOS
+            opcionMenu = 2; /// MODIFICAR ACTIVIDAD
             break;
         }
         case 2:
         {
-            opcionMenu = 3;
+            opcionMenu = 3; /// LISTAR ACTIVIDADES
             break;
         }
         case 3:
         {
-            opcionMenu = 0;
+            opcionMenu = 0; /// VOLVER
             break;
         }
         }
@@ -187,10 +187,10 @@ int mostrarMenuInscripciones(int &opcionMenu, int &y)
 
 
     resaltarMenu("M E N U   A C T I V I D A D E S", 25, 6, false);
-    resaltarMenu(" NUEVA   INSCRIPCION ", 30, 9, y == 0);
-    resaltarMenu(" CAMBIAR ESTADO INSCRIPCION ", 27, 11, y == 1);
-    resaltarMenu("LISTAR  INSCRIPCIONES", 30, 13, y == 2);
-    resaltarMenu("VOLVER A MENU GESTION", 30, 15, y == 3);
+    resaltarMenu("REGISTRAR NUEVA INSCRIPCION ", 30, 9, y == 0);
+    resaltarMenu("CAMBIAR  ESTADO  INSCRIPCION", 27, 11, y == 1);
+    resaltarMenu(" LISTAR  LAS  INSCRIPCIONES ", 30, 13, y == 2);
+    resaltarMenu("VOLVER   AL   MENU   GESTION", 30, 15, y == 3);
 
 
     mostrarCursor(26, 55, 9, y);
@@ -201,22 +201,22 @@ int mostrarMenuInscripciones(int &opcionMenu, int &y)
         {
         case 0:
         {
-            opcionMenu = 1;
+            opcionMenu = 1; /// REGISTRAR NUEVA INSCRIPCION
             break;
         }
         case 1:
         {
-            opcionMenu = 2;
+            opcionMenu = 2; /// CAMBIAR  ESTADO  INSCRIPCION
             break;
         }
         case 2:
         {
-            opcionMenu = 3;
+            opcionMenu = 3; /// LISTAR  LAS  INSCRIPCIONES
             break;
         }
         case 3:
         {
-            opcionMenu = 0;
+            opcionMenu = 0; /// VOLVER   AL   MENU   GESTION
             break;
         }
         }
@@ -248,16 +248,16 @@ int mostrarMenuListarClientes(int &opcionMenu, int &y)
         switch(y)
         {
         case 0:
-            opcionMenu = 1;
+            opcionMenu = 1; /// LISTAR  ACTIVOS
             break;
         case 1:
-            opcionMenu = 2;
+            opcionMenu = 2; /// LISTAR  INACTIVOS
             break;
         case 2:
-            opcionMenu = 3;
+            opcionMenu = 3; /// LISTAR  TODOS
             break;
         case 3:
-            opcionMenu = 0;
+            opcionMenu = 0; /// VOLVER
             break;
         }
     }
@@ -289,16 +289,16 @@ int mostrarMenuListarActividades(int &opcionMenu, int &y)
         switch(y)
         {
         case 0:
-            opcionMenu = 1;
+            opcionMenu = 1; /// LISTAR  ACTIVOS
             break;
         case 1:
-            opcionMenu = 2;
+            opcionMenu = 2; /// LISTAR  INACTIVOS
             break;
         case 2:
-            opcionMenu = 3;
+            opcionMenu = 3; /// LISTAR  TODOS
             break;
         case 3:
-            opcionMenu = 0;
+            opcionMenu = 0; /// VOLVER
             break;
         }
     }
@@ -327,16 +327,16 @@ int mostrarMenuListarInscripciones(int &opcionMenu, int &y)
         switch(y)
         {
         case 0:
-            opcionMenu = 1;
+            opcionMenu = 1; /// LISTAR  ACTIVOS
             break;
         case 1:
-            opcionMenu = 2;
+            opcionMenu = 2; /// LISTAR  INACTIVOS
             break;
         case 2:
-            opcionMenu = 3;
+            opcionMenu = 3; /// LISTAR  TODOS
             break;
         case 3:
-            opcionMenu = 0;
+            opcionMenu = 0; /// VOLVER
             break;
         }
     }
