@@ -1,0 +1,6 @@
+#ifndef MENUGESTION_H_INCLUDED
+#define MENUGESTION_H_INCLUDED
+
+void accionarMenu();
+
+#endif // MENUGESTION_H_INCLUDED

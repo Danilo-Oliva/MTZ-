@@ -1,0 +1,7 @@
+#ifndef MENUGESTIONACTIVIDADES_H_INCLUDED
+#define MENUGESTIONACTIVIDADES_H_INCLUDED
+
+void ingresarNuevaActividad();
+void menuListarActividades();
+
+#endif // MENUGESTIONACTIVIDADES_H_INCLUDED
