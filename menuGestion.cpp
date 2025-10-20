@@ -158,7 +158,7 @@ void accionarMenu()
         case 4:
             system("cls");
             cout << "Bob el constructor está trabajando en esta opcion." << endl;
-            system("pause");
+            rlutil::anykey();
             break;
         }
         if(opcionMenu != 0) opcionMenu = -1;

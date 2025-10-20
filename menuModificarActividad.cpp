@@ -1,4 +1,5 @@
 #include <iostream>
+#include "rlutil.h"
 #include "clsArchivoActividad.h"
 #include "clsActividad.h"
 #include "cargarCadena.h"
@@ -31,7 +32,7 @@ void menuModificarActividad() {
 
     if (pos == -1) {
         cout << "ERROR: No se encontro una actividad con el ID " << id << "." << endl;
-        system("pause");
+        rlutil::anykey();
         return;
     }
 
@@ -95,7 +96,7 @@ void menuModificarActividad() {
         }
 
         if (opcion != 0){
-            system("pause");
+            rlutil::anykey();
         }
 
     } while (opcion != 0);

@@ -10,7 +10,7 @@ using namespace std;
 
 void ingresarNuevoCliente() {
     ArchivoCliente arch("clientes.dat");
-    int dni = pedirDNI("NUEVO CLIENTE");
+    int dni = pedirDNI("NUEVO CLIENTE:");
 
     if (arch.buscarCliente(dni) != -1) {
         mostrarMensaje("ERROR: Ya existe un cliente con ese DNI.", rlutil::LIGHTRED);
@@ -49,15 +49,15 @@ void menuListarClientes()
         {
         case 1:
             arch.listar(1);
-            system("pause");
+            rlutil::anykey();
             break;
         case 2:
             arch.listar(2);
-            system("pause");
+            rlutil::anykey();
             break;
         case 3:
             arch.listar(0);
-            system("pause");
+            rlutil::anykey();
             break;
         }
     }
@@ -65,7 +65,7 @@ void menuListarClientes()
 }
 void gestionarEstadoCliente() {
     ArchivoCliente arch("clientes.dat");
-    int dni = pedirDNI("GESTIONAR ESTADO");
+    int dni = pedirDNI("GESTIONAR ESTADO: ");
     int pos = arch.buscarCliente(dni);
 
     if (pos == -1) {
@@ -76,7 +76,7 @@ void gestionarEstadoCliente() {
     Persona per = arch.leerArchivo(pos);
     system("cls");
     dibujarFichaCliente(per);
-    system("pause");
+    rlutil::anykey();
 
     if (per.getEstado() == false) {
         if (mostrarConfirmacion("CLIENTE INACTIVO", "Desea reactivarlo en este momento?")) {
@@ -96,7 +96,7 @@ void gestionarEstadoCliente() {
 }
 void eliminarClientePermanente() {
     ArchivoCliente arch("clientes.dat");
-    int dni = pedirDNI("ELIMINAR CLIENTE");
+    int dni = pedirDNI("ELIMINAR CLIENTE:");
     int pos = arch.buscarCliente(dni);
 
     if (pos == -1) {
@@ -107,7 +107,7 @@ void eliminarClientePermanente() {
     system("cls");
     Persona per = arch.leerArchivo(pos);
     dibujarFichaCliente(per);
-    system("pause");
+    rlutil::anykey();
 
     if (mostrarConfirmacion("ADVERTENCIA!", "Esta accion es irreversible. Eliminar?")) {
         if (arch.eliminarCliente(dni)) {
@@ -119,14 +119,14 @@ void eliminarClientePermanente() {
 }
 void buscarClientePorDNI() {
     ArchivoCliente arch("clientes.dat");
-    int dni = pedirDNI("BUSCAR CLIENTE");
+    int dni = pedirDNI("BUSCAR CLIENTE:");
     int pos = arch.buscarCliente(dni);
 
     if (pos != -1) {
         system("cls");
         Persona per = arch.leerArchivo(pos);
         dibujarFichaCliente(per);
-        system("pause");
+        rlutil::anykey();
     } else {
         mostrarMensaje("ERROR: No se encontro cliente con ese DNI.", rlutil::LIGHTRED);
     }

@@ -1,4 +1,5 @@
 #include<iostream>
+#include "rlutil.h"
 #include "clsArchivoActividad.h"
 #include "clsActividad.h"
 #include "menusVisual.h"
@@ -38,15 +39,15 @@ void menuListarActividades() {
         {
         case 1: // Activas
             arch.listar(1);
-            system("pause");
+            rlutil::anykey();
             break;
         case 2: // Inactivas
             arch.listar(2);
-            system("pause");
+            rlutil::anykey();
             break;
         case 3: // Todos
             arch.listar(0);
-            system("pause");
+            rlutil::anykey();
             break;
         }
     } while (opcion != 0);

@@ -13,7 +13,7 @@ void menuModificarCliente()
 {
     ArchivoCliente arch("clientes.dat");
 
-    int dni = pedirDNI("MODIFICAR CLIENTE");
+    int dni = pedirDNI("MODIFICAR CLIENTE: ");
     int pos = arch.buscarCliente(dni);
 
     if (pos == -1) {
@@ -44,4 +44,5 @@ void menuModificarCliente()
         rlutil::locate(23, 25);
         cout << "Error al modificar el cliente." << endl;
     }
+    rlutil::anykey();
 }

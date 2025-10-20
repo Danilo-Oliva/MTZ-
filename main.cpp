@@ -26,7 +26,7 @@ int main()
             case 1:
                 system("cls");
                 cout << "Por ahora nada :v" << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
 
             case 2:

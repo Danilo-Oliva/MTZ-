@@ -179,21 +179,21 @@ int mostrarMenuActividades(int &opcionMenu, int &y)
 }
 int mostrarMenuInscripciones(int &opcionMenu, int &y)
 {
-    parteArribaMenu(24, 5, 31);
-    bordesMenu(24, 6, 31);
-    separarMenues(24, 7, 31);
-    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 31);
-    parteAbajoMenu(24, 17, 31);
+    parteArribaMenu(24, 5, 38);
+    bordesMenu(24, 6, 38);
+    separarMenues(24, 7, 38);
+    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 38);
+    parteAbajoMenu(24, 17, 38);
 
 
-    resaltarMenu("M E N U   A C T I V I D A D E S", 25, 6, false);
+    resaltarMenu("M E N U    I N S C R I P C I O N E S", 26, 6, false);
     resaltarMenu("REGISTRAR NUEVA INSCRIPCION ", 30, 9, y == 0);
-    resaltarMenu("CAMBIAR  ESTADO  INSCRIPCION", 27, 11, y == 1);
+    resaltarMenu("CAMBIAR  ESTADO  INSCRIPCION", 30, 11, y == 1);
     resaltarMenu(" LISTAR  LAS  INSCRIPCIONES ", 30, 13, y == 2);
     resaltarMenu("VOLVER   AL   MENU   GESTION", 30, 15, y == 3);
 
 
-    mostrarCursor(26, 55, 9, y);
+    mostrarCursor(28, 59, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
     {
@@ -228,20 +228,20 @@ int mostrarMenuInscripciones(int &opcionMenu, int &y)
 }
 int mostrarMenuListarClientes(int &opcionMenu, int &y)
 {
-    parteArribaMenu(24, 5, 39);
-    bordesMenu(24, 6, 39);
-    separarMenues(24, 7, 39);
-    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 39);
-    parteAbajoMenu(24, 17, 39);
+    parteArribaMenu(24, 5, 30);
+    bordesMenu(24, 6, 30);
+    separarMenues(24, 7, 30);
+    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 30);
+    parteAbajoMenu(24, 17, 30);
 
-    resaltarMenu("L I S T A D O  D E  C L I E N T E S", 27, 6, false);
+    resaltarMenu("L I S T A D O  C L I E N T E S", 25, 6, false);
 
-    resaltarMenu("      LISTAR  ACTIVOS      ", 30, 9, y == 0);
-    resaltarMenu("     LISTAR  INACTIVOS     ", 30, 11, y == 1);
-    resaltarMenu("       LISTAR  TODOS       ", 30, 13, y == 2);
-    resaltarMenu("          VOLVER           ", 30, 15, y == 3);
+    resaltarMenu("   LISTAR ACTIVOS   ", 30, 9, y == 0);
+    resaltarMenu("  LISTAR INACTIVOS  ", 30, 11, y == 1);
+    resaltarMenu("    LISTAR TODOS    ", 30, 13, y == 2);
+    resaltarMenu("       VOLVER       ", 30, 15, y == 3);
 
-    mostrarCursor(28, 62, 9, y);
+    mostrarCursor(28, 51, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
     {
@@ -269,20 +269,20 @@ int mostrarMenuListarClientes(int &opcionMenu, int &y)
 
 int mostrarMenuListarActividades(int &opcionMenu, int &y)
 {
-    parteArribaMenu(24, 5, 45);
-    bordesMenu(24, 6, 45);
-    separarMenues(24, 7, 45);
-    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 45);
-    parteAbajoMenu(24, 17, 45);
+    parteArribaMenu(24, 5, 36);
+    bordesMenu(24, 6, 36);
+    separarMenues(24, 7, 36);
+    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 36);
+    parteAbajoMenu(24, 17, 36);
 
-    resaltarMenu("L I S T A D O  D E  A C T I V I D A D E S", 27, 6, false);
+    resaltarMenu("L I S T A D O  A C T I V I D A D E S", 25, 6, false);
 
-    resaltarMenu("        LISTAR   ACTIVAS        ", 30, 9, y == 0);
-    resaltarMenu("       LISTAR   INACTIVAS       ", 30, 11, y == 1);
-    resaltarMenu("         LISTAR    TODAS         ", 30, 13, y == 2);
-    resaltarMenu("            VOLVER             ", 30, 15, y == 3);
+    resaltarMenu("     LISTAR   ACTIVAS     ", 30, 9, y == 0);
+    resaltarMenu("    LISTAR   INACTIVAS    ", 30, 11, y == 1);
+    resaltarMenu("      LISTAR   TODAS      ", 30, 13, y == 2);
+    resaltarMenu("VOLVER AL MENU ACTIVIDADES", 30, 15, y == 3);
 
-    mostrarCursor(28, 66, 9, y);
+    mostrarCursor(28, 57, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
     {
@@ -447,7 +447,7 @@ int pedirDNI(const char* titulo)
     int x = 25, y = 8;
     system("cls");
     parteArribaMenu(x, y, 40);
-    for(int i=0; i<3; i++) bordesMenu(x, y + 1 + i, 40);
+    for(int i=0; i<4; i++) bordesMenu(x, y + 1 + i, 40);
     parteAbajoMenu(x, y + 5, 40);
     resaltarMenu(titulo, x + 2, y + 1, false);
 
@@ -507,32 +507,63 @@ void mostrarMensaje(const char* mensaje, int color = rlutil::WHITE)
 {
     int x = 25, y = 10;
     system("cls");
-    rlutil::setColor(color);
     parteArribaMenu(x, y, 40);
     bordesMenu(x, y + 1, 40);
     bordesMenu(x, y + 2, 40);
     bordesMenu(x, y + 3, 40);
     parteAbajoMenu(x, y + 4, 40);
+    rlutil::setColor(color);
     rlutil::locate(x + 2, y + 2);
     cout << mensaje;
     rlutil::resetColor();
     cout << endl << endl;
-    system("pause");
+    rlutil::anykey();
 }
 
 bool mostrarConfirmacion(const char* titulo, const char* cuerpo)
 {
+    int tecla = 0;
+    int respuesta = 0;
+    do {
+    bool respuesta;
     char confirmacion;
     int x = 25, y = 8;
     system("cls");
     parteArribaMenu(x, y, 40);
-    for(int i=0; i<3; i++) bordesMenu(x, y + 1 + i, 40);
-    parteAbajoMenu(x, y + 5, 40);
+    for(int i = 0; i < 6; i++) bordesMenu(x, y + 1 + i, 40);
+    parteAbajoMenu(x, y + 7, 40);
     resaltarMenu(titulo, x + 2, y + 1, false);
     rlutil::locate(x + 5, y + 3);
-    cout << cuerpo << " (S/N): ";
-    rlutil::showcursor();
-    cin >> confirmacion;
-    rlutil::hidecursor();
-    return (confirmacion == 'S' || confirmacion == 's');
+    cout << cuerpo;
+    resaltarMenu(" SI ", 33, 13, x == 33);
+    resaltarMenu(" NO ", 55, 13, x == 55);
+
+    int movimiento = 0;
+    mostrarCursorConfirmacion(32, 37, 13, movimiento);
+    tecla = rlutil::getkey();
+        cout << tecla;
+        rlutil::anykey();
+    if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
+    {
+        switch(movimiento)
+        {
+        case 0:
+        {
+            respuesta = (x == x + 8); /// SI
+            break;
+        }
+        case 1:
+        {
+            respuesta = (x == x + 8); /// NO
+            break;
+        }
+        }
+    }
+    else if(tecla > 70) movimiento = accionarCursorConfirmacion(movimiento, tecla, 1);
+    } while(tecla != 1);
+
+            cout << respuesta << endl;
+            rlutil::anykey();
+    return respuesta;
+
 }

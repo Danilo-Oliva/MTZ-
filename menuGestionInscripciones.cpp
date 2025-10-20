@@ -99,7 +99,7 @@ void nuevaInscripcion()
     if (posCliente == -1)
     {
         cout << "ERROR: No se encontro ningun cliente con ese DNI." << endl;
-        system("pause");
+        rlutil::anykey();
         return;
     }
 
@@ -117,14 +117,14 @@ void nuevaInscripcion()
     if (archActividades.buscarActividad(idAct) == -1)
     {
         cout << "ERROR: El ID de actividad no existe." << endl;
-        system("pause");
+        rlutil::anykey();
         return;
     }
 
     if(archInscripciones.buscarInscripcion(nroSocio, idAct) != -1)
     {
         cout << "ERROR: El cliente ya se encuentra inscripto en esa actividad." << endl;
-        system("pause");
+        rlutil::anykey();
         return;
     }
 
@@ -235,15 +235,15 @@ void menuListarInscripciones()
         {
         case 1:
             listarInscripciones(1);
-            system("pause");
+            rlutil::anykey();
             break;
         case 2:
             listarInscripciones(2);
-            system("pause");
+            rlutil::anykey();
             break;
         case 3:
             listarInscripciones(0);
-            system("pause");
+            rlutil::anykey();
             break;
         }
     }
