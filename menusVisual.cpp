@@ -523,10 +523,9 @@ void mostrarMensaje(const char* mensaje, int color = rlutil::WHITE)
 bool mostrarConfirmacion(const char* titulo, const char* cuerpo)
 {
     int tecla = 0;
-    int respuesta = 0;
+    bool respuesta = false;
+    int movimiento = 0;
     do {
-    bool respuesta;
-    char confirmacion;
     int x = 25, y = 8;
     system("cls");
     parteArribaMenu(x, y, 40);
@@ -535,35 +534,25 @@ bool mostrarConfirmacion(const char* titulo, const char* cuerpo)
     resaltarMenu(titulo, x + 2, y + 1, false);
     rlutil::locate(x + 5, y + 3);
     cout << cuerpo;
-    resaltarMenu(" SI ", 33, 13, x == 33);
-    resaltarMenu(" NO ", 55, 13, x == 55);
+    resaltarMenu("SI", x + 9, y + 5, movimiento == 0);
+    resaltarMenu("NO", x + 31, y + 5, movimiento == 1);
 
-    int movimiento = 0;
     mostrarCursorConfirmacion(32, 37, 13, movimiento);
     tecla = rlutil::getkey();
-        cout << tecla;
-        rlutil::anykey();
-    if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
+    if(tecla == rlutil::KEY_LEFT || tecla == rlutil::KEY_RIGHT) movimiento = accionarCursorConfirmacion(movimiento, tecla, 1);
+    else if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
     {
-        switch(movimiento)
+        if(movimiento == 0)
         {
-        case 0:
+            respuesta = true; /// SI
+        }
+        else if (movimiento == 1)
         {
-            respuesta = (x == x + 8); /// SI
-            break;
+            respuesta = false; /// NO
         }
-        case 1:
-        {
-            respuesta = (x == x + 8); /// NO
-            break;
-        }
-        }
+        break;
     }
-    else if(tecla > 70) movimiento = accionarCursorConfirmacion(movimiento, tecla, 1);
     } while(tecla != 1);
-
-            cout << respuesta << endl;
-            rlutil::anykey();
     return respuesta;
 
 }

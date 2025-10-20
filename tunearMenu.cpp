@@ -75,20 +75,20 @@ int accionarCursor(int y, int tecla, int limiteCursor)
 {
     switch(tecla) /// VALORES EN ASCII
     {
-    case 14: /// ARRIBA
+    case rlutil::KEY_UP: /// ARRIBA
     {
         rlutil::locate(28, 9 + y);
         cout << " " << endl;
         y--;
-        if (y < 0) y = limiteCursor; ///IMPIDE IR A OPCIONES POR ENCIMA DEL MENU
+        if (y < 0) y = limiteCursor;
         break;
     }
-    case 15: /// ABAJO
+    case rlutil::KEY_DOWN: /// ABAJO
     {
         rlutil::locate(28, 9 + y);
         cout << " " << endl;
         y++;
-        if(y > limiteCursor) y = 0; ///IMPIDE IR A OPCIONES POR DEBAJO DEL MENU
+        if(y > limiteCursor) y = 0;
         break;
     }
     } /// FIN SWITCH
@@ -100,9 +100,9 @@ void mostrarCursorConfirmacion(int posX1, int posX2, int posY, int x)
     rlutil::setBackgroundColor(rlutil::BLACK);
     rlutil::setColor(rlutil::LIGHTRED); ///SE ESTABLECE FONDO DE VUELTA PARA EVITAR QUE SE RESALTE TODO EL RESTO
 
-    rlutil::locate(posX1 + x * 2, posY); ///x CONTROLA LA POSICION DEL CURSOR (izquierda y derecha)
+    rlutil::locate(posX1 + x * 22, posY); ///x CONTROLA LA POSICION DEL CURSOR (izquierda y derecha)
     cout << (char)175 << endl;
-    rlutil::locate(posX2 + x * 2, posY); ///x CONTROLA LA POSICION DEL CURSOR (izquierda y derecha)
+    rlutil::locate(posX2 + x * 22, posY); ///x CONTROLA LA POSICION DEL CURSOR (izquierda y derecha)
     cout << (char)174 << endl;
 }
 
@@ -110,20 +110,20 @@ int accionarCursorConfirmacion(int x, int tecla, int limiteCursor)
 {
     switch(tecla) /// VALORES EN ASCII
     {
-    case 75: /// ARRIBA
+    case rlutil::KEY_LEFT: /// IZQUIERDA
     {
-        rlutil::locate(28 + x, 9);
+        rlutil::locate(28 + x * 22, 9);
         cout << " " << endl;
         x--;
-        if (x < 0) x = limiteCursor; ///IMPIDE IR A OPCIONES POR ENCIMA DEL MENU
+        if (x < 0) x = limiteCursor;
         break;
     }
-    case 77: /// ABAJO
+    case rlutil::KEY_RIGHT: /// DERECHA
     {
-        rlutil::locate(28 + x, 9);
+        rlutil::locate(28 + x * 22, 9);
         cout << " " << endl;
         x++;
-        if(x > limiteCursor) x = 0; ///IMPIDE IR A OPCIONES POR DEBAJO DEL MENU
+        if(x > limiteCursor) x = 0;
         break;
     }
     } /// FIN SWITCH
