@@ -325,6 +325,7 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
     while (true)
     {
         system("cls");
+        rlutil::setBackgroundColor(rlutil::BLACK);
         parteArribaMenu(x, y_start, 52);
 
         for (int i = 0; i < 13; i++) bordesMenu(x, y_start + 1 + i, 52);

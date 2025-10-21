@@ -19,6 +19,8 @@ void resaltarMenu(const char* texto, int posX, int posY, bool seleccionado)
     }
     rlutil::locate(posX,posY);
     cout << texto << endl;
+
+    rlutil::resetColor();
 }
 
 void parteArribaMenu(int posX, int posY, int espacios)
