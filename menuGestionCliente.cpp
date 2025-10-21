@@ -63,37 +63,6 @@ void menuListarClientes()
     }
     while (opcion != 0);
 }
-void gestionarEstadoCliente() {
-    ArchivoCliente arch("clientes.dat");
-    int dni = pedirDNI("GESTIONAR ESTADO: ");
-    int pos = arch.buscarCliente(dni);
-
-    if (pos == -1) {
-        mostrarMensaje("ERROR: No se encontro cliente con ese DNI.", rlutil::LIGHTRED);
-        return;
-    }
-
-    Persona per = arch.leerArchivo(pos);
-    system("cls");
-    dibujarFichaCliente(per);
-    rlutil::anykey();
-
-    if (per.getEstado() == false) {
-        if (mostrarConfirmacion("CLIENTE INACTIVO", "Desea reactivarlo en este momento?")) {
-            per.setEstado(true);
-            if (arch.modificarCliente(per, pos)) {
-                mostrarMensaje("Cliente reactivado con exito!", rlutil::LIGHTGREEN);
-            }
-        }
-    } else {
-        if (mostrarConfirmacion("CLIENTE ACTIVO", "Desea darlo de baja en este momento?")) {
-            per.setEstado(false);
-            if (arch.modificarCliente(per, pos)) {
-                mostrarMensaje("Cliente dado de baja con exito.", rlutil::YELLOW);
-            }
-        }
-    }
-}
 void eliminarClientePermanente() {
     ArchivoCliente arch("clientes.dat");
     int dni = pedirDNI("ELIMINAR CLIENTE:");
@@ -158,9 +127,6 @@ void menuClientes()
             buscarClientePorDNI();
             break;
         case 5:
-            gestionarEstadoCliente();
-            break;
-        case 6:
             eliminarClientePermanente();
             break;
         }

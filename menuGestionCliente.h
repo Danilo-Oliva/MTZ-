@@ -5,7 +5,6 @@
 
 void menuClientes();
 void ingresarNuevoCliente();
-void GestionarEstadoCliente();
 void EliminarClientePermanente();
 void buscarCliente();
 void menuListarClientes();

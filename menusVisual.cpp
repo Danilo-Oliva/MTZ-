@@ -67,8 +67,9 @@ int mostrarMenuClientes(int &opcionMenu, int &y)
     parteArribaMenu(24, 5, 33);
     bordesMenu(24, 6, 33);
     separarMenues(24, 7, 33);
-    for (int i = 0; i < 14; i ++) bordesMenu(24, 8 + i, 33);
-    parteAbajoMenu(24, 22, 33);
+    // Reducimos el tamaño del menú porque hay una opción menos
+    for (int i = 0; i < 12; i ++) bordesMenu(24, 8 + i, 33);
+    parteAbajoMenu(24, 20, 33);
 
 
     resaltarMenu("M E N U  D E  C L I E N T E S", 27, 6, false);
@@ -76,9 +77,9 @@ int mostrarMenuClientes(int &opcionMenu, int &y)
     resaltarMenu("  MODIFICAR  CLIENTES  ", 30, 11, y == 1);
     resaltarMenu("   LISTAR   CLIENTES   ", 30, 13, y == 2);
     resaltarMenu("BUSCAR CLIENTES POR DNI", 30, 15, y == 3);
-    resaltarMenu("CAMBIAR ESTADO CLIENTES", 30, 17, y == 4);
-    resaltarMenu("  BORRAR  UN  CLIENTE  ",30, 19, y == 5 );
-    resaltarMenu("VOLVER AL  MENU GESTION", 30, 21, y == 6);
+    // La opción de "Cambiar Estado" se elimina de aquí
+    resaltarMenu("  BORRAR  UN  CLIENTE  ",30, 17, y == 4 ); // Antes era y == 5
+    resaltarMenu("VOLVER AL  MENU GESTION", 30, 19, y == 5); // Antes era y == 6
 
 
     mostrarCursor(28, 54, 9, y);
@@ -87,47 +88,18 @@ int mostrarMenuClientes(int &opcionMenu, int &y)
     {
         switch(y)
         {
-        case 0:
-        {
-            opcionMenu = 1; /// INGRESA NUEVO CLIENTE
-            break;
-        }
-        case 1:
-        {
-            opcionMenu = 2; /// MODIFICAR CLIENTES
-            break;
-        }
-        case 2:
-        {
-            opcionMenu = 3; /// LISTAR   CLIENTES
-            break;
-        }
-        case 3:
-        {
-            opcionMenu = 4; /// BUSCAR CLIENTES POR DNI
-            break;
-        }
-        case 4:
-        {
-            opcionMenu = 5; /// CAMBIAR ESTADO CLIENTES
-            break;
-        }
-        case 5:
-        {
-            opcionMenu = 6; /// BORRAR  UN  CLIENTE
-            break;
-        }
-        case 6:
-        {
-            opcionMenu = 0; /// VOLVER
-            break;
-        }
+        case 0: opcionMenu = 1; break; // INGRESA NUEVO CLIENTE
+        case 1: opcionMenu = 2; break; // MODIFICAR CLIENTES
+        case 2: opcionMenu = 3; break; // LISTAR CLIENTES
+        case 3: opcionMenu = 4; break; // BUSCAR CLIENTES POR DNI
+        case 4: opcionMenu = 5; break; // BORRAR UN CLIENTE (antes era la opción 6)
+        case 5: opcionMenu = 0; break; // VOLVER (antes era la opción 7)
         }
     }
-    else if(tecla > 13) y = accionarCursor(y, tecla, 6);
+    // Ajustamos el límite del cursor a 5 (de 0 a 5 son 6 opciones)
+    else if(tecla > 13) y = accionarCursor(y, tecla, 5);
 
     return opcionMenu;
-
 }
 int mostrarMenuActividades(int &opcionMenu, int &y)
 {
@@ -346,96 +318,93 @@ int mostrarMenuListarInscripciones(int &opcionMenu, int &y)
 int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
 {
     int x = 20, y_start = 5;
-    int x_labels = x + 3;
-    int x_data = x + 19;
     y = 0;
 
     rlutil::hidecursor();
 
     while (true)
     {
+        system("cls");
         parteArribaMenu(x, y_start, 52);
+
         for (int i = 0; i < 13; i++) bordesMenu(x, y_start + 1 + i, 52);
-        parteAbajoMenu(x, y_start + 13, 52);
+        parteAbajoMenu(x, y_start + 14, 52);
         resaltarMenu("  M O D I F I C A R   C L I E N T E  ", x + 10, y_start + 1, false);
-        separarMenues(x, y_start + 9, 52);
+        separarMenues(x, y_start + 11, 52);
 
-
-        rlutil::locate(x_labels, y_start + 3);
+        rlutil::locate(x + 3, y_start + 3);
         cout << "NRO DE SOCIO  : " << reg.getNumeroSocio();
-        rlutil::locate(x_labels, y_start + 4);
+        rlutil::locate(x + 3, y_start + 4);
         cout << "DNI           : " << reg.getDNI();
+
 
         string texto;
         int anchoFijo = 45;
 
 
+        texto = "ESTADO        : " + string(reg.getEstado() ? "ACTIVO  " : "INACTIVO");
+        texto.resize(anchoFijo, ' ');
+        resaltarMenu(texto.c_str(), x + 3, y_start + 6, y == 0);
+
         texto = "NOMBRE        : " + string(reg.getNombre());
         texto.resize(anchoFijo, ' ');
-        resaltarMenu(texto.c_str(), x_labels, y_start + 5, y == 0);
+        resaltarMenu(texto.c_str(), x + 3, y_start + 7, y == 1);
 
         texto = "APELLIDO      : " + string(reg.getApellido());
         texto.resize(anchoFijo, ' ');
-        resaltarMenu(texto.c_str(), x_labels, y_start + 6, y == 1);
-
+        resaltarMenu(texto.c_str(), x + 3, y_start + 8, y == 2);
 
         texto = "TELEFONO      : " + string(reg.getTelefono());
         texto.resize(anchoFijo, ' ');
-        resaltarMenu(texto.c_str(), x_labels, y_start + 7, y == 2);
-
+        resaltarMenu(texto.c_str(), x + 3, y_start + 9, y == 3);
 
         texto = "EMAIL         : " + string(reg.getEmail());
         texto.resize(anchoFijo, ' ');
-        resaltarMenu(texto.c_str(), x_labels, y_start + 8, y == 3);
+        resaltarMenu(texto.c_str(), x + 3, y_start + 10, y == 4);
 
-        resaltarMenu("      GUARDAR Y VOLVER       ", x + 12, y_start + 11, y == 4);
+
+        resaltarMenu("      GUARDAR Y VOLVER       ", x + 12, y_start + 12, y == 5);
 
         int tecla = rlutil::getkey();
         switch (tecla)
         {
         case 14:
             y--;
-            if (y < 0) y = 4;
+            if (y < 0) y = 5;
             break;
         case 15:
             y++;
-            if (y > 4) y = 0;
+            if (y > 5) y = 0;
             break;
         case 1:
-            if (y == 4)
+            if (y == 0)
             {
-                opcionMenu = 0;
-                rlutil::setBackgroundColor(rlutil::BLACK);
-                rlutil::setColor(rlutil::LIGHTRED);
-                return opcionMenu;
+                reg.setEstado(!reg.getEstado());
             }
-            else
+            else if (y >= 1 && y <= 4)
             {
                 rlutil::showcursor();
                 string nuevoDato;
-                int y_campo_actual = y_start + 5 + y;
-                rlutil::locate(x_data, y_campo_actual);
+                int y_campo_actual = y_start + 6 + (y-1);
+                rlutil::locate(x + 22, y_campo_actual);
                 cout << string(30, ' ');
-                rlutil::locate(x_data, y_campo_actual);
+                rlutil::locate(x + 22, y_campo_actual);
                 cin.ignore();
                 getline(cin, nuevoDato);
 
                 switch (y)
                 {
-                case 0:
-                    reg.setNombre(nuevoDato.c_str());
-                    break;
-                case 1:
-                    reg.setApellido(nuevoDato.c_str());
-                    break;
-                case 2:
-                    reg.setTelefono(nuevoDato.c_str());
-                    break;
-                case 3:
-                    reg.setEmail(nuevoDato.c_str());
-                    break;
+                case 1: reg.setNombre(nuevoDato.c_str()); break;
+                case 2: reg.setApellido(nuevoDato.c_str()); break;
+                case 3: reg.setTelefono(nuevoDato.c_str()); break;
+                case 4: reg.setEmail(nuevoDato.c_str()); break;
                 }
                 rlutil::hidecursor();
+            }
+            else if (y == 5)
+            {
+                opcionMenu = 0;
+                return opcionMenu;
             }
             break;
         }
@@ -525,34 +494,36 @@ bool mostrarConfirmacion(const char* titulo, const char* cuerpo)
     int tecla = 0;
     bool respuesta = false;
     int movimiento = 0;
-    do {
-    int x = 25, y = 8;
-    system("cls");
-    parteArribaMenu(x, y, 40);
-    for(int i = 0; i < 6; i++) bordesMenu(x, y + 1 + i, 40);
-    parteAbajoMenu(x, y + 7, 40);
-    resaltarMenu(titulo, x + 2, y + 1, false);
-    rlutil::locate(x + 5, y + 3);
-    cout << cuerpo;
-    resaltarMenu("SI", x + 9, y + 5, movimiento == 0);
-    resaltarMenu("NO", x + 31, y + 5, movimiento == 1);
-
-    mostrarCursorConfirmacion(32, 37, 13, movimiento);
-    tecla = rlutil::getkey();
-    if(tecla == rlutil::KEY_LEFT || tecla == rlutil::KEY_RIGHT) movimiento = accionarCursorConfirmacion(movimiento, tecla, 1);
-    else if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
+    do
     {
-        if(movimiento == 0)
+        int x = 25, y = 8;
+        system("cls");
+        parteArribaMenu(x, y, 40);
+        for(int i = 0; i < 6; i++) bordesMenu(x, y + 1 + i, 40);
+        parteAbajoMenu(x, y + 7, 40);
+        resaltarMenu(titulo, x + 2, y + 1, false);
+        rlutil::locate(x + 5, y + 3);
+        cout << cuerpo;
+        resaltarMenu("SI", x + 9, y + 5, movimiento == 0);
+        resaltarMenu("NO", x + 31, y + 5, movimiento == 1);
+
+        mostrarCursorConfirmacion(32, 37, 13, movimiento);
+        tecla = rlutil::getkey();
+        if(tecla == rlutil::KEY_LEFT || tecla == rlutil::KEY_RIGHT) movimiento = accionarCursorConfirmacion(movimiento, tecla, 1);
+        else if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
         {
-            respuesta = true; /// SI
+            if(movimiento == 0)
+            {
+                respuesta = true; /// SI
+            }
+            else if (movimiento == 1)
+            {
+                respuesta = false; /// NO
+            }
+            break;
         }
-        else if (movimiento == 1)
-        {
-            respuesta = false; /// NO
-        }
-        break;
     }
-    } while(tecla != 1);
+    while(tecla != 1);
     return respuesta;
 
 }

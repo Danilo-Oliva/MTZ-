@@ -56,6 +56,21 @@ Persona ArchivoCliente::leerArchivo(int pos)
     fclose(p);
     return per;
 }
+int ArchivoCliente::getProximoID() {
+    int cant = contarClientes();
+    if (cant == 0) {
+        return 1;
+    }
+
+    int maxID = 0;
+    for (int i = 0; i < cant; i++) {
+        Persona per = leerArchivo(i);
+        if (per.getNumeroSocio() > maxID) {
+            maxID = per.getNumeroSocio();
+        }
+    }
+    return maxID + 1;
+}
 bool ArchivoCliente::inscribirCliente(Persona per)
 {
     FILE *p = fopen(nombreArchivo, "ab");
@@ -64,8 +79,9 @@ bool ArchivoCliente::inscribirCliente(Persona per)
         return false;
     }
 
-    int numSocio = contarClientes() + 1;
-    per.setNumeroSocio(numSocio);
+    int proximoNroSocio = getProximoID();
+    per.setNumeroSocio(proximoNroSocio);
+    per.setEstado(true);
 
     bool escribio = fwrite(&per, sizeof per, 1, p);
     fclose(p);
@@ -87,8 +103,7 @@ void ArchivoCliente::listar(int modoListado)
 {
     int contarCli = contarClientes();
     int contadorMostrados = 0;
-    // 'filaInicial' es la fila donde comenzará a dibujarse el primer dato.
-    // La cabecera ocupa hasta la fila 4, así que empezamos en la 5.
+
     const int filaInicial = 5;
 
     system("cls");
