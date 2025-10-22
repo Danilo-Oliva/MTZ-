@@ -129,8 +129,21 @@ void nuevaInscripcion()
     }
 
     Fecha fechaInsc;
-    //cout << "\nIngrese la fecha de inscripcion:" << endl;
-    //fechaInsc.cargar();
+    int dia, mes, anio;
+
+    cout << "--- FECHA DE INSCRIPCION ---" << endl;
+    cout << "INGRESE EL DIA: ";
+    cin >> dia;
+    cout << "INGRESE EL MES: ";
+    cin >> mes;
+    cout << "INGRESE EL ANIO: ";
+    cin >> anio;
+
+    fechaInsc.setDia(dia);
+    fechaInsc.setMes(mes);
+    fechaInsc.setAnio(anio);
+
+    cin.ignore();
 
     InscripcionActividad nuevaIns;
     nuevaIns.setNumeroSocio(nroSocio);

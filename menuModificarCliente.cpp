@@ -18,18 +18,10 @@ void menuModificarCliente()
 
     if (pos == -1) {
         mostrarMensaje("No se encontro un cliente con ese DNI.", rlutil::LIGHTRED);
+        rlutil::anykey();
         return;
     }
     Persona per = arch.leerArchivo(pos);
-
-    if (per.getEstado() == false)
-    {
-        system("cls");
-        dibujarFichaCliente(per);
-        cout << "\nNo se pueden modificar los datos de un cliente INACTIVO." << endl;
-        cout << "Para reactivarlo, por favor utilice la opcion 'Estado Clientes'." << endl;
-        return;
-    }
 
     int opcion = -1, y = 0;
     mostrarMenuModificarCliente(per, opcion, y);

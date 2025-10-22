@@ -49,8 +49,6 @@ void InscripcionActividad::cargar()
     cin >> numeroSocio;
     cout << "ID de Actividad: ";
     cin >> idAct;
-    //cout << "Fecha de inscripcion: " << endl;
-    //fechaInscripcion.cargar();
     cout << "Estado (1 = activo, 0 = inactivo): ";
     cin >> estado;
 }

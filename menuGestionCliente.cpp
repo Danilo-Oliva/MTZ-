@@ -1,5 +1,6 @@
 #include<iostream>
 #include"clsArchivoCliente.h"
+#include "clsArchivoInscripcion.h"
 #include"clsPersona.h"
 #include "menusVisual.h"
 #include "listadoVisual.h"
@@ -8,11 +9,13 @@
 
 using namespace std;
 
-void ingresarNuevoCliente() {
+void ingresarNuevoCliente()
+{
     ArchivoCliente arch("clientes.dat");
     int dni = pedirDNI("NUEVO CLIENTE:");
 
-    if (arch.buscarCliente(dni) != -1) {
+    if (arch.buscarCliente(dni) != -1)
+    {
         mostrarMensaje("ERROR: Ya existe un cliente con ese DNI.", rlutil::LIGHTRED);
         return;
     }
@@ -20,13 +23,19 @@ void ingresarNuevoCliente() {
     Persona per;
     per.setDNI(dni);
 
-    if (mostrarFormularioCargaCliente(per)) {
-        if (arch.inscribirCliente(per)) {
+    if (mostrarFormularioCargaCliente(per))
+    {
+        if (arch.inscribirCliente(per))
+        {
             mostrarMensaje("Cliente guardado con exito.", rlutil::LIGHTGREEN);
-        } else {
+        }
+        else
+        {
             mostrarMensaje("ERROR: No se pudo guardar el cliente.", rlutil::LIGHTRED);
         }
-    } else {
+    }
+    else
+    {
         mostrarMensaje("Operacion cancelada por el usuario.", rlutil::YELLOW);
     }
 }
@@ -63,40 +72,67 @@ void menuListarClientes()
     }
     while (opcion != 0);
 }
-void eliminarClientePermanente() {
-    ArchivoCliente arch("clientes.dat");
+void eliminarClientePermanente()
+{
+    ArchivoCliente archClientes("clientes.dat");
     int dni = pedirDNI("ELIMINAR CLIENTE:");
-    int pos = arch.buscarCliente(dni);
+    int pos = archClientes.buscarCliente(dni);
 
-    if (pos == -1) {
+    if (pos == -1)
+    {
         mostrarMensaje("ERROR: No se encontro cliente con ese DNI.", rlutil::LIGHTRED);
         return;
     }
 
-    system("cls");
-    Persona per = arch.leerArchivo(pos);
-    dibujarFichaCliente(per);
-    rlutil::anykey();
+    Persona per = archClientes.leerArchivo(pos);
 
-    if (mostrarConfirmacion("ADVERTENCIA!", "Esta accion es irreversible. Eliminar?")) {
-        if (arch.eliminarCliente(dni)) {
-            mostrarMensaje("Cliente eliminado permanentemente.", rlutil::YELLOW);
-        } else {
+
+    if (mostrarConfirmacion("ADVERTENCIA!", "Esta accion es irreversible. Eliminar?"))
+    {
+
+        int nroSocioAEliminar = per.getNumeroSocio();
+        ArchivoInscripcion archInscripciones("inscripciones.dat");
+        int cantInscripciones = archInscripciones.contarInscripciones();
+
+        for (int i = 0; i < cantInscripciones; i++)
+        {
+            InscripcionActividad ins = archInscripciones.leerInscripcion(i);
+            if (ins.getNumeroSocio() == nroSocioAEliminar)
+            {
+                ins.setEstado(false);
+                archInscripciones.modificarInscripcion(ins, i);
+            }
+        }
+
+        if (archClientes.eliminarCliente(dni))
+        {
+            mostrarMensaje("Cliente eliminado y sus inscripciones desactivadas.", rlutil::YELLOW);
+        }
+        else
+        {
             mostrarMensaje("ERROR: No se pudo eliminar el registro.", rlutil::LIGHTRED);
         }
     }
+    else
+    {
+        mostrarMensaje("Operacion cancelada por el usuario.", rlutil::YELLOW);
+    }
 }
-void buscarClientePorDNI() {
+void buscarClientePorDNI()
+{
     ArchivoCliente arch("clientes.dat");
     int dni = pedirDNI("BUSCAR CLIENTE:");
     int pos = arch.buscarCliente(dni);
 
-    if (pos != -1) {
+    if (pos != -1)
+    {
         system("cls");
         Persona per = arch.leerArchivo(pos);
         dibujarFichaCliente(per);
         rlutil::anykey();
-    } else {
+    }
+    else
+    {
         mostrarMensaje("ERROR: No se encontro cliente con ese DNI.", rlutil::LIGHTRED);
     }
 }
