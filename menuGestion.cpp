@@ -25,11 +25,11 @@ void menuActividades()
     Actividad act;
     int opcion, y = 0;
 
+        system("cls");
     do
     {
         opcion = -1;
 
-        system("cls");
         mostrarMenuActividades(opcion, y);
 
         switch (opcion)
@@ -48,12 +48,13 @@ void menuActividades()
         }
     }
     while (opcion != 0);
+        system("cls");
 }
 ///MENU INSCRIPCIONES
 void menuInscripciones() {
     int opcion, y = 0;
-    do {
         system("cls");
+    do {
         opcion = -1;
 
         mostrarMenuInscripciones(opcion, y);
@@ -65,7 +66,7 @@ void menuInscripciones() {
 
                 nuevaInscripcion();
 
-                system("pause");
+                rlutil::anykey();
                 system("cls");
                 break;
             case 2:
@@ -73,7 +74,7 @@ void menuInscripciones() {
 
                 gestionarEstadoInscripcion();
 
-                system("pause");
+                rlutil::anykey();
                 system("cls");
                 break;
             case 3:
@@ -87,10 +88,16 @@ void menuInscripciones() {
 
     } while (opcion != 0);
 }
+
+
+
+
+
 ///MENU PRINCIPAL
 void accionarMenu()
 {
     int opcionMenu = -1, y = 0;
+    system("cls");
     do
     {
 
@@ -116,4 +123,5 @@ void accionarMenu()
         if(opcionMenu != 0) opcionMenu = -1;
     }
     while(opcionMenu != 0);
+    system("cls");
 }

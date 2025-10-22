@@ -1,11 +1,12 @@
 #include<iostream>
-#include"clsArchivoCliente.h"
+#include "clsArchivoCliente.h"
 #include "clsArchivoInscripcion.h"
-#include"clsPersona.h"
+#include "clsPersona.h"
 #include "menusVisual.h"
 #include "listadoVisual.h"
 #include "rlutil.h"
 #include "menuModificarCliente.h"
+#include "tunearMenu.h"
 
 using namespace std;
 
@@ -44,15 +45,14 @@ void menuListarClientes()
 {
     ArchivoCliente arch("clientes.dat");
     int opcion, y = 0;
+        system("cls");
 
     do
     {
         opcion = -1;
-        system("cls");
 
         opcion = mostrarMenuListarClientes(opcion, y);
 
-        system("cls");
 
         switch (opcion)
         {
@@ -71,6 +71,7 @@ void menuListarClientes()
         }
     }
     while (opcion != 0);
+        system("cls");
 }
 void eliminarClientePermanente()
 {
@@ -138,14 +139,27 @@ void buscarClientePorDNI()
 }
 void menuClientes()
 {
+        rlutil::cls();
+    parteArribaMenu(24, 5, 33);
+    bordesMenu(24, 6, 33);
+    separarMenues(24, 7, 33);
+    for (int i = 0; i < 12; i ++) bordesMenu(24, 8 + i, 33);
+    parteAbajoMenu(24, 20, 33);
+
+
+    escribirTexto("M E N U  D E  C L I E N T E S", 27, 6);
+    escribirTexto("INGRESAR NUEVO CLIENTE ", 30, 9);
+    escribirTexto("  MODIFICAR  CLIENTES  ", 30, 11);
+    escribirTexto("   LISTAR   CLIENTES   ", 30, 13);
+    escribirTexto("BUSCAR CLIENTES POR DNI", 30, 15);
+    escribirTexto("  BORRAR  UN  CLIENTE  ", 30, 17);
+    escribirTexto("VOLVER AL  MENU GESTION", 30, 19);
     int opcion, y = 0;
     do
     {
         opcion = -1;
-        rlutil::cls();
 
         opcion = mostrarMenuClientes(opcion, y);
-        rlutil::cls();
 
 
         switch (opcion)
@@ -168,4 +182,5 @@ void menuClientes()
         }
     }
     while (opcion != 0);
+        rlutil::cls();
 }
