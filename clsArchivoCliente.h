@@ -13,6 +13,7 @@ public:
     ArchivoCliente(const char *n = "clientes.dat", Persona _per = Persona());
     int contarClientes();
     int buscarCliente(int);
+    int buscarSocio(int);
     int getProximoID();
     Persona leerArchivo(int);
     bool inscribirCliente(Persona);

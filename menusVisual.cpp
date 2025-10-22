@@ -285,12 +285,12 @@ int mostrarMenuListarInscripciones(int &opcionMenu, int &y)
     for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 47);
     parteAbajoMenu(24, 17, 47);
 
-    resaltarMenu("L I S T A D O  DE  I N S C R I P C I O N E S", 26, 6, false);
+    resaltarMenu("L I S T A D O   I N S C R I P C I O N E S", 26, 6, false);
 
-    resaltarMenu("        LISTAR ACTIVAS        ", 30, 9, y == 0);
-    resaltarMenu("       LISTAR   INACTIVAS       ", 30, 11, y == 1);
-    resaltarMenu("        LISTAR TODAS         ", 30, 13, y == 2);
-    resaltarMenu("            VOLVER             ", 30, 15, y == 3);
+    resaltarMenu(" LISTAR  LAS  INSCRIPCIONES  ACTIVAS ", 30, 9, y == 0);
+    resaltarMenu("LISTAR  LAS  INSCRIPCIONES  INACTIVAS", 30, 11, y == 1);
+    resaltarMenu("  LISTAR  TODAS  LAS  INSCRIPCIONES  ", 30, 13, y == 2);
+    resaltarMenu("   VOLVER  AL  MENU  INSCRIPCIONES   ", 30, 15, y == 3);
 
     mostrarCursor(28, 68, 9, y);
     int tecla = rlutil::getkey();
@@ -385,20 +385,19 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
             else if (y >= 1 && y <= 4)
             {
                 rlutil::showcursor();
-                string nuevoDato;
-                int y_campo_actual = y_start + 6 + (y-1);
-                rlutil::locate(x + 22, y_campo_actual);
+                char nuevoDato[30];
+                int y_campo_actual = y_start + 7 + (y-1);
+                rlutil::locate(x + 19, y_campo_actual);
                 cout << string(30, ' ');
-                rlutil::locate(x + 22, y_campo_actual);
-                cin.ignore();
-                getline(cin, nuevoDato);
+                rlutil::locate(x + 19, y_campo_actual);
+                cargarCadena(nuevoDato, 29);
 
                 switch (y)
                 {
-                case 1: reg.setNombre(nuevoDato.c_str()); break;
-                case 2: reg.setApellido(nuevoDato.c_str()); break;
-                case 3: reg.setTelefono(nuevoDato.c_str()); break;
-                case 4: reg.setEmail(nuevoDato.c_str()); break;
+                case 1: reg.setNombre(nuevoDato); break;
+                case 2: reg.setApellido(nuevoDato); break;
+                case 3: reg.setTelefono(nuevoDato); break;
+                case 4: reg.setEmail(nuevoDato); break;
                 }
                 rlutil::hidecursor();
             }
@@ -429,6 +428,42 @@ int pedirDNI(const char* titulo)
     return dni;
 }
 
+int pedirNumSocio(const char* titulo)
+{
+    int numSocio;
+    int x = 25, y = 8;
+    system("cls");
+    parteArribaMenu(x, y, 40);
+    for(int i=0; i<4; i++) bordesMenu(x, y + 1 + i, 40);
+    parteAbajoMenu(x, y + 5, 40);
+    resaltarMenu(titulo, x + 2, y + 1, false);
+
+    rlutil::locate(x + 5, y + 3);
+    cout << "INGRESE EL NUMERO DE SOCIO: ";
+    rlutil::showcursor();
+    cin >> numSocio;
+    rlutil::hidecursor();
+    return numSocio;
+}
+
+int pedirIdActividad()
+{
+    int idActividad;
+    int x = 25, y = 8;
+    system("cls");
+    parteArribaMenu(x, y, 40);
+    for(int i=0; i<4; i++) bordesMenu(x, y + 1 + i, 40);
+    parteAbajoMenu(x, y + 5, 40);
+    rlutil::locate(x + 5, y + 3);
+    cout << "INGRESE ID DE LA ACTIVIDAD: ";
+    rlutil::showcursor();
+    cin >> idActividad;
+    rlutil::hidecursor();
+    return idActividad;
+}
+
+
+
 bool mostrarFormularioCargaCliente(Persona &reg)
 {
     char nombre[30], apellido[30], telefono[15], email[30];
@@ -438,7 +473,7 @@ bool mostrarFormularioCargaCliente(Persona &reg)
 
     system("cls");
     parteArribaMenu(x, y_start, 52);
-    for (int i = 0; i < 11; i++) bordesMenu(x, y_start + 1 + i, 52);
+    for (int i = 0; i < 12; i++) bordesMenu(x, y_start + 1 + i, 52);
     parteAbajoMenu(x, y_start + 13, 52);
     resaltarMenu("  I N G R E S A R   N U E V O   C L I E N T E  ", x + 6, y_start + 1, false);
 

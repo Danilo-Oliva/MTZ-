@@ -17,53 +17,7 @@
 
 using namespace std;
 
-///CLIENTES
-/*
-void menuClientes()
-{
-    int opcion, y = 0;
 
-    do
-    {
-        opcion = -1;
-
-
-        rlutil::cls();
-        opcion = mostrarMenuClientes(opcion, y);
-        rlutil::cls();
-
-
-        switch (opcion)
-        {
-        case 1:
-            ingresarNuevoCliente();
-            system("pause");
-            break;
-        case 2:
-            menuModificarCliente();
-            system("pause");
-            break;
-        case 3:
-            menuListarClientes();
-            break;
-
-        case 4:
-            buscarCliente();
-            system("pause");
-            break;
-        case 5:
-            system("cls");
-            GestionarEstadoCliente();
-            system("cls");
-            break;
-        case 6:
-            EliminarClientePermanente();
-            break;
-        }
-        system("cls");
-    }
-    while (opcion != 0);
-}*/
 ///ACTIVIDAD
 void menuActividades()
 {
@@ -77,7 +31,6 @@ void menuActividades()
 
         system("cls");
         mostrarMenuActividades(opcion, y);
-        system("cls");
 
         switch (opcion)
         {
@@ -105,7 +58,6 @@ void menuInscripciones() {
 
         mostrarMenuInscripciones(opcion, y);
 
-        system("cls");
 
         switch (opcion) {
             case 1:
@@ -141,7 +93,7 @@ void accionarMenu()
     int opcionMenu = -1, y = 0;
     do
     {
-        system("cls");
+
         mostrarMenuGestion(opcionMenu, y);
 
         switch(opcionMenu)

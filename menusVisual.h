@@ -14,6 +14,9 @@ int mostrarMenuListarInscripciones(int &opcionMenu, int &y);
 int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y);
 
 int pedirDNI(const char* titulo);
+int pedirNumSocio(const char* titulo);
+int pedirIdActividad();
+
 bool mostrarFormularioCargaCliente(Persona &reg);
 void mostrarMensaje(const char* mensaje, int color);
 bool mostrarConfirmacion(const char* titulo, const char* cuerpo);

@@ -29,11 +29,8 @@ void menuListarActividades() {
 
     do {
         opcion = -1;
-        system("cls");
 
         opcion = mostrarMenuListarActividades(opcion, y);
-
-        system("cls");
 
         switch (opcion)
         {

@@ -41,6 +41,20 @@ int ArchivoCliente::buscarCliente(int dniBuscado)
     return -1;
 }
 
+int ArchivoCliente::buscarSocio(int numSocio)
+{
+    int cantReg = contarClientes();
+    for (int i = 0; i < cantReg; i++)
+    {
+        per = leerArchivo(i);
+        if(per.getNumeroSocio() == numSocio)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 Persona ArchivoCliente::leerArchivo(int pos)
 {
     FILE *p = fopen(nombreArchivo, "rb");
