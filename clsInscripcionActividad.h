@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "clsFecha.h"
+#include "clsActividad.h"
 
 class InscripcionActividad {
 private:
@@ -30,6 +31,7 @@ public:
     bool getLibre();
 
     // Métodos
+    float calcularCuota(const Actividad &act);
     void cargar();
     void mostrar();
 };

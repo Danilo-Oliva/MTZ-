@@ -21,7 +21,7 @@ public:
     // Getters
     int getIdAct();
     const char* getNombre();
-    float getCuotaBase();
+    float getCuotaBase() const;
     bool getEstado();
 
     // Métodos

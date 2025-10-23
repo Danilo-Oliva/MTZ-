@@ -43,7 +43,7 @@ const char* Actividad::getNombre()
 {
     return Nombre;
 }
-float Actividad::getCuotaBase()
+float Actividad::getCuotaBase() const
 {
     return CuotaBase;
 }
@@ -53,18 +53,11 @@ bool Actividad::getEstado()
     return Estado;
 }
 
-/*
 float Actividad::calcularCuota()
 {
-    if(Libre)
-    {
-        return CuotaBase;
-    }
-    else
-    {
-        return CuotaBase * 0.75;
-    }
-}*/
+    return CuotaBase;
+}
+
 
 void Actividad::cargar(int proximoId)
 {
@@ -85,7 +78,5 @@ void Actividad::mostrar()
     cout << "ID: " << idAct << endl;
     cout << "Actividad: " << Nombre << endl;
     cout << "Couta base: $" << CuotaBase << endl;
-
-    //cout << "Cuota Final: $" << calcularCuota() << endl;
     cout << "Estado: " << (Estado ? "Activa" : "Inactiva") << endl;
 }

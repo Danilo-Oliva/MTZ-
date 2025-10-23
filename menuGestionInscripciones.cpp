@@ -107,6 +107,13 @@ void nuevaInscripcion()
     per = archClientes.leerArchivo(posCliente);
     int nroSocio = per.getNumeroSocio();
 
+    if (!per.getEstado())
+    {
+        cout << "ERROR: El cliente se encuentra INACTIVO. No se puede realizar la inscripcion." << endl;
+        rlutil::anykey();
+        return;
+    }
+
     system("cls");
 
     cout << endl << "--- LISTA DE ACTIVIDADES DISPONIBLES ---" << endl;
@@ -118,6 +125,14 @@ void nuevaInscripcion()
     if (archActividades.buscarActividad(idAct) == -1)
     {
         cout << "ERROR: El ID de actividad no existe." << endl;
+        rlutil::anykey();
+        return;
+    }
+    int posAct = archActividades.buscarActividad(idAct);
+    Actividad act = archActividades.leerArchivo(posAct);
+    if (!act.getEstado())
+    {
+        cout << "ERROR: La actividad se encuentra INACTIVA. No se puede realizar la inscripcion." << endl;
         rlutil::anykey();
         return;
     }
