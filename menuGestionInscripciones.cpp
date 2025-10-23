@@ -68,6 +68,7 @@ void listarInscripciones(int modoListado = 1)
             cout << "Actividad: " << act.getNombre() << " (ID: " << ins.getIdAct() << ")" << endl;
             cout << "Fecha de Inscripcion: ";
             ins.getFechaInscripcion().mostrar();
+            cout << "Modalidad: " << (ins.getLibre()? "Libre" : "3 veces por semana") <<endl;
             cout << "Estado: " << (ins.getEstado() ? "ACTIVA" : "INACTIVA") << endl;
             cout << "--------------------------------" << endl;
             contadorMostrados++;
@@ -128,6 +129,8 @@ void nuevaInscripcion()
         return;
     }
 
+    system("cls");
+
     Fecha fechaInsc;
     int dia, mes, anio;
 
@@ -139,17 +142,22 @@ void nuevaInscripcion()
     cout << "INGRESE EL ANIO: ";
     cin >> anio;
 
+    int opcion_mod;
+    cout << "--- MODALIDAD ---" << endl;
+    cout << "1 para Pase Libre, 2 para 3 veces por semana: ";
+    cin >> opcion_mod;
+
     fechaInsc.setDia(dia);
     fechaInsc.setMes(mes);
     fechaInsc.setAnio(anio);
-
-    cin.ignore();
 
     InscripcionActividad nuevaIns;
     nuevaIns.setNumeroSocio(nroSocio);
     nuevaIns.setIdAct(idAct);
     nuevaIns.setFechaInscripcion(fechaInsc);
+    nuevaIns.setLibre(opcion_mod == 1);
     nuevaIns.setEstado(true);
+
 
     if (archInscripciones.grabarInscripcion(nuevaIns))
     {

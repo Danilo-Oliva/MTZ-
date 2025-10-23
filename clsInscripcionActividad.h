@@ -9,22 +9,25 @@ private:
     int numeroSocio;
     int idAct;
     Fecha fechaInscripcion;
-    bool estado;
+    bool Libre;
+    bool Estado;
 
 public:
-    InscripcionActividad(int numSoc = 0, int idA = 0, Fecha f = Fecha(), bool est = true);
+    InscripcionActividad(int numSoc = 0, int idA = 0, Fecha f = Fecha(), bool libre = true, bool est = true);
 
     // Setters
     void setNumeroSocio(int);
     void setIdAct(int);
     void setFechaInscripcion(Fecha);
     void setEstado(bool);
+    void setLibre(bool);
 
     // Getters
     int getNumeroSocio();
     int getIdAct();
     Fecha getFechaInscripcion();
     bool getEstado();
+    bool getLibre();
 
     // Métodos
     void cargar();

@@ -113,6 +113,7 @@ void accionarMenu()
             break;
         case 3:
             menuInscripciones();
+            system("cls");
             break;
         case 4:
             system("cls");

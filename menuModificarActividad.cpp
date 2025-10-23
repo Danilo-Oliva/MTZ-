@@ -12,8 +12,7 @@ void imprimirMenuModificarAct() {
     cout << "===============================" << endl;
     cout << "1. Nombre" << endl;
     cout << "2. Cuota base" << endl;
-    cout << "3. Modalidad (Pase Libre / 3 veces por semana)" << endl;
-    cout << "4. Estado (Activar / Desactivar)" << endl;
+    cout << "3. Estado (Activar / Desactivar)" << endl;
     cout << "-------------------------------" << endl;
     cout << "0. VOLVER" << endl;
     cout << "===============================" << endl;
@@ -64,15 +63,8 @@ void menuModificarActividad() {
                     act.setCuotaBase(nuevaCuota);
                 }
                 break;
+
             case 3:
-                {
-                    int opcion_mod;
-                    cout << "Modalidad (1 para Pase Libre, 2 para 3 veces por semana): ";
-                    cin >> opcion_mod;
-                    act.setLibre(opcion_mod == 1);
-                }
-                break;
-            case 4:
                 {
                     bool estadoActual = act.getEstado();
                     act.setEstado(!estadoActual);

@@ -1,12 +1,13 @@
 #include "clsInscripcionActividad.h"
 using namespace std;
 
-InscripcionActividad::InscripcionActividad(int numSoc, int idA, Fecha f, bool est)
+InscripcionActividad::InscripcionActividad(int numSoc, int idA, Fecha f, bool libre, bool est)
 {
     numeroSocio = numSoc;
     idAct = idA;
     fechaInscripcion = f;
-    estado = est;
+    Libre = libre;
+    Estado = est;
 }
 
 void InscripcionActividad::setNumeroSocio(int n)
@@ -23,7 +24,11 @@ void InscripcionActividad::setFechaInscripcion(Fecha f)
 }
 void InscripcionActividad::setEstado(bool e)
 {
-    estado = e;
+    Estado = e;
+}
+void InscripcionActividad::setLibre(bool l)
+{
+    Libre = l;
 }
 
 int InscripcionActividad::getNumeroSocio()
@@ -40,17 +45,25 @@ Fecha InscripcionActividad::getFechaInscripcion()
 }
 bool InscripcionActividad::getEstado()
 {
-    return estado;
+    return Estado;
+}
+bool InscripcionActividad::getLibre()
+{
+    return Libre;
 }
 
 void InscripcionActividad::cargar()
 {
+    int opcion_mod;
     cout << "Numero de Socio: ";
     cin >> numeroSocio;
     cout << "ID de Actividad: ";
     cin >> idAct;
+    cout << "Modalidad (1 para Pase Libre, 2 para 3 veces por semana): ";
+    cin >> opcion_mod;
+    Libre = (opcion_mod == 1);
     cout << "Estado (1 = activo, 0 = inactivo): ";
-    cin >> estado;
+    cin >> Estado;
 }
 
 void InscripcionActividad::mostrar()
@@ -59,5 +72,6 @@ void InscripcionActividad::mostrar()
     cout << "Actividad: " << idAct << endl;
     cout << "Fecha de inscripcion: ";
     fechaInscripcion.mostrar();
-    cout << "Estado: " << (estado ? "Activo" : "Inactivo") << endl;
+    cout << "Modalidad: " << (Libre ? "Pase Libre" : "3 veces por semana") << endl;
+    cout << "Estado: " << (Estado ? "Activo" : "Inactivo") << endl;
 }
