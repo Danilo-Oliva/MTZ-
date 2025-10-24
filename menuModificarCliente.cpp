@@ -37,4 +37,6 @@ void menuModificarCliente()
         cout << "Error al modificar el cliente." << endl;
     }
     rlutil::anykey();
+    rlutil::cls();
+    imprimirMenuClientes();
 }

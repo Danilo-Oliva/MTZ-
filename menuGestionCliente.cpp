@@ -39,6 +39,8 @@ void ingresarNuevoCliente()
     {
         mostrarMensaje("Operacion cancelada por el usuario.", rlutil::YELLOW);
     }
+        rlutil::cls();
+        imprimirMenuClientes();
 }
 
 void menuListarClientes()
@@ -59,19 +61,22 @@ void menuListarClientes()
         case 1:
             arch.listar(1);
             rlutil::anykey();
+            rlutil::cls();
             break;
         case 2:
             arch.listar(2);
             rlutil::anykey();
+            rlutil::cls();
             break;
         case 3:
             arch.listar(0);
             rlutil::anykey();
+            rlutil::cls();
             break;
         }
     }
     while (opcion != 0);
-        system("cls");
+        imprimirMenuClientes();
 }
 void eliminarClientePermanente()
 {
@@ -118,6 +123,8 @@ void eliminarClientePermanente()
     {
         mostrarMensaje("Operacion cancelada por el usuario.", rlutil::YELLOW);
     }
+    rlutil::cls();
+    imprimirMenuClientes();
 }
 void buscarClientePorDNI()
 {
@@ -136,24 +143,13 @@ void buscarClientePorDNI()
     {
         mostrarMensaje("ERROR: No se encontro cliente con ese DNI.", rlutil::LIGHTRED);
     }
+    rlutil::cls();
+    imprimirMenuClientes();
 }
 void menuClientes()
 {
         rlutil::cls();
-    parteArribaMenu(24, 5, 33);
-    bordesMenu(24, 6, 33);
-    separarMenues(24, 7, 33);
-    for (int i = 0; i < 12; i ++) bordesMenu(24, 8 + i, 33);
-    parteAbajoMenu(24, 20, 33);
-
-
-    escribirTexto("M E N U  D E  C L I E N T E S", 27, 6);
-    escribirTexto("INGRESAR NUEVO CLIENTE ", 30, 9);
-    escribirTexto("  MODIFICAR  CLIENTES  ", 30, 11);
-    escribirTexto("   LISTAR   CLIENTES   ", 30, 13);
-    escribirTexto("BUSCAR CLIENTES POR DNI", 30, 15);
-    escribirTexto("  BORRAR  UN  CLIENTE  ", 30, 17);
-    escribirTexto("VOLVER AL  MENU GESTION", 30, 19);
+        imprimirMenuClientes();
     int opcion, y = 0;
     do
     {
@@ -183,4 +179,5 @@ void menuClientes()
     }
     while (opcion != 0);
         rlutil::cls();
+        imprimirMenuGestion();
 }

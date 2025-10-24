@@ -2,6 +2,11 @@
 #define MENUSVISUAL_H_INCLUDED
 #include "clsPersona.h"
 
+void imprimirMenuGestion();
+void imprimirMenuClientes();
+void imprimirMenuActividades();
+void imprimirMenuInscripciones();
+
 int mostrarMenuGestion(int &opcionMenu, int &y);
 int mostrarMenuClientes(int &opcionMenu, int &y);
 int mostrarMenuActividades(int &opcionMenu, int &y);

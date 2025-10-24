@@ -3,6 +3,7 @@
 #include "clsArchivoActividad.h"
 #include "clsActividad.h"
 #include "cargarCadena.h"
+#include "menusVisual.h"
 
 using namespace std;
 
@@ -92,4 +93,6 @@ void menuModificarActividad() {
         }
 
     } while (opcion != 0);
+    rlutil::cls();
+    imprimirMenuActividades();
 }
