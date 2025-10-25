@@ -73,7 +73,7 @@ void imprimirMenuInscripciones()
     escribirTexto("VOLVER   AL   MENU   GESTION", 30, 15);
 }
 
-int mostrarMenuGestion(int &opcionMenu, int &y)
+int interactuarMenuGestion(int &opcionMenu, int &y)
 {
 
 
@@ -117,7 +117,7 @@ int mostrarMenuGestion(int &opcionMenu, int &y)
 
 }
 
-int mostrarMenuClientes(int &opcionMenu, int &y)
+int interactuarMenuClientes(int &opcionMenu, int &y)
 {
 
 
@@ -141,7 +141,7 @@ int mostrarMenuClientes(int &opcionMenu, int &y)
     return opcionMenu;
 }
 
-int mostrarMenuActividades(int &opcionMenu, int &y)
+int interactuarMenuActividades(int &opcionMenu, int &y)
 {
 
 
@@ -179,7 +179,7 @@ int mostrarMenuActividades(int &opcionMenu, int &y)
     return opcionMenu;
 }
 
-int mostrarMenuInscripciones(int &opcionMenu, int &y)
+int interactuarMenuInscripciones(int &opcionMenu, int &y)
 {
 
 
@@ -255,9 +255,7 @@ int mostrarMenuListarClientes(int &opcionMenu, int &y)
     return opcionMenu;
 }
 
-
-
-int mostrarMenuListarActividades(int &opcionMenu, int &y)
+void imprimirMenuListarActividades()
 {
     parteArribaMenu(24, 5, 36);
     bordesMenu(24, 6, 36);
@@ -271,8 +269,10 @@ int mostrarMenuListarActividades(int &opcionMenu, int &y)
     escribirTexto("    LISTAR   INACTIVAS    ", 30, 11);
     escribirTexto("      LISTAR   TODAS      ", 30, 13);
     escribirTexto("VOLVER AL MENU ACTIVIDADES", 30, 15);
-
-    mostrarCursor(28, 57, 9, y);
+}
+int interactuarMenuListarActividades(int &opcionMenu, int &y)
+{
+    mostrarCursor(28, 58, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
     {
@@ -292,7 +292,7 @@ int mostrarMenuListarActividades(int &opcionMenu, int &y)
             break;
         }
     }
-    else if(tecla > 13) y = accionarCursor(28, 57, 9, y, tecla, 3);
+    else if(tecla > 13) y = accionarCursor(28, 58, 9, y, tecla, 3);
     return opcionMenu;
 }
 int mostrarMenuListarInscripciones(int &opcionMenu, int &y)

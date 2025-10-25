@@ -30,35 +30,47 @@ void ingresarNuevaActividad()
             mostrarMensaje("Error al guardar la actividad.", rlutil::LIGHTRED);
         }
     }
+    rlutil::cls();
+    imprimirMenuActividades();
 }
 void menuListarActividades() {
     ArchivoActividad arch("actividad.dat");
     int opcion, y = 0;
-
+    imprimirMenuListarActividades();
     do {
-        rlutil::cls();
         opcion = -1;
 
-        opcion = mostrarMenuListarActividades(opcion, y);
+        opcion = interactuarMenuListarActividades(opcion, y);
 
         switch (opcion)
         {
         case 1: // Activas
+            rlutil::cls();
+
             arch.listar(1);
+
             rlutil::anykey();
-            rlutil::cls();            break;
+            rlutil::cls();            imprimirMenuListarActividades();
+            break;
         case 2: // Inactivas
+            rlutil::cls();
+
             arch.listar(2);
+
             rlutil::anykey();
-            rlutil::cls();            break;
+            rlutil::cls();            imprimirMenuListarActividades();
+            break;
         case 3: // Todos
+            rlutil::cls();
+
             arch.listar(0);
             rlutil::anykey();
             rlutil::cls();
+
+            imprimirMenuListarActividades();
             break;
         }
     } while (opcion != 0);
-    rlutil::anykey();
     rlutil::cls();
     imprimirMenuActividades();
 }

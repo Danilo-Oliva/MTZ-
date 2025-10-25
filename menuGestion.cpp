@@ -33,7 +33,7 @@ void menuActividades()
     {
         opcion = -1;
 
-        mostrarMenuActividades(opcion, y);
+        interactuarMenuActividades(opcion, y);
 
         switch (opcion)
         {
@@ -64,7 +64,7 @@ void menuInscripciones() {
     do {
         opcion = -1;
 
-        mostrarMenuInscripciones(opcion, y);
+        interactuarMenuInscripciones(opcion, y);
 
         switch (opcion) {
             case 1:
@@ -75,6 +75,7 @@ void menuInscripciones() {
                 rlutil::anykey();
                 system("cls");
                 imprimirMenuInscripciones();
+
                 break;
             case 2:
                 system("cls");
@@ -84,9 +85,15 @@ void menuInscripciones() {
                 rlutil::anykey();
                 system("cls");
                 imprimirMenuInscripciones();
+
                 break;
             case 3:
                 menuListarInscripciones();
+
+                rlutil::anykey();
+                system("cls");
+                imprimirMenuInscripciones();
+
                 break;
         }
 
@@ -104,7 +111,7 @@ void accionarMenu()
     do
     {
 
-        mostrarMenuGestion(opcionMenu, y);
+        interactuarMenuGestion(opcionMenu, y);
 
         switch(opcionMenu)
         {
@@ -116,14 +123,18 @@ void accionarMenu()
             break;
         case 3:
             menuInscripciones();
+
             system("cls");
             imprimirMenuGestion();
             break;
         case 4:
             system("cls");
             cout << "Bob el constructor está trabajando en esta opcion." << endl;
+
             rlutil::anykey();
             system("cls");
+            imprimirMenuGestion();
+
             break;
         }
         if(opcionMenu != 0) opcionMenu = -1;

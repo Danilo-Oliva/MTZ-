@@ -7,14 +7,19 @@ void imprimirMenuClientes();
 void imprimirMenuActividades();
 void imprimirMenuInscripciones();
 
-int mostrarMenuGestion(int &opcionMenu, int &y);
-int mostrarMenuClientes(int &opcionMenu, int &y);
-int mostrarMenuActividades(int &opcionMenu, int &y);
-int mostrarMenuInscripciones(int &opcionMenu, int &y);
+int interactuarMenuGestion(int &opcionMenu, int &y);
+int interactuarMenuClientes(int &opcionMenu, int &y);
+int interactuarMenuActividades(int &opcionMenu, int &y);
+int interactuarMenuInscripciones(int &opcionMenu, int &y);
 
 int mostrarMenuListarClientes(int &opcionMenu, int &y);
-int mostrarMenuListarActividades(int &opcionMenu, int &y);
+
+
+void imprimirMenuListarActividades();
+int interactuarMenuListarActividades(int &opcionMenu, int &y);
+
 int mostrarMenuListarInscripciones(int &opcionMenu, int &y);
+
 
 int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y);
 

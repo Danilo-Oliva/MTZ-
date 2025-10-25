@@ -87,6 +87,8 @@ void eliminarClientePermanente()
     if (pos == -1)
     {
         mostrarMensaje("ERROR: No se encontro cliente con ese DNI.", rlutil::LIGHTRED);
+        rlutil::cls();
+        imprimirMenuClientes();
         return;
     }
 
@@ -155,7 +157,7 @@ void menuClientes()
     {
         opcion = -1;
 
-        opcion = mostrarMenuClientes(opcion, y);
+        opcion = interactuarMenuClientes(opcion, y);
 
 
         switch (opcion)

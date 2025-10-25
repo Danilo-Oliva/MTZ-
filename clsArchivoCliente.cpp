@@ -115,6 +115,7 @@ bool ArchivoCliente::modificarCliente(Persona per, int pos)
 }
 void ArchivoCliente::listar(int modoListado)
 {
+    rlutil::cls();
     int contarCli = contarClientes();
     int contadorMostrados = 0;
 
