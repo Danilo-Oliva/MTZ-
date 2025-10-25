@@ -21,6 +21,7 @@ void imprimirMenuModificarAct() {
 }
 
 void menuModificarActividad() {
+    system("cls");
     ArchivoActividad arch("actividad.dat");
     Actividad act;
     int id, pos, opcion;

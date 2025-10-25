@@ -60,18 +60,17 @@ void imprimirMenuActividades()
 
 void imprimirMenuInscripciones()
 {
-    parteArribaMenu(24, 5, 37);
-    bordesMenu(24, 6, 37);
-    separarMenues(24, 7, 37);
-    for (int i = 0; i < 11; i ++) bordesMenu(24, 8 + i, 37);
-    parteAbajoMenu(24, 19, 37);
+    parteArribaMenu(24, 5, 38);
+    bordesMenu(24, 6, 38);
+    separarMenues(24, 7, 38);
+    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 38);
+    parteAbajoMenu(24, 17, 38);
 
-    escribirTexto("M E N U  D E  G E S T I O N", 30, 6);
-    escribirTexto("GESTIONAR    LOS   CLIENTES", 30, 9);
-    escribirTexto("GESTIONAR  LAS  ACTIVIDADES", 30, 11);
-    escribirTexto("GESTIONAR LAS INSCRIPCIONES", 30, 13);
-    escribirTexto("  REPORTES  DEL  PROGRAMA  ", 30, 15);
-    escribirTexto("  VOLVER AL MENU PRICIPAL  ", 30, 17);
+    escribirTexto("M E N U    I N S C R I P C I O N E S", 26, 6);
+    escribirTexto(" INGRESAR NUEVA INSCRIPCION ", 30, 9);
+    escribirTexto("CAMBIAR  ESTADO  INSCRIPCION", 30, 11);
+    escribirTexto(" LISTAR  LAS  INSCRIPCIONES ", 30, 13);
+    escribirTexto("VOLVER   AL   MENU   GESTION", 30, 15);
 }
 
 int mostrarMenuGestion(int &opcionMenu, int &y)
@@ -385,20 +384,39 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
 
 
         escribirTexto("      GUARDAR Y VOLVER       ", x + 12, yStart + 12);
+//1
+// 1. Mapear el índice 'y' (0-5) a la coordenada Y real de la opción
+        int yCursor = 0;
+        if (y == 0) yCursor = yStart + 6;      // Opción ESTADO
+        else if (y == 1) yCursor = yStart + 7;  // Opción NOMBRE
+        else if (y == 2) yCursor = yStart + 8;  // Opción APELLIDO
+        else if (y == 3) yCursor = yStart + 9;  // Opción TELEFONO
+        else if (y == 4) yCursor = yStart + 10; // Opción EMAIL
+        else if (y == 5) yCursor = yStart + 12; // Opción GUARDAR Y VOLVER
 
-        mostrarSoloUnCursor(x + 1, yStart, y);
+        // 2. Dibujar el cursor en la posición correcta
+        rlutil::locate(x + 1, yCursor);
+        cout << (char)175;
 
+        // 3. Obtener la tecla presionada
         int tecla = rlutil::getkey();
-        if(tecla == 1)
+
+        // 4. Borrar el cursor de la posición actual (para el próximo frame)
+        rlutil::locate(x + 1, yCursor);
+        cout << " ";
+
+        // 5. Procesar la tecla
+        if(tecla == 1) // ENTER
         {
-            if (y == 0)
+            if (y == 0) // ESTADO
             {
                 reg.setEstado(!reg.getEstado());
             }
-            else if (y >= 1 && y <= 4)
+            else if (y >= 1 && y <= 4) // CAMPOS DE TEXTO
             {
                 rlutil::showcursor();
                 char nuevoDato[30];
+                // Esta lógica calcula la línea correcta para editar
                 int yCampoActual = yStart + 7 + (y-1);
                 rlutil::locate(x + 19, yCampoActual);
                 cout << string(30, ' ');
@@ -414,13 +432,23 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
                 }
                 rlutil::hidecursor();
             }
-            else if (y == 5)
+            else if (y == 5) // GUARDAR Y VOLVER
             {
                 opcionMenu = 0;
-                return opcionMenu;
+                return opcionMenu; // Sale del while(true) y de la función
             }
         }
-        else if(tecla > 13) y = accionarCursorCambios(x, yStart, y, tecla, 5);
+        else if (tecla == rlutil::KEY_UP) // FLECHA ARRIBA
+        {
+            y--;
+            if (y < 0) y = 5; // 5 es el último índice (0-5)
+        }
+        else if (tecla == rlutil::KEY_DOWN) // FLECHA ABAJO
+        {
+            y++;
+            if (y > 5) y = 0; // 0 es el primer índice
+        }
+//1
     }
 }
 

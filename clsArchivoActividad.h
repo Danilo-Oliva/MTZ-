@@ -12,6 +12,7 @@ public:
 
     bool inscribirActividad(Actividad);
     int buscarActividad(int);
+    int buscarActividadPorNombre(const char* nombre);
     Actividad leerArchivo(int pos);
     int contarActividades();
     void listar(int modoListado = 1);

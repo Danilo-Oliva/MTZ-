@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
 #include "clsArchivoInscripcion.h"
@@ -69,6 +70,10 @@ void listarInscripciones(int modoListado = 1)
             cout << "Fecha de Inscripcion: ";
             ins.getFechaInscripcion().mostrar();
             cout << "Modalidad: " << (ins.getLibre()? "Libre" : "3 veces por semana") <<endl;
+            float cuotaFinal = ins.calcularCuota(act);
+            char bufferPrecio[50];
+            sprintf(bufferPrecio, "Precio Final: $%.2f", cuotaFinal);
+            cout << bufferPrecio << endl;
             cout << "Estado: " << (ins.getEstado() ? "ACTIVA" : "INACTIVA") << endl;
             cout << "--------------------------------" << endl;
             contadorMostrados++;
@@ -284,4 +289,5 @@ void menuListarInscripciones()
         }
     }
     while (opcion != 0);
+    imprimirMenuInscripciones();
 }

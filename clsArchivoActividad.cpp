@@ -38,6 +38,20 @@ int ArchivoActividad::buscarActividad(int idBuscado)
     return -1;
 }
 
+int ArchivoActividad::buscarActividadPorNombre(const char* nombre)
+{
+    int cantReg = contarActividades();
+    for (int i = 0; i < cantReg; i++)
+    {
+        act = leerArchivo(i);
+
+        if(strcmp(act.getNombre(), nombre) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 
 Actividad ArchivoActividad::leerArchivo(int pos)
 {

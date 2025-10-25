@@ -52,29 +52,19 @@ void menuActividades()
     }
     while (opcion != 0);
     rlutil::cls();
+    imprimirMenuGestion();
 }
 ///MENU INSCRIPCIONES
 void menuInscripciones() {
     int opcion, y = 0;
-        system("cls");
-    parteArribaMenu(24, 5, 38);
-    bordesMenu(24, 6, 38);
-    separarMenues(24, 7, 38);
-    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 38);
-    parteAbajoMenu(24, 17, 38);
+    system("cls");
 
-
-    escribirTexto("M E N U    I N S C R I P C I O N E S", 26, 6);
-    escribirTexto(" INGRESAR NUEVA INSCRIPCION ", 30, 9);
-    escribirTexto("CAMBIAR  ESTADO  INSCRIPCION", 30, 11);
-    escribirTexto(" LISTAR  LAS  INSCRIPCIONES ", 30, 13);
-    escribirTexto("VOLVER   AL   MENU   GESTION", 30, 15);
+    imprimirMenuInscripciones();
 
     do {
         opcion = -1;
 
         mostrarMenuInscripciones(opcion, y);
-
 
         switch (opcion) {
             case 1:
@@ -84,6 +74,7 @@ void menuInscripciones() {
 
                 rlutil::anykey();
                 system("cls");
+                imprimirMenuInscripciones();
                 break;
             case 2:
                 system("cls");
@@ -92,22 +83,15 @@ void menuInscripciones() {
 
                 rlutil::anykey();
                 system("cls");
+                imprimirMenuInscripciones();
                 break;
             case 3:
-                system("cls");
-
                 menuListarInscripciones();
-
-                system("cls");
                 break;
         }
 
     } while (opcion != 0);
 }
-
-
-
-
 
 ///MENU PRINCIPAL
 void accionarMenu()
@@ -133,6 +117,7 @@ void accionarMenu()
         case 3:
             menuInscripciones();
             system("cls");
+            imprimirMenuGestion();
             break;
         case 4:
             system("cls");

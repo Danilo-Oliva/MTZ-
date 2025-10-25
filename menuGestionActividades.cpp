@@ -8,22 +8,28 @@ using namespace std;
 
 void ingresarNuevaActividad()
 {
+    system("cls");
     ArchivoActividad arch("actividad.dat");
     Actividad act;
 
     int proximoID = arch.contarActividades() + 1;
     act.cargar(proximoID);
-
-    if (arch.inscribirActividad(act))
+    if (arch.buscarActividadPorNombre(act.getNombre()) != -1)
     {
-        cout << "Actividad guardada con exito." << endl;
+        mostrarMensaje("ERROR: Ya existe una actividad con ese nombre.", rlutil::LIGHTRED);
     }
     else
     {
-        cout << "Error al guardar la actividad." << endl;
+
+        if (arch.inscribirActividad(act))
+        {
+            mostrarMensaje("Actividad guardada con exito.", rlutil::LIGHTGREEN);
+        }
+        else
+        {
+            mostrarMensaje("Error al guardar la actividad.", rlutil::LIGHTRED);
+        }
     }
-    rlutil::cls();
-    imprimirMenuActividades();
 }
 void menuListarActividades() {
     ArchivoActividad arch("actividad.dat");
