@@ -48,30 +48,36 @@ void menuListarClientes()
     ArchivoCliente arch("clientes.dat");
     int opcion, y = 0;
         system("cls");
-
+    imprimirMenuListarClientes();
     do
     {
         opcion = -1;
 
-        opcion = mostrarMenuListarClientes(opcion, y);
+        opcion = interactuarMenuListarClientes(opcion, y);
 
 
         switch (opcion)
         {
         case 1:
             arch.listar(1);
+
             rlutil::anykey();
             rlutil::cls();
+            imprimirMenuListarClientes();
             break;
         case 2:
             arch.listar(2);
+
             rlutil::anykey();
             rlutil::cls();
+            imprimirMenuListarClientes();
             break;
         case 3:
             arch.listar(0);
+
             rlutil::anykey();
             rlutil::cls();
+            imprimirMenuListarClientes();
             break;
         }
     }

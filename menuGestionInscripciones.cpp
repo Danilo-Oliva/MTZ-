@@ -264,27 +264,40 @@ void gestionarEstadoInscripcion()
 void menuListarInscripciones()
 {
     int opcion, y = 0;
+    imprimirMenuListarInscripciones();
     do
     {
         opcion = -1;
-        system("cls");
-
-        opcion = mostrarMenuListarInscripciones(opcion, y);
-        system("cls");
+        opcion = interactuarMenuListarInscripciones(opcion, y);
 
         switch (opcion)
         {
         case 1:
+            rlutil::cls();
             listarInscripciones(1);
+
             rlutil::anykey();
+            rlutil::cls();
+            imprimirMenuListarInscripciones();
+
             break;
         case 2:
+            rlutil::cls();
             listarInscripciones(2);
+
             rlutil::anykey();
+            rlutil::cls();
+            imprimirMenuListarInscripciones();
+
             break;
         case 3:
+            rlutil::cls();
             listarInscripciones(0);
+
             rlutil::anykey();
+            rlutil::cls();
+            imprimirMenuListarInscripciones();
+
             break;
         }
     }

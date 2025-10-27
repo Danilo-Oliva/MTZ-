@@ -72,7 +72,6 @@ void menuInscripciones() {
 
                 nuevaInscripcion();
 
-                rlutil::anykey();
                 system("cls");
                 imprimirMenuInscripciones();
 
@@ -90,7 +89,6 @@ void menuInscripciones() {
             case 3:
                 menuListarInscripciones();
 
-                rlutil::anykey();
                 system("cls");
                 imprimirMenuInscripciones();
 
@@ -140,5 +138,4 @@ void accionarMenu()
         if(opcionMenu != 0) opcionMenu = -1;
     }
     while(opcionMenu != 0);
-    system("cls");
 }

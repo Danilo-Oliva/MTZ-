@@ -75,9 +75,6 @@ void imprimirMenuInscripciones()
 
 int interactuarMenuGestion(int &opcionMenu, int &y)
 {
-
-
-
     mostrarCursor(28, 58, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1) /// NO SE PASA A LA FUNCION PORQUE TIRA ERROR
@@ -119,9 +116,6 @@ int interactuarMenuGestion(int &opcionMenu, int &y)
 
 int interactuarMenuClientes(int &opcionMenu, int &y)
 {
-
-
-
     mostrarCursor(28, 54, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
@@ -143,9 +137,6 @@ int interactuarMenuClientes(int &opcionMenu, int &y)
 
 int interactuarMenuActividades(int &opcionMenu, int &y)
 {
-
-
-
     mostrarCursor(28, 52, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
@@ -181,9 +172,7 @@ int interactuarMenuActividades(int &opcionMenu, int &y)
 
 int interactuarMenuInscripciones(int &opcionMenu, int &y)
 {
-
-
-    mostrarCursor(28, 60, 9, y);
+    mostrarCursor(28, 59, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
     {
@@ -211,12 +200,12 @@ int interactuarMenuInscripciones(int &opcionMenu, int &y)
         }
         }
     }
-    else if(tecla > 13) y = accionarCursor(28, 60, 9, y, tecla, 3);
+    else if(tecla > 13) y = accionarCursor(28, 59, 9, y, tecla, 3);
 
     return opcionMenu;
 
 }
-int mostrarMenuListarClientes(int &opcionMenu, int &y)
+void imprimirMenuListarClientes()
 {
     parteArribaMenu(24, 5, 30);
     bordesMenu(24, 6, 30);
@@ -230,7 +219,9 @@ int mostrarMenuListarClientes(int &opcionMenu, int &y)
     escribirTexto("  LISTAR INACTIVOS  ", 30, 11);
     escribirTexto("    LISTAR TODOS    ", 30, 13);
     escribirTexto("       VOLVER       ", 30, 15);
-
+}
+int interactuarMenuListarClientes(int &opcionMenu, int &y)
+{
     mostrarCursor(28, 51, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
@@ -295,7 +286,7 @@ int interactuarMenuListarActividades(int &opcionMenu, int &y)
     else if(tecla > 13) y = accionarCursor(28, 58, 9, y, tecla, 3);
     return opcionMenu;
 }
-int mostrarMenuListarInscripciones(int &opcionMenu, int &y)
+void imprimirMenuListarInscripciones()
 {
     parteArribaMenu(24, 5, 47);
     bordesMenu(24, 6, 47);
@@ -303,13 +294,16 @@ int mostrarMenuListarInscripciones(int &opcionMenu, int &y)
     for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 47);
     parteAbajoMenu(24, 17, 47);
 
-    escribirTexto("L I S T A D O   I N S C R I P C I O N E S", 26, 6);
+    escribirTexto("L I S T A D O   I N S C R I P C I O N E S", 28, 6);
 
     escribirTexto(" LISTAR  LAS  INSCRIPCIONES  ACTIVAS ", 30, 9);
     escribirTexto("LISTAR  LAS  INSCRIPCIONES  INACTIVAS", 30, 11);
     escribirTexto("  LISTAR  TODAS  LAS  INSCRIPCIONES  ", 30, 13);
     escribirTexto("   VOLVER  AL  MENU  INSCRIPCIONES   ", 30, 15);
+}
 
+int interactuarMenuListarInscripciones(int &opcionMenu, int &y)
+{
     mostrarCursor(28, 68, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)

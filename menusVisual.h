@@ -12,14 +12,14 @@ int interactuarMenuClientes(int &opcionMenu, int &y);
 int interactuarMenuActividades(int &opcionMenu, int &y);
 int interactuarMenuInscripciones(int &opcionMenu, int &y);
 
-int mostrarMenuListarClientes(int &opcionMenu, int &y);
-
+void imprimirMenuListarInscripciones();
+int interactuarMenuListarInscripciones(int &opcionMenu, int &y);
 
 void imprimirMenuListarActividades();
 int interactuarMenuListarActividades(int &opcionMenu, int &y);
 
-int mostrarMenuListarInscripciones(int &opcionMenu, int &y);
-
+void imprimirMenuListarClientes();
+int interactuarMenuListarClientes(int &opcionMenu, int &y);
 
 int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y);
 
