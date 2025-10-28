@@ -118,6 +118,7 @@ void ArchivoActividad::listar(int modoListado)
             act.mostrar();
             cout << endl;
             contadorMostrados++;
+            cout << contadorMostrados << endl;
         }
     }
 

@@ -61,6 +61,7 @@ void nuevaInscripcion()
     Actividad act = archActividades.leerArchivo(posAct);
     if (!act.getEstado())
     {
+        rlutil::setColor(rlutil::YELLOW);
         cout << "ERROR: La actividad se encuentra INACTIVA. No se puede realizar la inscripcion." << endl;
         rlutil::anykey();
         return;
@@ -68,6 +69,7 @@ void nuevaInscripcion()
 
     if(archInscripciones.buscarInscripcion(nroSocio, idAct) != -1)
     {
+        rlutil::setColor(rlutil::YELLOW);
         cout << "ERROR: El cliente ya se encuentra inscripto en esa actividad." << endl;
         rlutil::anykey();
         return;
@@ -86,10 +88,10 @@ void nuevaInscripcion()
     cout << "INGRESE EL ANIO: ";
     cin >> anio;
 
-    int opcion_mod;
+    int opcionMod;
     cout << "--- MODALIDAD ---" << endl;
     cout << "1 para Pase Libre, 2 para 3 veces por semana: ";
-    cin >> opcion_mod;
+    cin >> opcionMod;
 
     fechaInsc.setDia(dia);
     fechaInsc.setMes(mes);
@@ -99,18 +101,21 @@ void nuevaInscripcion()
     nuevaIns.setNumeroSocio(nroSocio);
     nuevaIns.setIdAct(idAct);
     nuevaIns.setFechaInscripcion(fechaInsc);
-    nuevaIns.setLibre(opcion_mod == 1);
+    nuevaIns.setLibre(opcionMod == 1);
     nuevaIns.setEstado(true);
 
 
     if (archInscripciones.grabarInscripcion(nuevaIns))
     {
+        rlutil::setColor(rlutil::GREEN);
         cout << "\nInscripcion realizada con exito!" << endl;
     }
     else
     {
+        rlutil::setColor(rlutil::RED);
         cout << "\nERROR: No se pudo realizar la inscripcion." << endl;
     }
+    rlutil::anykey();
 }
 
 void gestionarEstadoInscripcion()
@@ -230,6 +235,8 @@ void menuListarInscripciones()
         }
     }
     while (opcion != 0);
+
+    rlutil::anykey();
     rlutil::cls();
     imprimirMenuInscripciones();
 }
