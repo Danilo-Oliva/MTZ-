@@ -9,82 +9,6 @@
 
 using namespace std;
 
-void listarInscripciones(int modoListado = 1)
-{
-    ArchivoCliente archClientes("clientes.dat");
-    ArchivoActividad archActividades("actividad.dat");
-    ArchivoInscripcion archInscripciones("inscripciones.dat");
-
-    int cant = archInscripciones.contarInscripciones();
-    int contadorMostrados = 0;
-
-    switch(modoListado)
-    {
-    case 1:
-        cout << "--- LISTADO DE INSCRIPCIONES ACTIVAS ---" << endl;
-        break;
-    case 2:
-        cout << "--- LISTADO DE INSCRIPCIONES INACTIVAS ---" << endl;
-        break;
-    default:
-        cout << "--- LISTADO DE TODAS LAS INSCRIPCIONES ---" << endl;
-        break;
-    }
-
-    for(int i=0; i<cant; i++)
-    {
-        InscripcionActividad ins = archInscripciones.leerInscripcion(i);
-        bool mostrar = false;
-
-        switch(modoListado)
-        {
-        case 1:
-            if (ins.getEstado() == true) mostrar = true;
-            break;
-        case 2:
-            if (ins.getEstado() == false) mostrar = true;
-            break;
-        default:
-            mostrar = true;
-            break;
-        }
-
-        if (mostrar)
-        {
-            Persona per;
-            int cantClientes = archClientes.contarClientes();
-            for(int j=0; j<cantClientes; j++)
-            {
-                Persona aux = archClientes.leerArchivo(j);
-                if(aux.getNumeroSocio() == ins.getNumeroSocio())
-                {
-                    per = aux;
-                    break;
-                }
-            }
-            Actividad act = archActividades.leerArchivo(archActividades.buscarActividad(ins.getIdAct()));
-
-            cout << "Socio: " << per.getNombre() << " " << per.getApellido();
-            cout << " (Socio Nro: " << ins.getNumeroSocio() << ")" << endl;
-            cout << "Actividad: " << act.getNombre() << " (ID: " << ins.getIdAct() << ")" << endl;
-            cout << "Fecha de Inscripcion: ";
-            ins.getFechaInscripcion().mostrar();
-            cout << "Modalidad: " << (ins.getLibre()? "Libre" : "3 veces por semana") <<endl;
-            float cuotaFinal = ins.calcularCuota(act);
-            char bufferPrecio[50];
-            sprintf(bufferPrecio, "Precio Final: $%.2f", cuotaFinal);
-            cout << bufferPrecio << endl;
-            cout << "Estado: " << (ins.getEstado() ? "ACTIVA" : "INACTIVA") << endl;
-            cout << "--------------------------------" << endl;
-            contadorMostrados++;
-        }
-    }
-
-    if (contadorMostrados == 0)
-    {
-        cout << "\nNo hay inscripciones que coincidan con el filtro seleccionado." << endl;
-    }
-}
 void nuevaInscripcion()
 {
     ArchivoCliente archClientes("clientes.dat");
@@ -263,28 +187,31 @@ void gestionarEstadoInscripcion()
 }
 void menuListarInscripciones()
 {
+    ArchivoInscripcion archInscripciones("inscripciones.dat");
+
     int opcion, y = 0;
     imprimirMenuListarInscripciones();
     do
     {
         opcion = -1;
+
         opcion = interactuarMenuListarInscripciones(opcion, y);
 
         switch (opcion)
         {
         case 1:
             rlutil::cls();
-            listarInscripciones(1);
+
+            archInscripciones.listar(1);
 
             rlutil::anykey();
             rlutil::cls();
             imprimirMenuListarInscripciones();
-
             break;
         case 2:
             rlutil::cls();
-            listarInscripciones(2);
 
+            archInscripciones.listar(2);
             rlutil::anykey();
             rlutil::cls();
             imprimirMenuListarInscripciones();
@@ -292,7 +219,8 @@ void menuListarInscripciones()
             break;
         case 3:
             rlutil::cls();
-            listarInscripciones(0);
+
+            archInscripciones.listar(0);
 
             rlutil::anykey();
             rlutil::cls();
@@ -302,5 +230,6 @@ void menuListarInscripciones()
         }
     }
     while (opcion != 0);
+    rlutil::cls();
     imprimirMenuInscripciones();
 }

@@ -66,6 +66,12 @@ void InscripcionActividad::cargar()
     cin >> Estado;
 }
 
+float InscripcionActividad::calcularCuota(const Actividad &act)
+{
+    if (Libre == true) return act.getCuotaBase();
+    return act.getCuotaBase() * 0.85f;
+}
+
 void InscripcionActividad::mostrar()
 {
     cout << "Socio: " << numeroSocio << endl;
@@ -74,9 +80,4 @@ void InscripcionActividad::mostrar()
     fechaInscripcion.mostrar();
     cout << "Modalidad: " << (Libre ? "Pase Libre" : "3 veces por semana") << endl;
     cout << "Estado: " << (Estado ? "Activo" : "Inactivo") << endl;
-}
-float InscripcionActividad::calcularCuota(const Actividad &act)
-{
-    if (Libre == true) return act.getCuotaBase();
-    return act.getCuotaBase() * 0.85f;
 }

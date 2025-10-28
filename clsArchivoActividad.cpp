@@ -88,6 +88,13 @@ void ArchivoActividad::listar(int modoListado)
     int cantAct = contarActividades();
     int contadorMostrados = 0;
 
+    if (cantAct == 0)
+    {
+        cout << "No hay Actividades para mostrar." << endl;
+        system("pause");
+        return;
+    }
+
     for(int i = 0; i < cantAct; i++)
     {
         Actividad act = leerArchivo(i);

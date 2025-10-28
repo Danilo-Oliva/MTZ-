@@ -18,6 +18,8 @@ void ingresarNuevoCliente()
     if (arch.buscarCliente(dni) != -1)
     {
         mostrarMensaje("ERROR: Ya existe un cliente con ese DNI.", rlutil::LIGHTRED);
+        rlutil::cls();
+        imprimirMenuClientes();
         return;
     }
 

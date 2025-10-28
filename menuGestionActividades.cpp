@@ -35,6 +35,7 @@ void ingresarNuevaActividad()
 }
 void menuListarActividades() {
     ArchivoActividad arch("actividad.dat");
+
     int opcion, y = 0;
     imprimirMenuListarActividades();
     do {
@@ -44,7 +45,7 @@ void menuListarActividades() {
 
         switch (opcion)
         {
-        case 1: // Activas
+        case 1:
             rlutil::cls();
 
             arch.listar(1);
@@ -52,7 +53,7 @@ void menuListarActividades() {
             rlutil::anykey();
             rlutil::cls();            imprimirMenuListarActividades();
             break;
-        case 2: // Inactivas
+        case 2:
             rlutil::cls();
 
             arch.listar(2);
@@ -60,13 +61,13 @@ void menuListarActividades() {
             rlutil::anykey();
             rlutil::cls();            imprimirMenuListarActividades();
             break;
-        case 3: // Todos
+        case 3:
             rlutil::cls();
 
             arch.listar(0);
+
             rlutil::anykey();
             rlutil::cls();
-
             imprimirMenuListarActividades();
             break;
         }

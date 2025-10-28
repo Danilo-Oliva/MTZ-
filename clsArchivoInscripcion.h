@@ -15,6 +15,7 @@ public:
     int buscarInscripcion(int nroSocio, int idAct);
     int buscarInscripcionGlobal(int nroSocio, int idAct);
     bool modificarInscripcion(InscripcionActividad, int pos);
+    void listar(int modoListado = 0);
 };
 
 #endif // CLSARCHIVOINSCRIPCION_H_INCLUDED
