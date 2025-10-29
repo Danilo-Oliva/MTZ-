@@ -19,6 +19,8 @@ public:
     //metodos
     void cargar(int x, int y);
     void mostrar();
+    bool esBisiesto();
+    bool esValida();
 };
 
 #endif // CLSFECHA_H_INCLUDED

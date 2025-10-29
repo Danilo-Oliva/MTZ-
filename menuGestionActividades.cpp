@@ -36,6 +36,15 @@ void ingresarNuevaActividad()
 void menuListarActividades() {
     ArchivoActividad arch("actividad.dat");
 
+    int cantAct = arch.contarActividades();
+
+    if(cantAct == 0){
+        mostrarMensaje("No hay actividades registradas", rlutil::YELLOW);
+        rlutil::cls;
+        imprimirMenuActividades();
+        return;
+    }
+
     int opcion, y = 0;
     imprimirMenuListarActividades();
     do {

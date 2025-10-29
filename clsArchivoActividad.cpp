@@ -55,15 +55,27 @@ int ArchivoActividad::buscarActividadPorNombre(const char* nombre)
 
 Actividad ArchivoActividad::leerArchivo(int pos)
 {
-    FILE *p = fopen(nombreArchivo, "rb");
     Actividad aux;
-    if(p == nullptr)
+    FILE *p = fopen(nombreArchivo, "rb");
+    if (p == nullptr)
     {
         return aux;
     }
-    fseek(p, pos * sizeof(Actividad), 0);
-    fread(&aux, sizeof(Actividad), 1, p);
+
+    if (fseek(p, pos * sizeof(Actividad), SEEK_SET) != 0)
+    {
+        fclose(p);
+        return aux;
+    }
+
+    size_t leidos = fread(&aux, sizeof(Actividad), 1, p);
     fclose(p);
+
+    if (leidos != 1)
+    {
+        aux = Actividad();
+    }
+
     return aux;
 }
 
@@ -95,37 +107,34 @@ void ArchivoActividad::listar(int modoListado)
         return;
     }
 
-    for(int i = 0; i < cantAct; i++)
+    for (int i = 0; i < cantAct; i++)
+{
+    Actividad act = leerArchivo(i);
+
+    if (act.getIdAct() == 0) continue;
+
+    bool mostrar = false;
+
+    switch (modoListado)
     {
-        Actividad act = leerArchivo(i);
-        bool mostrar = false;
-
-        switch (modoListado)
-        {
-        case 1:
-            if (act.getEstado() == true) mostrar = true;
-            break;
-        case 2:
-            if (act.getEstado() == false) mostrar = true;
-            break;
-        default:
-            mostrar = true;
-            break;
-        }
-
-        if (mostrar)
-        {
-            act.mostrar();
-            cout << endl;
-            contadorMostrados++;
-            cout << contadorMostrados << endl;
-        }
+    case 1:
+        if (act.getEstado() == true) mostrar = true;
+        break;
+    case 2:
+        if (act.getEstado() == false) mostrar = true;
+        break;
+    default:
+        mostrar = true;
+        break;
     }
 
-    if (contadorMostrados == 0)
+    if (mostrar)
     {
-        cout << "No hay actividades que coincidan con el filtro seleccionado." << endl;
+        act.mostrar();
+        cout << endl;
+        contadorMostrados++;
     }
+}
 }
 
 bool ArchivoActividad::modificarActividad(Actividad act, int pos)

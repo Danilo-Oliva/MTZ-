@@ -13,12 +13,20 @@ void menuModificarCliente()
 {
     ArchivoCliente arch("clientes.dat");
 
+    int cantClientes = arch.contarClientes();
+    if(cantClientes == 0){
+        mostrarMensaje("No hay clientes registradas", rlutil::YELLOW);
+        imprimirMenuClientes();
+        return;
+    }
+
     int dni = pedirDNI("MODIFICAR CLIENTE: ");
     int pos = arch.buscarCliente(dni);
 
+
     if (pos == -1) {
         mostrarMensaje("No se encontro un cliente con ese DNI.", rlutil::LIGHTRED);
-        rlutil::anykey();
+        imprimirMenuClientes();
         return;
     }
     Persona per = arch.leerArchivo(pos);

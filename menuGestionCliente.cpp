@@ -41,15 +41,27 @@ void ingresarNuevoCliente()
     {
         mostrarMensaje("Operacion cancelada por el usuario.", rlutil::YELLOW);
     }
-        rlutil::cls();
-        imprimirMenuClientes();
+    rlutil::cls();
+    imprimirMenuClientes();
 }
 
 void menuListarClientes()
 {
     ArchivoCliente arch("clientes.dat");
+
+    int cantClientes = arch.contarClientes();
+
+    if(cantClientes == 0)
+    {
+        mostrarMensaje("No hay clientes registrados", rlutil::YELLOW);
+        rlutil::cls();
+        imprimirMenuClientes();
+        return;
+
+    }
+
     int opcion, y = 0;
-        system("cls");
+    system("cls");
     imprimirMenuListarClientes();
     do
     {
@@ -84,13 +96,24 @@ void menuListarClientes()
         }
     }
     while (opcion != 0);
-        imprimirMenuClientes();
+    imprimirMenuClientes();
 }
 void eliminarClientePermanente()
 {
-    ArchivoCliente archClientes("clientes.dat");
+    ArchivoCliente arch("clientes.dat");
+    int cantClientes = arch.contarClientes();
+
+    if(cantClientes == 0)
+    {
+        mostrarMensaje("No hay clientes registrados", rlutil::YELLOW);
+        rlutil::cls();
+        imprimirMenuClientes();
+        return;
+
+    }
+
     int dni = pedirDNI("ELIMINAR CLIENTE:");
-    int pos = archClientes.buscarCliente(dni);
+    int pos = arch.buscarCliente(dni);
 
     if (pos == -1)
     {
@@ -100,7 +123,7 @@ void eliminarClientePermanente()
         return;
     }
 
-    Persona per = archClientes.leerArchivo(pos);
+    Persona per = arch.leerArchivo(pos);
 
 
     if (mostrarConfirmacion("ADVERTENCIA!", "Esta accion es irreversible. Eliminar?"))
@@ -120,7 +143,7 @@ void eliminarClientePermanente()
             }
         }
 
-        if (archClientes.eliminarCliente(dni))
+        if (arch.eliminarCliente(dni))
         {
             mostrarMensaje("Cliente eliminado y sus inscripciones desactivadas.", rlutil::YELLOW);
         }
@@ -139,6 +162,18 @@ void eliminarClientePermanente()
 void buscarClientePorDNI()
 {
     ArchivoCliente arch("clientes.dat");
+
+    int cantClientes = arch.contarClientes();
+
+    if(cantClientes == 0)
+    {
+        mostrarMensaje("No hay clientes registrados", rlutil::YELLOW);
+        rlutil::cls();
+        imprimirMenuClientes();
+        return;
+
+    }
+
     int dni = pedirDNI("BUSCAR CLIENTE:");
     int pos = arch.buscarCliente(dni);
 
@@ -158,8 +193,8 @@ void buscarClientePorDNI()
 }
 void menuClientes()
 {
-        rlutil::cls();
-        imprimirMenuClientes();
+    rlutil::cls();
+    imprimirMenuClientes();
     int opcion, y = 0;
     do
     {
@@ -188,6 +223,6 @@ void menuClientes()
         }
     }
     while (opcion != 0);
-        rlutil::cls();
-        imprimirMenuGestion();
+    rlutil::cls();
+    imprimirMenuGestion();
 }

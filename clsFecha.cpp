@@ -36,18 +36,50 @@ int Fecha::getAnio()
 }
 void Fecha::cargar(int x, int y)
 {
-    rlutil::locate(x, y);
-    cout << "Dia: ";
-    cin >> dia;
-    rlutil::locate(x, y + 1);
-    cout << "Mes: ";
-    cin >> mes;
-    rlutil::locate(x, y + 2);
-    cout << "Anio: ";
-    cin >> anio;
-}
+    while (true)
+    {
+        rlutil::locate(x, y);
+        std::cout << "Dia: ";
+        std::cin >> dia;
+        rlutil::locate(x, y + 1);
+        std::cout << "Mes: ";
+        std::cin >> mes;
+        rlutil::locate(x, y + 2);
+        std::cout << "Anio: ";
+        std::cin >> anio;
 
+        if (!esValida())
+        {
+            rlutil::locate(x, y + 3);
+            std::cout << "Fecha invalida. Reingrese (presione una tecla)...";
+            rlutil::anykey();
+            //rlutil::cls();
+        }
+        else
+        {
+            break;
+        }
+    }
+}
 void Fecha::mostrar()
 {
     cout << dia << "/" << mes << "/" << anio << endl;
+}
+bool Fecha::esBisiesto()
+{
+    int y = anio;
+    return ( (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0) );
+}
+
+bool Fecha::esValida()
+{
+    if (anio < 1900 || anio > 2100) return false;
+    if (mes < 1 || mes > 12) return false;
+
+    int diasPorMes[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+    int maxDia = diasPorMes[mes];
+    if (mes == 2 && esBisiesto()) maxDia = 29;
+
+    if (dia < 1 || dia > maxDia) return false;
+    return true;
 }

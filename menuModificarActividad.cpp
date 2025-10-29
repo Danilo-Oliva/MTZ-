@@ -23,6 +23,16 @@ void imprimirMenuModificarAct() {
 void menuModificarActividad() {
     system("cls");
     ArchivoActividad arch("actividad.dat");
+
+    int cantAct = arch.contarActividades();
+
+    if(cantAct == 0){
+        mostrarMensaje("No hay actividades registradas", rlutil::YELLOW);
+        rlutil::cls;
+        imprimirMenuActividades();
+        return;
+    }
+
     Actividad act;
     int id, pos, opcion;
 

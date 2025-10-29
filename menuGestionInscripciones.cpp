@@ -14,6 +14,16 @@ void nuevaInscripcion()
     ArchivoCliente archClientes("clientes.dat");
     ArchivoActividad archActividades("actividad.dat");
     ArchivoInscripcion archInscripciones("inscripciones.dat");
+
+    int cantCli = archClientes.contarClientes();
+    int cantAct = archActividades.contarActividades();
+    if(cantCli == 0 || cantAct == 0){
+        mostrarMensaje("No hay clientes o actividades registradas", rlutil::YELLOW);
+        rlutil::cls();
+        imprimirMenuInscripciones();
+        return;
+    }
+
     Persona per;
 
     int dni, idAct, posCliente;
@@ -123,10 +133,13 @@ void gestionarEstadoInscripcion()
     ArchivoInscripcion archInscripciones("inscripciones.dat");
     int nroSocio, idAct, pos;
     char confirmacion;
+
     int cantInscrip = archInscripciones.contarInscripciones();
     if(cantInscrip == 0)
     {
-        cout << "ERROR: No hay inscripciones. Por favor ingrese inscripciones" << endl;
+        mostrarMensaje("No hay inscripciones registradas", rlutil::YELLOW);
+        rlutil::cls();
+        imprimirMenuInscripciones();
         return;
     }
 
@@ -193,6 +206,14 @@ void gestionarEstadoInscripcion()
 void menuListarInscripciones()
 {
     ArchivoInscripcion archInscripciones("inscripciones.dat");
+
+    int cantIns = archInscripciones.contarInscripciones();
+    if(cantIns == 0){
+        mostrarMensaje("No hay inscripciones registradas", rlutil::YELLOW);
+        rlutil::cls();
+        imprimirMenuInscripciones();
+        return;
+    }
 
     int opcion, y = 0;
     imprimirMenuListarInscripciones();
