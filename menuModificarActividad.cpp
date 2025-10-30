@@ -28,7 +28,7 @@ void menuModificarActividad() {
 
     if(cantAct == 0){
         mostrarMensaje("No hay actividades registradas", rlutil::YELLOW);
-        rlutil::cls;
+        rlutil::cls();
         imprimirMenuActividades();
         return;
     }
@@ -44,6 +44,8 @@ void menuModificarActividad() {
     if (pos == -1) {
         cout << "ERROR: No se encontro una actividad con el ID " << id << "." << endl;
         rlutil::anykey();
+        rlutil::cls();
+        imprimirMenuActividades();
         return;
     }
 

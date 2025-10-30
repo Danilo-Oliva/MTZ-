@@ -2,6 +2,7 @@
 #include "rlutil.h"
 #include "tunearMenu.h"
 #include "menusVisual.h"
+#include "clsArchivoCliente.h"
 #include "clsPersona.h"
 #include "cargarCadena.h"
 #include <string>
@@ -29,8 +30,8 @@ void imprimirMenuClientes()
     parteArribaMenu(24, 5, 33);
     bordesMenu(24, 6, 33);
     separarMenues(24, 7, 33);
-    for (int i = 0; i < 12; i ++) bordesMenu(24, 8 + i, 33);
-    parteAbajoMenu(24, 20, 33);
+    for (int i = 0; i < 15; i ++) bordesMenu(24, 8 + i, 33);
+    parteAbajoMenu(24, 23, 33);
 
 
     escribirTexto("M E N U  D E  C L I E N T E S", 27, 6);
@@ -38,8 +39,9 @@ void imprimirMenuClientes()
     escribirTexto("  MODIFICAR  CLIENTES  ", 30, 11);
     escribirTexto("   LISTAR   CLIENTES   ", 30, 13);
     escribirTexto("BUSCAR CLIENTES POR DNI", 30, 15);
-    escribirTexto("  BORRAR  UN  CLIENTE  ", 30, 17);
-    escribirTexto("VOLVER AL  MENU GESTION", 30, 19);
+    escribirTexto("MODIFICAR ESTADO CLIENTE", 30, 17);
+    escribirTexto("  BORRAR  UN  CLIENTE  ", 30, 19);
+    escribirTexto("VOLVER AL  MENU GESTION", 30, 21);
 }
 
 void imprimirMenuActividades()
@@ -118,7 +120,7 @@ int interactuarMenuClientes(int &opcionMenu, int &y)
 {
     mostrarCursor(28, 54, 9, y);
     int tecla = rlutil::getkey();
-    if(tecla == 1)
+        if(tecla == 1)
     {
         switch(y)
         {
@@ -126,11 +128,12 @@ int interactuarMenuClientes(int &opcionMenu, int &y)
         case 1: opcionMenu = 2; break; // MODIFICAR CLIENTES
         case 2: opcionMenu = 3; break; // LISTAR CLIENTES
         case 3: opcionMenu = 4; break; // BUSCAR CLIENTES POR DNI
-        case 4: opcionMenu = 5; break; // BORRAR UN CLIENTE
-        case 5: opcionMenu = 0; break; // VOLVER
+        case 4: opcionMenu = 5; break; // MODIFICAR ESTADO DE CLIENTE
+        case 5: opcionMenu = 6; break; // BORRAR UN CLIENTE
+        case 6: opcionMenu = 0; break; // VOLVER
         }
     }
-    else if(tecla > 13) y = accionarCursor(28, 54, 9, y, tecla, 5);
+    else if(tecla > 13) y = accionarCursor(28, 54, 9, y, tecla, 6);
 
     return opcionMenu;
 }
@@ -335,30 +338,31 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
 
     rlutil::hidecursor();
 
+    Persona auxPer;
+    ArchivoCliente archCli("clientes.dat", auxPer);
+
     while (true)
     {
-        system("cls");
+        rlutil::cls();
         rlutil::setBackgroundColor(rlutil::BLACK);
         parteArribaMenu(x, yStart, 52);
 
-        for (int i = 0; i < 13; i++) bordesMenu(x, yStart + 1 + i, 52);
-        parteAbajoMenu(x, yStart + 14, 52);
+        for (int i = 0; i < 12; i++) bordesMenu(x, yStart + 1 + i, 52);
+        parteAbajoMenu(x, yStart + 13, 52);
+
         escribirTexto("  M O D I F I C A R   C L I E N T E  ", x + 10, yStart + 1);
         separarMenues(x, yStart + 11, 52);
-
-        rlutil::locate(x + 3, yStart + 3);
-        cout << "NRO DE SOCIO  : " << reg.getNumeroSocio();
-        rlutil::locate(x + 3, yStart + 4);
-        cout << "DNI           : " << reg.getDNI();
-
 
         string texto;
         int anchoFijo = 45;
 
-
-        texto = "ESTADO        : " + string(reg.getEstado() ? "ACTIVO  " : "INACTIVO");
+        texto = "NRO DE SOCIO  : " + to_string(reg.getNumeroSocio());
         texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 6);
+        escribirTexto(texto.c_str(), x + 3, yStart + 3);
+
+        texto = "DNI           : " + to_string(reg.getDNI());
+        texto.resize(anchoFijo, ' ');
+        escribirTexto(texto.c_str(), x + 3, yStart + 4);
 
         texto = "NOMBRE        : " + string(reg.getNombre());
         texto.resize(anchoFijo, ' ');
@@ -376,42 +380,66 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
         texto.resize(anchoFijo, ' ');
         escribirTexto(texto.c_str(), x + 3, yStart + 10);
 
+        escribirTexto("      GUARDAR Y VOLVER       ", x + 12, yStart + 13);
 
-        escribirTexto("      GUARDAR Y VOLVER       ", x + 12, yStart + 12);
-//1
-// 1. Mapear el índice 'y' (0-5) a la coordenada Y real de la opción
         int yCursor = 0;
-        if (y == 0) yCursor = yStart + 6;      // Opción ESTADO
-        else if (y == 1) yCursor = yStart + 7;  // Opción NOMBRE
-        else if (y == 2) yCursor = yStart + 8;  // Opción APELLIDO
-        else if (y == 3) yCursor = yStart + 9;  // Opción TELEFONO
-        else if (y == 4) yCursor = yStart + 10; // Opción EMAIL
-        else if (y == 5) yCursor = yStart + 12; // Opción GUARDAR Y VOLVER
+        if (y == 0) yCursor = yStart + 4;   // DNI
+        else if (y == 1) yCursor = yStart + 7; // NOMBRE
+        else if (y == 2) yCursor = yStart + 8; // APELLIDO
+        else if (y == 3) yCursor = yStart + 9; // TELEFONO
+        else if (y == 4) yCursor = yStart + 10; // EMAIL
+        else if (y == 5) yCursor = yStart + 13; // GUARDAR
 
-        // 2. Dibujar el cursor en la posición correcta
         rlutil::locate(x + 1, yCursor);
         cout << (char)175;
 
-        // 3. Obtener la tecla presionada
         int tecla = rlutil::getkey();
 
-        // 4. Borrar el cursor de la posición actual (para el próximo frame)
         rlutil::locate(x + 1, yCursor);
         cout << " ";
 
-        // 5. Procesar la tecla
-        if(tecla == 1) // ENTER
+        if (tecla == 1)
         {
-            if (y == 0) // ESTADO
+            if (y == 0)
             {
-                reg.setEstado(!reg.getEstado());
+                rlutil::showcursor();
+                char nuevoDniStr[12];
+                int yCampoActual = yStart + 4;
+                rlutil::locate(x + 19, yCampoActual);
+                cout << string(11, ' ');
+                rlutil::locate(x + 19, yCampoActual);
+                cargarCadena(nuevoDniStr, 11);
+
+                int nuevoDni = atoi(nuevoDniStr);
+                if (!(nuevoDni >= 1000000 && nuevoDni <= 99999999))
+                {
+                    mostrarMensaje("Formato DNI invalido (7-8 digitos).", rlutil::LIGHTRED);
+                    rlutil::hidecursor();
+                }
+                else
+                {
+                    int posActual = archCli.buscarCliente(reg.getDNI());
+                    int posExistente = archCli.buscarCliente(nuevoDni);
+                    if (posExistente != -1 && posExistente != posActual)
+                    {
+                        mostrarMensaje("Ese DNI ya pertenece a otro cliente.", rlutil::LIGHTRED);
+                        rlutil::hidecursor();
+                    }
+                    else
+                    {
+                        reg.setDNI(nuevoDni);
+                        mostrarMensaje("DNI actualizado (recuerde GUARDAR).", rlutil::LIGHTGREEN);
+                        rlutil::hidecursor();
+                        rlutil::anykey();
+                    }
+                }
+                rlutil::hidecursor();
             }
-            else if (y >= 1 && y <= 4) // CAMPOS DE TEXTO
+            else if (y >= 1 && y <= 4)
             {
                 rlutil::showcursor();
                 char nuevoDato[30];
-                // Esta lógica calcula la línea correcta para editar
-                int yCampoActual = yStart + 7 + (y-1);
+                int yCampoActual = yStart + 7 + (y - 1);
                 rlutil::locate(x + 19, yCampoActual);
                 cout << string(30, ' ');
                 rlutil::locate(x + 19, yCampoActual);
@@ -426,25 +454,25 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
                 }
                 rlutil::hidecursor();
             }
-            else if (y == 5) // GUARDAR Y VOLVER
+            else if (y == 5)
             {
                 opcionMenu = 0;
-                return opcionMenu; // Sale del while(true) y de la función
+                return opcionMenu;
             }
         }
-        else if (tecla == rlutil::KEY_UP) // FLECHA ARRIBA
+        else if (tecla == rlutil::KEY_UP)
         {
             y--;
-            if (y < 0) y = 5; // 5 es el último índice (0-5)
+            if (y < 0) y = 5;
         }
-        else if (tecla == rlutil::KEY_DOWN) // FLECHA ABAJO
+        else if (tecla == rlutil::KEY_DOWN)
         {
             y++;
-            if (y > 5) y = 0; // 0 es el primer índice
+            if (y > 5) y = 0;
         }
-//1
     }
 }
+
 
 int pedirDNI(const char* titulo)
 {

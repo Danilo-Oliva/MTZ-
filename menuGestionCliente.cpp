@@ -98,6 +98,55 @@ void menuListarClientes()
     while (opcion != 0);
     imprimirMenuClientes();
 }
+void modificarEstadoCliente()
+{
+    rlutil::cls();
+    Persona per;
+    ArchivoCliente archCli("clientes.dat", per);
+
+    int dni = pedirDNI("MODIFICAR ESTADO DE CLIENTE:");
+    int pos = archCli.buscarCliente(dni);
+    if (pos == -1)
+    {
+        mostrarMensaje("Cliente no encontrado.", rlutil::LIGHTRED);
+        rlutil::anykey();
+        return;
+    }
+
+    Persona cliente = archCli.leerArchivo(pos);
+
+    bool salir = false;
+    while (!salir)
+    {
+        rlutil::cls();
+        escribirTexto("MODIFICAR ESTADO DE CLIENTE", 5, 1);
+
+        rlutil::locate(5, 3);
+        std::cout << "NRO DE SOCIO : " << cliente.getNumeroSocio();
+        rlutil::locate(5, 4);
+        std::cout << "DNI          : " << cliente.getDNI();
+        rlutil::locate(5, 5);
+        std::cout << "NOMBRE       : " << cliente.getNombre() << " " << cliente.getApellido();
+        rlutil::locate(5, 6);
+        std::cout << "ESTADO       : " << (cliente.getEstado() ? "ACTIVO" : "INACTIVO");
+
+        rlutil::locate(5, 8);
+        std::cout << "Presione ENTER para cambiar estado o ESC para volver.";
+
+        int tecla = rlutil::getkey();
+        if (tecla == rlutil::KEY_ENTER)
+        {
+            cliente.setEstado(!cliente.getEstado());
+        }
+        else if (tecla == rlutil::KEY_ESCAPE)
+        {
+            mostrarMensaje("Estado modificado correctamente", rlutil::YELLOW);
+            rlutil::cls();
+            imprimirMenuClientes();
+            salir = true;
+        }
+    }
+}
 void eliminarClientePermanente()
 {
     ArchivoCliente arch("clientes.dat");
@@ -218,6 +267,9 @@ void menuClientes()
             buscarClientePorDNI();
             break;
         case 5:
+            modificarEstadoCliente();
+            break;
+        case 6:
             eliminarClientePermanente();
             break;
         }
