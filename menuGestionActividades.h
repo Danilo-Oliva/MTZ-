@@ -3,5 +3,7 @@
 
 void ingresarNuevaActividad();
 void menuListarActividades();
+void modificarEstadoActividad();
+void menuActividades();
 
 #endif // MENUGESTIONACTIVIDADES_H_INCLUDED

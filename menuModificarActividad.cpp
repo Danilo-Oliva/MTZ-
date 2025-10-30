@@ -13,7 +13,6 @@ void imprimirMenuModificarAct() {
     cout << "===============================" << endl;
     cout << "1. Nombre" << endl;
     cout << "2. Cuota base" << endl;
-    cout << "3. Estado (Activar / Desactivar)" << endl;
     cout << "-------------------------------" << endl;
     cout << "0. VOLVER" << endl;
     cout << "===============================" << endl;
@@ -21,7 +20,7 @@ void imprimirMenuModificarAct() {
 }
 
 void menuModificarActividad() {
-    system("cls");
+    rlutil::cls();
     ArchivoActividad arch("actividad.dat");
 
     int cantAct = arch.contarActividades();
@@ -77,14 +76,6 @@ void menuModificarActividad() {
                     act.setCuotaBase(nuevaCuota);
                 }
                 break;
-
-            case 3:
-                {
-                    bool estadoActual = act.getEstado();
-                    act.setEstado(!estadoActual);
-                    cout << "Estado cambiado a: " << (act.getEstado() ? "Activo" : "Inactivo") << endl;
-                }
-                break;
             case 0:
                 cout << "Volviendo al menu anterior..." << endl;
                 break;
@@ -93,8 +84,9 @@ void menuModificarActividad() {
                 break;
         }
 
-        if (opcion >= 1 && opcion <= 4) {
+        if (opcion >= 1 && opcion <= 2) {
             if (arch.modificarActividad(act, pos)) {
+                    cout << opcion;
                 cout << "Actividad modificada con exito!" << endl;
             } else {
                 cout << "ERROR: No se pudo guardar la modificacion." << endl;

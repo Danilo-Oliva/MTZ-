@@ -49,17 +49,16 @@ void imprimirMenuActividades()
     parteArribaMenu(24, 5, 31);
     bordesMenu(24, 6, 31);
     separarMenues(24, 7, 31);
-    for (int i = 0; i < 9; i ++) bordesMenu(24, 8 + i, 31);
-    parteAbajoMenu(24, 17, 31);
-
+    for (int i = 0; i < 10; i ++) bordesMenu(24, 8 + i, 31);
+    parteAbajoMenu(24, 18, 31);
 
     escribirTexto("M E N U   A C T I V I D A D E S", 25, 6);
     escribirTexto("CREAR NUEVA ACTIVIDAD", 30, 9);
     escribirTexto("MODIFICAR   ACTIVIDAD", 30, 11);
-    escribirTexto(" LISTAR  ACTIVIDADES ", 30, 13);
-    escribirTexto("VOLVER A MENU GESTION", 30, 15);
+    escribirTexto("CAMBIAR ESTADO ACTIVIDAD", 30, 13);
+    escribirTexto(" LISTAR  ACTIVIDADES ", 30, 15);
+    escribirTexto("VOLVER A MENU GESTION", 30, 17);
 }
-
 void imprimirMenuInscripciones()
 {
     parteArribaMenu(24, 5, 38);
@@ -161,28 +160,23 @@ int interactuarMenuActividades(int &opcionMenu, int &y)
         switch(y)
         {
         case 0:
-        {
-            opcionMenu = 1; /// CREAR NUEVA ACTIVIDAD
+            opcionMenu = 1; // CREAR NUEVA ACTIVIDAD
             break;
-        }
         case 1:
-        {
-            opcionMenu = 2; /// MODIFICAR ACTIVIDAD
+            opcionMenu = 2; // MODIFICAR ACTIVIDAD
             break;
-        }
         case 2:
-        {
-            opcionMenu = 3; /// LISTAR ACTIVIDADES
+            opcionMenu = 3; // CAMBIAR ESTADO ACTIVIDAD
             break;
-        }
         case 3:
-        {
-            opcionMenu = 0; /// VOLVER
+            opcionMenu = 4; // LISTAR ACTIVIDADES
             break;
-        }
+        case 4:
+            opcionMenu = 0; // VOLVER
+            break;
         }
     }
-    else if(tecla > 13) y = accionarCursor(28, 52, 9, y, tecla, 3);
+    else if(tecla > 13) y = accionarCursor(28, 52, 9, y, tecla, 4); // ahora 4 opciones (0..4)
 
     return opcionMenu;
 }

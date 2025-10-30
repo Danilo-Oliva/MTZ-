@@ -78,5 +78,4 @@ void Actividad::mostrar()
     cout << "ID: " << idAct << endl;
     cout << "Actividad: " << Nombre << endl;
     cout << "Couta base: $" << CuotaBase << endl;
-    cout << "Estado: " << (Estado ? "Activa" : "Inactiva") << endl;
 }

@@ -5,8 +5,6 @@
 #include "clsPersona.h"
 #include "clsActividad.h"
 #include "clsInscripcionActividad.h"
-#include "menuModificarActividad.h"
-#include "menuModificarCliente.h"
 #include "menuGestionCliente.h"
 #include "menuGestionActividades.h"
 #include "rlutil.h"
@@ -20,40 +18,7 @@ using namespace std;
 
 
 ///ACTIVIDAD
-void menuActividades()
-{
-    ArchivoActividad arch("actividad.dat");
-    Actividad act;
-    int opcion, y = 0;
 
-    rlutil::cls();
-    imprimirMenuActividades();
-
-    do
-    {
-        opcion = -1;
-
-        interactuarMenuActividades(opcion, y);
-
-        switch (opcion)
-        {
-        case 1:
-            ingresarNuevaActividad();
-            break;
-
-        case 2:
-            menuModificarActividad();
-            break;
-
-        case 3:
-            menuListarActividades();
-            break;
-        }
-    }
-    while (opcion != 0);
-    rlutil::cls();
-    imprimirMenuGestion();
-}
 ///MENU INSCRIPCIONES
 void menuInscripciones() {
     int opcion, y = 0;
