@@ -116,23 +116,30 @@ void modificarEstadoCliente()
     Persona cliente = archCli.leerArchivo(pos);
 
     bool salir = false;
-    while (!salir)
-    {
+
         rlutil::cls();
         escribirTexto("MODIFICAR ESTADO DE CLIENTE", 5, 1);
-
         rlutil::locate(5, 3);
-        std::cout << "NRO DE SOCIO : " << cliente.getNumeroSocio();
+        cout << "NRO DE SOCIO : " << cliente.getNumeroSocio();
         rlutil::locate(5, 4);
-        std::cout << "DNI          : " << cliente.getDNI();
+        cout << "DNI          : " << cliente.getDNI();
         rlutil::locate(5, 5);
-        std::cout << "NOMBRE       : " << cliente.getNombre() << " " << cliente.getApellido();
-        rlutil::locate(5, 6);
-        std::cout << "ESTADO       : " << (cliente.getEstado() ? "ACTIVO" : "INACTIVO");
-
+        cout << "NOMBRE       : " << cliente.getNombre() << " " << cliente.getApellido();
         rlutil::locate(5, 8);
-        std::cout << "Presione ENTER para cambiar estado o ESC para volver.";
+        cout << "Presione ENTER para cambiar estado o ESC para volver.";
 
+    while (!salir)
+    {
+        rlutil::locate(5, 6);
+        cout << "                       ";
+        rlutil::locate(5, 6);
+        rlutil::setBackgroundColor(rlutil::LIGHTRED);
+        rlutil::setColor(rlutil::BLACK);
+        cout << "ESTADO       : " << (cliente.getEstado() ? "ACTIVO" : "INACTIVO");
+
+
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::LIGHTRED);
         int tecla = rlutil::getkey();
         if (tecla == rlutil::KEY_ENTER)
         {

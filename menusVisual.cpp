@@ -341,8 +341,6 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
     Persona auxPer;
     ArchivoCliente archCli("clientes.dat", auxPer);
 
-    while (true)
-    {
         rlutil::cls();
         rlutil::setBackgroundColor(rlutil::BLACK);
         parteArribaMenu(x, yStart, 52);
@@ -380,7 +378,10 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
         texto.resize(anchoFijo, ' ');
         escribirTexto(texto.c_str(), x + 3, yStart + 10);
 
-        escribirTexto("      GUARDAR Y VOLVER       ", x + 12, yStart + 13);
+        escribirTexto("      GUARDAR Y VOLVER       ", x + 12, yStart + 12);
+
+    while (true)
+    {
 
         int yCursor = 0;
         if (y == 0) yCursor = yStart + 4;   // DNI
@@ -388,15 +389,25 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
         else if (y == 2) yCursor = yStart + 8; // APELLIDO
         else if (y == 3) yCursor = yStart + 9; // TELEFONO
         else if (y == 4) yCursor = yStart + 10; // EMAIL
-        else if (y == 5) yCursor = yStart + 13; // GUARDAR
+        else if (y == 5) yCursor = yStart + 12; // GUARDAR
 
-        rlutil::locate(x + 1, yCursor);
+        if(yCursor == yStart + 12) rlutil::locate(x + 10, yCursor);
+        else rlutil::locate(x + 1, yCursor);
+
         cout << (char)175;
 
         int tecla = rlutil::getkey();
 
+        if(yCursor == yStart + 12)
+        {
+        rlutil::locate(x + 10, yCursor);
+        cout << " ";
+        }
+        else
+        {
         rlutil::locate(x + 1, yCursor);
         cout << " ";
+        }
 
         if (tecla == 1)
         {
@@ -428,7 +439,7 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
                     else
                     {
                         reg.setDNI(nuevoDni);
-                        mostrarMensaje("DNI actualizado (recuerde GUARDAR).", rlutil::LIGHTGREEN);
+                        mostrarMensaje("DNI actualizado (RECUERDE GUARDAR).", rlutil::LIGHTGREEN);
                         rlutil::hidecursor();
                         rlutil::anykey();
                     }
