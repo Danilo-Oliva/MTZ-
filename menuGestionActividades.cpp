@@ -40,7 +40,7 @@ void menuListarActividades() {
 
     if(cantAct == 0){
         mostrarMensaje("No hay actividades registradas", rlutil::YELLOW);
-        rlutil::cls;
+        rlutil::cls();
         imprimirMenuActividades();
         return;
     }

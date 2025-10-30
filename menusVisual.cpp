@@ -22,7 +22,7 @@ void imprimirMenuGestion()
     escribirTexto("GESTIONAR  LAS  ACTIVIDADES", 30, 11);
     escribirTexto("GESTIONAR LAS INSCRIPCIONES", 30, 13);
     escribirTexto("  REPORTES  DEL  PROGRAMA  ", 30, 15);
-    escribirTexto("  VOLVER AL MENU PRICIPAL  ", 30, 17);
+    escribirTexto("          SALIR   ", 30, 17);
 }
 
 void imprimirMenuClientes()
@@ -120,17 +120,31 @@ int interactuarMenuClientes(int &opcionMenu, int &y)
 {
     mostrarCursor(28, 54, 9, y);
     int tecla = rlutil::getkey();
-        if(tecla == 1)
+    if(tecla == 1)
     {
         switch(y)
         {
-        case 0: opcionMenu = 1; break; // INGRESA NUEVO CLIENTE
-        case 1: opcionMenu = 2; break; // MODIFICAR CLIENTES
-        case 2: opcionMenu = 3; break; // LISTAR CLIENTES
-        case 3: opcionMenu = 4; break; // BUSCAR CLIENTES POR DNI
-        case 4: opcionMenu = 5; break; // MODIFICAR ESTADO DE CLIENTE
-        case 5: opcionMenu = 6; break; // BORRAR UN CLIENTE
-        case 6: opcionMenu = 0; break; // VOLVER
+        case 0:
+            opcionMenu = 1;
+            break; // INGRESA NUEVO CLIENTE
+        case 1:
+            opcionMenu = 2;
+            break; // MODIFICAR CLIENTES
+        case 2:
+            opcionMenu = 3;
+            break; // LISTAR CLIENTES
+        case 3:
+            opcionMenu = 4;
+            break; // BUSCAR CLIENTES POR DNI
+        case 4:
+            opcionMenu = 5;
+            break; // MODIFICAR ESTADO DE CLIENTE
+        case 5:
+            opcionMenu = 6;
+            break; // BORRAR UN CLIENTE
+        case 6:
+            opcionMenu = 0;
+            break; // VOLVER
         }
     }
     else if(tecla > 13) y = accionarCursor(28, 54, 9, y, tecla, 6);
@@ -341,15 +355,16 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
     Persona auxPer;
     ArchivoCliente archCli("clientes.dat", auxPer);
 
+    while (true)
+    {
         rlutil::cls();
         rlutil::setBackgroundColor(rlutil::BLACK);
         parteArribaMenu(x, yStart, 52);
 
-        for (int i = 0; i < 12; i++) bordesMenu(x, yStart + 1 + i, 52);
-        parteAbajoMenu(x, yStart + 13, 52);
+        for (int i = 0; i < 11; i++) bordesMenu(x, yStart + 1 + i, 52);
+        parteAbajoMenu(x, yStart + 12, 52);
 
         escribirTexto("  M O D I F I C A R   C L I E N T E  ", x + 10, yStart + 1);
-        separarMenues(x, yStart + 11, 52);
 
         string texto;
         int anchoFijo = 45;
@@ -364,126 +379,139 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
 
         texto = "NOMBRE        : " + string(reg.getNombre());
         texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 7);
+        escribirTexto(texto.c_str(), x + 3, yStart + 5);
 
         texto = "APELLIDO      : " + string(reg.getApellido());
         texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 8);
+        escribirTexto(texto.c_str(), x + 3, yStart + 6);
 
         texto = "TELEFONO      : " + string(reg.getTelefono());
         texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 9);
+        escribirTexto(texto.c_str(), x + 3, yStart + 7);
 
         texto = "EMAIL         : " + string(reg.getEmail());
         texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 10);
+        escribirTexto(texto.c_str(), x + 3, yStart + 8);
 
-        escribirTexto("      GUARDAR Y VOLVER       ", x + 12, yStart + 12);
+        texto = "FECHA NAC.    : ";
+        texto.resize(anchoFijo, ' ');
+        escribirTexto(texto.c_str(), x + 3, yStart + 9);
+        rlutil::locate(x + 19, yStart + 9);
+        reg.getFechaNacimiento().mostrar();
 
-    while (true)
-    {
+        separarMenues(x, yStart + 10, 52);
+
+        escribirTexto("     GUARDAR Y VOLVER        ", x + 12, yStart + 11);
 
         int yCursor = 0;
-        if (y == 0) yCursor = yStart + 4;   // DNI
-        else if (y == 1) yCursor = yStart + 7; // NOMBRE
-        else if (y == 2) yCursor = yStart + 8; // APELLIDO
-        else if (y == 3) yCursor = yStart + 9; // TELEFONO
-        else if (y == 4) yCursor = yStart + 10; // EMAIL
-        else if (y == 5) yCursor = yStart + 12; // GUARDAR
+        if (y == 0) yCursor = yStart + 4;      // DNI
+        else if (y == 1) yCursor = yStart + 5; // NOMBRE
+        else if (y == 2) yCursor = yStart + 6; // APELLIDO
+        else if (y == 3) yCursor = yStart + 7; // TELEFONO
+        else if (y == 4) yCursor = yStart + 8; // EMAIL
+        else if (y == 5) yCursor = yStart + 9; // FECHA
+        else if (y == 6) yCursor = yStart + 11;// GUARDAR
 
-        if(yCursor == yStart + 12) rlutil::locate(x + 10, yCursor);
-        else rlutil::locate(x + 1, yCursor);
-
+        rlutil::locate(x + 1, yCursor);
         cout << (char)175;
 
         int tecla = rlutil::getkey();
 
-        if(yCursor == yStart + 12)
-        {
-        rlutil::locate(x + 10, yCursor);
-        cout << " ";
-        }
-        else
-        {
         rlutil::locate(x + 1, yCursor);
         cout << " ";
-        }
 
         if (tecla == 1)
         {
-            if (y == 0)
-            {
-                rlutil::showcursor();
-                char nuevoDniStr[12];
-                int yCampoActual = yStart + 4;
-                rlutil::locate(x + 19, yCampoActual);
-                cout << string(11, ' ');
-                rlutil::locate(x + 19, yCampoActual);
-                cargarCadena(nuevoDniStr, 11);
+             if (y == 0)
+             {
+                 rlutil::showcursor();
+                 char nuevoDniStr[12];
+                 int yCampoActual = yStart + 4;
+                 rlutil::locate(x + 19, yCampoActual);
+                 cout << string(11, ' ');
+                 rlutil::locate(x + 19, yCampoActual);
+                 cargarCadena(nuevoDniStr, 11);
 
-                int nuevoDni = atoi(nuevoDniStr);
-                if (!(nuevoDni >= 1000000 && nuevoDni <= 99999999))
-                {
-                    mostrarMensaje("Formato DNI invalido (7-8 digitos).", rlutil::LIGHTRED);
-                    rlutil::hidecursor();
-                }
-                else
-                {
-                    int posActual = archCli.buscarCliente(reg.getDNI());
-                    int posExistente = archCli.buscarCliente(nuevoDni);
-                    if (posExistente != -1 && posExistente != posActual)
-                    {
-                        mostrarMensaje("Ese DNI ya pertenece a otro cliente.", rlutil::LIGHTRED);
-                        rlutil::hidecursor();
-                    }
-                    else
-                    {
-                        reg.setDNI(nuevoDni);
-                        mostrarMensaje("DNI actualizado (RECUERDE GUARDAR).", rlutil::LIGHTGREEN);
-                        rlutil::hidecursor();
-                        rlutil::anykey();
-                    }
-                }
-                rlutil::hidecursor();
-            }
-            else if (y >= 1 && y <= 4)
-            {
-                rlutil::showcursor();
-                char nuevoDato[30];
-                int yCampoActual = yStart + 7 + (y - 1);
-                rlutil::locate(x + 19, yCampoActual);
-                cout << string(30, ' ');
-                rlutil::locate(x + 19, yCampoActual);
-                cargarCadena(nuevoDato, 29);
+                 int nuevoDni = atoi(nuevoDniStr);
+                 if (!(nuevoDni >= 1000000 && nuevoDni <= 99999999))
+                 {
+                     mostrarMensaje("Formato DNI invalido (7-8 digitos).", rlutil::LIGHTRED);
+                     rlutil::hidecursor();
+                     rlutil::anykey();
+                 }
+                 else
+                 {
+                     int posActual = archCli.buscarCliente(reg.getDNI());
+                     int posExistente = archCli.buscarCliente(nuevoDni);
+                     if (posExistente != -1 && posExistente != posActual)
+                     {
+                         mostrarMensaje("Ese DNI ya pertenece a otro cliente.", rlutil::LIGHTRED);
+                         rlutil::hidecursor();
+                         rlutil::anykey();
+                     }
+                     else
+                     {
+                         reg.setDNI(nuevoDni);
+                         mostrarMensaje("DNI actualizado (RECUERDE GUARDAR).", rlutil::YELLOW);
+                         rlutil::hidecursor();
+                         rlutil::anykey();
+                     }
+                 }
+                 rlutil::hidecursor();
+             }
+             else if (y == 5)
+             {
+                 Fecha nuevaFecha;
+                 if (nuevaFecha.cargarCompacta(x + 19, yStart + 9))
+                 {
+                     reg.setFechaNacimiento(nuevaFecha);
+                 }
+             }
+             else if (y >= 1 && y <= 4)
+             {
+                 rlutil::showcursor();
+                 char nuevoDato[60];
+                 int yCampoActual = yStart + 5 + (y - 1);
+                 rlutil::locate(x + 19, yCampoActual);
+                 cout << string(30, ' ');
+                 rlutil::locate(x + 19, yCampoActual);
+                 cargarCadena(nuevoDato, 29);
 
-                switch (y)
-                {
-                case 1: reg.setNombre(nuevoDato); break;
-                case 2: reg.setApellido(nuevoDato); break;
-                case 3: reg.setTelefono(nuevoDato); break;
-                case 4: reg.setEmail(nuevoDato); break;
-                }
-                rlutil::hidecursor();
-            }
-            else if (y == 5)
-            {
-                opcionMenu = 0;
-                return opcionMenu;
-            }
+                 switch (y)
+                 {
+                 case 1:
+                     reg.setNombre(nuevoDato);
+                     break;
+                 case 2:
+                     reg.setApellido(nuevoDato);
+                     break;
+                 case 3:
+                     reg.setTelefono(nuevoDato);
+                     break;
+                 case 4:
+                     reg.setEmail(nuevoDato);
+                     break;
+                 }
+                 rlutil::hidecursor();
+             }
+             else if (y == 6) // GUARDAR Y VOLVER
+             {
+                 opcionMenu = 0;
+                 return opcionMenu;
+             }
         }
         else if (tecla == rlutil::KEY_UP)
         {
             y--;
-            if (y < 0) y = 5;
+            if (y < 0) y = 6;
         }
         else if (tecla == rlutil::KEY_DOWN)
         {
             y++;
-            if (y > 5) y = 0;
+            if (y > 6) y = 0;
         }
     }
 }
-
 
 int pedirDNI(const char* titulo)
 {
@@ -606,7 +634,7 @@ bool mostrarConfirmacion(const char* titulo, const char* cuerpo)
     int tecla = 0;
     bool respuesta = false;
     int movimiento = 0;
-        system("cls");
+    system("cls");
     do
     {
         int x = 25, y = 8;
@@ -636,7 +664,7 @@ bool mostrarConfirmacion(const char* titulo, const char* cuerpo)
         }
     }
     while(tecla != 1);
-        system("cls");
+    system("cls");
     return respuesta;
 
 }

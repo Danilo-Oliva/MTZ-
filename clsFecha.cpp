@@ -1,6 +1,7 @@
 #include<iostream>
 #include "clsFecha.h"
 #include "rlutil.h"
+#include "cargarCadena.h"
 
 using namespace std;
 
@@ -63,7 +64,7 @@ void Fecha::cargar(int x, int y)
 }
 void Fecha::mostrar()
 {
-    cout << dia << "/" << mes << "/" << anio << endl;
+    cout << dia << "/" << mes << "/" << anio;
 }
 bool Fecha::esBisiesto()
 {
@@ -82,4 +83,57 @@ bool Fecha::esValida()
 
     if (dia < 1 || dia > maxDia) return false;
     return true;
+}
+bool Fecha::cargarCompacta(int xpos, int ypos)
+{
+    rlutil::showcursor();
+    char diaStr[4], mesStr[4], anioStr[6];
+    int d, m, a;
+
+    while (true)
+    {
+        rlutil::locate(xpos, ypos);
+        cout << "                ";
+        rlutil::locate(xpos, ypos);
+
+        cargarCadena(diaStr, 2);
+        if (diaStr[0] == '\0') continue;
+        d = atoi(diaStr);
+
+
+        rlutil::locate(xpos + 2, ypos);
+        cout << " / ";
+        cargarCadena(mesStr, 2);
+        if (mesStr[0] == '\0') continue;
+        m = atoi(mesStr);
+
+
+        rlutil::locate(xpos + 7, ypos);
+        cout << " / ";
+        cargarCadena(anioStr, 4);
+        if (anioStr[0] == '\0') continue;
+        a = atoi(anioStr);
+
+        dia = d;
+        mes = m;
+        anio = a;
+
+        if (esValida())
+        {
+            rlutil::hidecursor();
+            return true;
+        }
+        else
+        {
+            rlutil::locate(xpos, ypos + 1);
+            cout << "Fecha invalida. Reingrese (presione una tecla)...";
+            rlutil::anykey();
+
+            rlutil::locate(xpos, ypos + 1);
+            cout << "                                               ";
+
+        }
+    }
+    rlutil::hidecursor();
+    return false;
 }

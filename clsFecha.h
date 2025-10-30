@@ -18,6 +18,7 @@ public:
     int getAnio();
     //metodos
     void cargar(int x, int y);
+    bool cargarCompacta(int xpos, int ypos);
     void mostrar();
     bool esBisiesto();
     bool esValida();
