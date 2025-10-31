@@ -46,18 +46,18 @@ void imprimirMenuClientes()
 
 void imprimirMenuActividades()
 {
-    parteArribaMenu(24, 5, 31);
-    bordesMenu(24, 6, 31);
-    separarMenues(24, 7, 31);
-    for (int i = 0; i < 10; i ++) bordesMenu(24, 8 + i, 31);
-    parteAbajoMenu(24, 18, 31);
+    parteArribaMenu(24, 5, 34);
+    bordesMenu(24, 6, 34);
+    separarMenues(24, 7, 34);
+    for (int i = 0; i < 10; i ++) bordesMenu(24, 8 + i, 34);
+    parteAbajoMenu(24, 18, 34);
 
     escribirTexto("M E N U   A C T I V I D A D E S", 25, 6);
-    escribirTexto("CREAR NUEVA ACTIVIDAD", 30, 9);
-    escribirTexto("MODIFICAR   ACTIVIDAD", 30, 11);
+    escribirTexto("INGRESAR NUEVA ACTIVIDAD", 30, 9);
+    escribirTexto(" MODIFICAR    ACTIVIDAD ", 30, 11);
     escribirTexto("CAMBIAR ESTADO ACTIVIDAD", 30, 13);
-    escribirTexto(" LISTAR  ACTIVIDADES ", 30, 15);
-    escribirTexto("VOLVER A MENU GESTION", 30, 17);
+    escribirTexto("  LISTAR   ACTIVIDADES  ", 30, 15);
+    escribirTexto("VOLVER  A  MENU  GESTION", 30, 17);
 }
 void imprimirMenuInscripciones()
 {
@@ -153,7 +153,7 @@ int interactuarMenuClientes(int &opcionMenu, int &y)
 
 int interactuarMenuActividades(int &opcionMenu, int &y)
 {
-    mostrarCursor(28, 52, 9, y);
+    mostrarCursor(28, 55, 9, y);
     int tecla = rlutil::getkey();
     if(tecla == 1)
     {
@@ -176,7 +176,7 @@ int interactuarMenuActividades(int &opcionMenu, int &y)
             break;
         }
     }
-    else if(tecla > 13) y = accionarCursor(28, 52, 9, y, tecla, 4); // ahora 4 opciones (0..4)
+    else if(tecla > 13) y = accionarCursor(28, 55, 9, y, tecla, 4); // ahora 4 opciones (0..4)
 
     return opcionMenu;
 }
@@ -339,20 +339,11 @@ int interactuarMenuListarInscripciones(int &opcionMenu, int &y)
     return opcionMenu;
 }
 
-int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
+void mostrarMenuModificarCliente(Persona &reg)
 {
     int x = 20, yStart = 5;
-    y = 0;
-
     rlutil::hidecursor();
 
-    Persona auxPer;
-    ArchivoCliente archCli("clientes.dat", auxPer);
-
-    while (true)
-    {
-        rlutil::cls();
-        rlutil::setBackgroundColor(rlutil::BLACK);
         parteArribaMenu(x, yStart, 52);
 
         for (int i = 0; i < 11; i++) bordesMenu(x, yStart + 1 + i, 52);
@@ -396,7 +387,23 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
         separarMenues(x, yStart + 10, 52);
 
         escribirTexto("     GUARDAR Y VOLVER        ", x + 12, yStart + 11);
+}
 
+int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
+{
+    int x = 20, yStart = 5;
+    y = 0;
+
+    rlutil::hidecursor();
+
+    Persona auxPer;
+    ArchivoCliente archCli("clientes.dat", auxPer);
+
+
+    mostrarMenuModificarCliente(reg);
+
+    while (true)
+    {
         int yCursor = 0;
         if (y == 0) yCursor = yStart + 4;      // DNI
         else if (y == 1) yCursor = yStart + 5; // NOMBRE
@@ -406,13 +413,16 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
         else if (y == 5) yCursor = yStart + 9; // FECHA
         else if (y == 6) yCursor = yStart + 11;// GUARDAR
 
-        rlutil::locate(x + 1, yCursor);
+        if (y == 6) rlutil::locate(x + 15, yCursor);
+        else rlutil::locate(x + 1, yCursor);
         cout << (char)175;
 
         int tecla = rlutil::getkey();
 
-        rlutil::locate(x + 1, yCursor);
+        if (y == 6) rlutil::locate(x + 15, yCursor);
+        else rlutil::locate(x + 1, yCursor);
         cout << " ";
+
 
         if (tecla == 1)
         {
@@ -429,9 +439,8 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
                  int nuevoDni = atoi(nuevoDniStr);
                  if (!(nuevoDni >= 1000000 && nuevoDni <= 99999999))
                  {
-                     mostrarMensaje("Formato DNI invalido (7-8 digitos).", rlutil::LIGHTRED);
                      rlutil::hidecursor();
-                     rlutil::anykey();
+                     mostrarMensaje("Formato DNI invalido (7-8 digitos).", rlutil::LIGHTRED);
                  }
                  else
                  {
@@ -439,19 +448,18 @@ int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
                      int posExistente = archCli.buscarCliente(nuevoDni);
                      if (posExistente != -1 && posExistente != posActual)
                      {
-                         mostrarMensaje("Ese DNI ya pertenece a otro cliente.", rlutil::LIGHTRED);
                          rlutil::hidecursor();
-                         rlutil::anykey();
+                         mostrarMensaje("Ese DNI ya pertenece a otro cliente.", rlutil::LIGHTRED);
                      }
                      else
                      {
                          reg.setDNI(nuevoDni);
-                         mostrarMensaje("DNI actualizado (RECUERDE GUARDAR).", rlutil::YELLOW);
                          rlutil::hidecursor();
-                         rlutil::anykey();
+                         mostrarMensaje("DNI actualizado (RECUERDE GUARDAR).", rlutil::YELLOW);
                      }
                  }
                  rlutil::hidecursor();
+                 mostrarMenuModificarCliente(reg);
              }
              else if (y == 5)
              {

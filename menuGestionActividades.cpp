@@ -36,7 +36,7 @@ void ingresarNuevaActividad()
     imprimirMenuActividades();
 }
 void menuListarActividades() {
-    ArchivoActividad arch("actividad.dat");
+    ArchivoActividad arch("actividades.dat");
 
     int cantAct = arch.contarActividades();
 
@@ -90,7 +90,7 @@ void modificarEstadoActividad()
 {
     rlutil::cls();
     Actividad act;
-    ArchivoActividad archAct("actividad.dat", act);
+    ArchivoActividad archAct("actividades.dat", act);
 
     int id = pedirIdActividad();
     int pos = archAct.buscarActividad(id);
@@ -137,7 +137,7 @@ void modificarEstadoActividad()
 
 void menuActividades()
 {
-    ArchivoActividad arch("actividad.dat");
+    ArchivoActividad arch("actividades.dat");
     Actividad act;
     int opcion, y = 0;
 

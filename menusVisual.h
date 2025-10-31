@@ -21,7 +21,8 @@ int interactuarMenuListarActividades(int &opcionMenu, int &y);
 void imprimirMenuListarClientes();
 int interactuarMenuListarClientes(int &opcionMenu, int &y);
 
-int mostrarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y);
+void mostrarMenuModificarCliente();
+int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y);
 
 int pedirDNI(const char* titulo);
 int pedirNumSocio(const char* titulo);

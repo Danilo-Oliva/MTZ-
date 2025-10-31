@@ -32,15 +32,17 @@ void menuModificarCliente()
     Persona per = arch.leerArchivo(pos);
 
     int opcion = -1, y = 0;
-    mostrarMenuModificarCliente(per, opcion, y);
+    interactuarMenuModificarCliente(per, opcion, y);
 
     if(arch.modificarCliente(per, pos))
     {
+        rlutil::setColor(rlutil::GREEN);
         rlutil::locate(23, 25);
         cout << "Cliente modificado con exito." << endl;
     }
     else
     {
+        rlutil::setColor(rlutil::YELLOW);
         rlutil::locate(23, 25);
         cout << "Error al modificar el cliente." << endl;
     }

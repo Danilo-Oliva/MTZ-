@@ -8,7 +8,7 @@ private:
     char nombreArchivo[30];
     Actividad act;
 public:
-    ArchivoActividad(const char *n = "actividad.dat", Actividad _act = Actividad());
+    ArchivoActividad(const char *n = "actividades.dat", Actividad _act = Actividad());
 
     bool inscribirActividad(Actividad);
     int buscarActividad(int);

@@ -4,24 +4,39 @@
 #include "clsActividad.h"
 #include "cargarCadena.h"
 #include "menusVisual.h"
+#include "tunearMenu.h"
 
 using namespace std;
 
-void imprimirMenuModificarAct() {
-    cout << "===============================" << endl;
-    cout << "   QUE ATRIBUTO MODIFICAR?" << endl;
-    cout << "===============================" << endl;
-    cout << "1. Nombre" << endl;
-    cout << "2. Cuota base" << endl;
-    cout << "-------------------------------" << endl;
-    cout << "0. VOLVER" << endl;
-    cout << "===============================" << endl;
-    cout << "SELECCIONE UNA OPCION: ";
+void imprimirMenuModificarAct(Actividad &reg) {
+    rlutil::cls();
+    int x = 20, yStart = 5;
+    rlutil::hidecursor();
+
+    parteArribaMenu(x, yStart, 52);
+    for (int i = 0; i < 6; i++) bordesMenu(x, yStart + 1 + i, 52);
+    parteAbajoMenu(x, yStart + 7, 52);
+    separarMenues(x, yStart + 5, 52);
+
+    escribirTexto("  M O D I F I C A R  A C T I V I D A D ", x + 10, yStart + 1);
+
+    string texto;
+    int anchoFijo = 40;
+
+        texto = "NOMBRE        : " + string(reg.getNombre());
+        texto.resize(anchoFijo, ' ');
+        escribirTexto(texto.c_str(), x + 3, yStart + 3);
+
+        texto = "CUOTA BASE    : " + to_string(reg.getCuotaBase());
+        texto.resize(anchoFijo, ' ');
+        escribirTexto(texto.c_str(), x + 3, yStart + 4);
+
+        escribirTexto("     GUARDAR Y VOLVER     ", x + 15, yStart + 6);
 }
 
 void menuModificarActividad() {
     rlutil::cls();
-    ArchivoActividad arch("actividad.dat");
+    ArchivoActividad arch("actividades.dat");
 
     int cantAct = arch.contarActividades();
 
@@ -39,6 +54,7 @@ void menuModificarActividad() {
     cin >> id;
 
     pos = arch.buscarActividad(id);
+    act = arch.leerArchivo(pos);
 
     if (pos == -1) {
         cout << "ERROR: No se encontro una actividad con el ID " << id << "." << endl;
@@ -55,7 +71,7 @@ void menuModificarActividad() {
         act.mostrar();
         cout << endl;
 
-        imprimirMenuModificarAct();
+        imprimirMenuModificarAct(act);
         cin >> opcion;
         system("cls");
 

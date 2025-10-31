@@ -12,7 +12,7 @@ using namespace std;
 void nuevaInscripcion()
 {
     ArchivoCliente archClientes("clientes.dat");
-    ArchivoActividad archActividades("actividad.dat");
+    ArchivoActividad archActividades("actividades.dat");
     ArchivoInscripcion archInscripciones("inscripciones.dat");
 
     int cantCli = archClientes.contarClientes();

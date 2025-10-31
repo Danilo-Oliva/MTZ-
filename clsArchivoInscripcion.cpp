@@ -94,7 +94,7 @@ void ArchivoInscripcion::listar(int modoListado)
     ArchivoCliente archCli("clientes.dat", per);
 
     Actividad act;
-    ArchivoActividad archAct("actividad.dat", act);
+    ArchivoActividad archAct("actividades.dat", act);
 
 
     cout << "======= LISTADO DE INSCRIPCIONES =======" << endl << endl;
