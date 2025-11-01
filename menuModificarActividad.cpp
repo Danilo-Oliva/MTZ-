@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstring>
+#include <cstdio>
 #include "rlutil.h"
 #include "clsArchivoActividad.h"
 #include "clsActividad.h"
@@ -20,18 +22,35 @@ void imprimirMenuModificarAct(Actividad &reg) {
 
     escribirTexto("  M O D I F I C A R  A C T I V I D A D ", x + 10, yStart + 1);
 
-    string texto;
+    char texto[128];
+    char numero[32];
     int anchoFijo = 40;
+    int len;
 
-        texto = "NOMBRE        : " + string(reg.getNombre());
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 3);
+    // NOMBRE
+    strcpy(texto, "NOMBRE        : ");
+    strcat(texto, reg.getNombre());
+    // rellenar a anchoFijo
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) {
+        texto[len++] = ' ';
+    }
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 3);
 
-        texto = "CUOTA BASE    : " + to_string(reg.getCuotaBase());
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 4);
+    // CUOTA BASE (float) -> convertir a texto y concatenar
+    sprintf(numero, "%.2f", reg.getCuotaBase());
+    strcpy(texto, "CUOTA BASE    : ");
+    strcat(texto, numero);
+    // rellenar a anchoFijo
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) {
+        texto[len++] = ' ';
+    }
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 4);
 
-        escribirTexto("     GUARDAR Y VOLVER     ", x + 15, yStart + 6);
+    escribirTexto("     GUARDAR Y VOLVER     ", x + 15, yStart + 6);
 }
 
 void menuModificarActividad() {
@@ -102,7 +121,6 @@ void menuModificarActividad() {
 
         if (opcion >= 1 && opcion <= 2) {
             if (arch.modificarActividad(act, pos)) {
-                    cout << opcion;
                 cout << "Actividad modificada con exito!" << endl;
             } else {
                 cout << "ERROR: No se pudo guardar la modificacion." << endl;

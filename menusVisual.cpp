@@ -1,11 +1,12 @@
 #include<iostream>
+#include <cstring>
+#include <cstdio>
 #include "rlutil.h"
 #include "tunearMenu.h"
 #include "menusVisual.h"
 #include "clsArchivoCliente.h"
 #include "clsPersona.h"
 #include "cargarCadena.h"
-#include <string>
 
 using namespace std;
 
@@ -344,49 +345,73 @@ void mostrarMenuModificarCliente(Persona &reg)
     int x = 20, yStart = 5;
     rlutil::hidecursor();
 
-        parteArribaMenu(x, yStart, 52);
+    parteArribaMenu(x, yStart, 52);
 
-        for (int i = 0; i < 11; i++) bordesMenu(x, yStart + 1 + i, 52);
-        parteAbajoMenu(x, yStart + 12, 52);
+    for (int i = 0; i < 11; i++) bordesMenu(x, yStart + 1 + i, 52);
+    parteAbajoMenu(x, yStart + 12, 52);
 
-        escribirTexto("  M O D I F I C A R   C L I E N T E  ", x + 10, yStart + 1);
+    escribirTexto("  M O D I F I C A R   C L I E N T E  ", x + 10, yStart + 1);
 
-        string texto;
-        int anchoFijo = 45;
+    char texto[200];
+    char numero[64];
+    int anchoFijo = 45;
+    int len;
 
-        texto = "NRO DE SOCIO  : " + to_string(reg.getNumeroSocio());
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 3);
+    sprintf(numero, "%d", reg.getNumeroSocio());
+    strcpy(texto, "NRO DE SOCIO  : ");
+    strcat(texto, numero);
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) texto[len++] = ' ';
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 3);
 
-        texto = "DNI           : " + to_string(reg.getDNI());
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 4);
+    sprintf(numero, "%d", reg.getDNI());
+    strcpy(texto, "DNI           : ");
+    strcat(texto, numero);
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) texto[len++] = ' ';
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 4);
 
-        texto = "NOMBRE        : " + string(reg.getNombre());
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 5);
+    strcpy(texto, "NOMBRE        : ");
+    strcat(texto, reg.getNombre());
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) texto[len++] = ' ';
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 5);
 
-        texto = "APELLIDO      : " + string(reg.getApellido());
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 6);
+    strcpy(texto, "APELLIDO      : ");
+    strcat(texto, reg.getApellido());
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) texto[len++] = ' ';
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 6);
 
-        texto = "TELEFONO      : " + string(reg.getTelefono());
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 7);
+    strcpy(texto, "TELEFONO      : ");
+    strcat(texto, reg.getTelefono());
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) texto[len++] = ' ';
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 7);
 
-        texto = "EMAIL         : " + string(reg.getEmail());
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 8);
+    strcpy(texto, "EMAIL         : ");
+    strcat(texto, reg.getEmail());
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) texto[len++] = ' ';
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 8);
 
-        texto = "FECHA NAC.    : ";
-        texto.resize(anchoFijo, ' ');
-        escribirTexto(texto.c_str(), x + 3, yStart + 9);
-        rlutil::locate(x + 19, yStart + 9);
-        reg.getFechaNacimiento().mostrar();
+    strcpy(texto, "FECHA NAC.    : ");
+    len = (int)strlen(texto);
+    while (len < anchoFijo && len < (int)sizeof(texto) - 1) texto[len++] = ' ';
+    texto[len] = '\0';
+    escribirTexto(texto, x + 3, yStart + 9);
+    rlutil::locate(x + 19, yStart + 9);
+    reg.getFechaNacimiento().mostrar();
 
-        separarMenues(x, yStart + 10, 52);
+    separarMenues(x, yStart + 10, 52);
 
-        escribirTexto("     GUARDAR Y VOLVER        ", x + 12, yStart + 11);
+    escribirTexto("     GUARDAR Y VOLVER        ", x + 12, yStart + 11);
 }
 
 int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
