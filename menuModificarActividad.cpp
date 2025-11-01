@@ -53,8 +53,33 @@ void imprimirMenuModificarAct(Actividad &reg) {
     escribirTexto("     GUARDAR Y VOLVER     ", x + 15, yStart + 6);
 }
 
+int interactuarMenuModificarAct(int &opcionMenu, int &y)
+{
+    int x = 20, yStart = 5;
+    mostrarSoloUnCursor(x + 1, yStart + 3, y);
+    int tecla = rlutil::getkey();
+    if(tecla == 1)
+    {
+        switch(y)
+        {
+        case 0:
+            opcionMenu = 1; /// MODIFICAR NOMBRE
+            break;
+        case 1:
+            opcionMenu = 2; /// MODIFICAR CUOTA
+            break;
+        case 3:
+            opcionMenu = 0; /// VOLVER
+            break;
+        }
+    }
+    else if(tecla > 13) y = accionarCursorCambios(x + 1, yStart + 3, y, tecla, 2);
+    return opcionMenu;
+}
+
 void menuModificarActividad() {
     rlutil::cls();
+    int x = 20, yStart = 5;
     ArchivoActividad arch("actividades.dat");
 
     int cantAct = arch.contarActividades();
@@ -67,7 +92,7 @@ void menuModificarActividad() {
     }
 
     Actividad act;
-    int id, pos, opcion;
+    int id, pos, y = 0;
 
     cout << "Ingrese el ID de la actividad a modificar: ";
     cin >> id;
@@ -83,55 +108,81 @@ void menuModificarActividad() {
         return;
     }
 
-    do {
-        system("cls");
-        cout << "--- MODIFICANDO ACTIVIDAD ---" << endl;
-        act = arch.leerArchivo(pos);
-        act.mostrar();
-        cout << endl;
-
         imprimirMenuModificarAct(act);
-        cin >> opcion;
-        system("cls");
 
-        switch (opcion) {
-            case 1:
+    while (true) {
+        int yCursor = 0;
+        if (y == 0) yCursor = yStart + 3;      // DNI
+        else if (y == 1) yCursor = yStart + 4; // NOMBRE
+        else if (y == 2) yCursor = yStart + 6; // APELLIDO
+
+        if (y == 2) rlutil::locate(x + 15, yCursor);
+        else rlutil::locate(x + 1, yCursor);
+        cout << (char)175;
+
+        int tecla = rlutil::getkey();
+
+        if (y == 2) rlutil::locate(x + 15, yCursor);
+        else rlutil::locate(x + 1, yCursor);
+        cout << " " << endl;
+
+//        system("cls");
+//        cout << "--- MODIFICANDO ACTIVIDAD ---" << endl;
+        act = arch.leerArchivo(pos);
+//        act.mostrar();
+//        cout << endl;
+
+        if(tecla == 1)
+        {
+        switch (y) {
+            case 0:
                 {
                     char nuevoNombre[50];
+                    rlutil::cls();
+
                     cout << "Ingrese el nuevo nombre: ";
                     cargarCadena(nuevoNombre, 49);
                     act.setNombre(nuevoNombre);
+
                 }
                 break;
-            case 2:
+            case 1:
                 {
                     float nuevaCuota;
+                    rlutil::cls();
                     cout << "Ingrese el nuevo valor de la cuota base: $";
                     cin >> nuevaCuota;
                     act.setCuotaBase(nuevaCuota);
+                    break;
                 }
-                break;
-            case 0:
-                cout << "Volviendo al menu anterior..." << endl;
-                break;
-            default:
-                cout << "Opcion incorrecta." << endl;
-                break;
-        }
+            case 2:
+                rlutil::cls();
+                if (arch.modificarActividad(act, pos)) {
+                    cout << "Actividad modificada con exito!" << endl;
+                } else {
+                    cout << "ERROR: No se pudo guardar la modificacion." << endl;
+                }
+                rlutil::anykey();
 
-        if (opcion >= 1 && opcion <= 2) {
-            if (arch.modificarActividad(act, pos)) {
-                cout << "Actividad modificada con exito!" << endl;
-            } else {
-                cout << "ERROR: No se pudo guardar la modificacion." << endl;
+                rlutil::cls();
+                imprimirMenuActividades();
+
+                return;
             }
         }
-
-        if (opcion != 0){
-            rlutil::anykey();
+        else if (tecla == rlutil::KEY_UP)
+        {
+            y--;
+            if (y < 0) y = 2;
+        }
+        else if (tecla == rlutil::KEY_DOWN)
+        {
+            y++;
+            if (y > 2) y = 0;
         }
 
-    } while (opcion != 0);
-    rlutil::cls();
-    imprimirMenuActividades();
+
+    }
+
+
 }
