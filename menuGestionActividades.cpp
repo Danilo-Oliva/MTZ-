@@ -36,6 +36,7 @@ void ingresarNuevaActividad()
     imprimirMenuActividades();
 }
 void menuListarActividades() {
+    rlutil::cls();
     ArchivoActividad arch("actividades.dat");
 
     int cantAct = arch.contarActividades();

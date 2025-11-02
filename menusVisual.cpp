@@ -625,7 +625,7 @@ bool mostrarFormularioCargaCliente(Persona &reg)
     cargarCadena(email, 29);
     rlutil::locate(x + 3, yStart + 8);
     cout << "FECHA DE NAC. (DD/MM/AAAA): ";
-    fechaNac.cargar(x + 3, yStart + 9);
+    fechaNac.cargarCompacta(x + 3, yStart + 9);
     rlutil::hidecursor();
 
     reg.setNombre(nombre);

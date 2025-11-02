@@ -97,8 +97,6 @@ void ArchivoInscripcion::listar(int modoListado)
     ArchivoActividad archAct("actividades.dat", act);
 
 
-    cout << "======= LISTADO DE INSCRIPCIONES =======" << endl << endl;
-
     for (int i = 0; i < cantIns; i++)
     {
         InscripcionActividad ins = leerInscripcion(i);
@@ -163,5 +161,4 @@ void ArchivoInscripcion::listar(int modoListado)
     {
         cout << "No hay inscripciones que coincidan con el filtro seleccionado." << endl;
     }
-
 }

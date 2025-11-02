@@ -17,7 +17,7 @@ public:
     int getMes();
     int getAnio();
     //metodos
-    void cargar(int x, int y);
+    void cargar(int x, int y, int x2, int x3);
     bool cargarCompacta(int xpos, int ypos);
     void mostrar();
     bool esBisiesto();

@@ -35,7 +35,7 @@ int Fecha::getAnio()
 {
     return anio;
 }
-void Fecha::cargar(int x, int y)
+void Fecha::cargar(int x, int y, int x2, int x3)
 {
     while (true)
     {

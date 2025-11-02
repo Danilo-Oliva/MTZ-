@@ -14,10 +14,12 @@ void nuevaInscripcion()
     ArchivoCliente archClientes("clientes.dat");
     ArchivoActividad archActividades("actividades.dat");
     ArchivoInscripcion archInscripciones("inscripciones.dat");
+    InscripcionActividad nuevaIns;
 
     int cantCli = archClientes.contarClientes();
     int cantAct = archActividades.contarActividades();
-    if(cantCli == 0 || cantAct == 0){
+    if(cantCli == 0 || cantAct == 0)
+    {
         mostrarMensaje("No hay clientes o actividades registradas", rlutil::YELLOW);
         rlutil::cls();
         imprimirMenuInscripciones();
@@ -91,26 +93,21 @@ void nuevaInscripcion()
     int dia, mes, anio;
 
     cout << "--- FECHA DE INSCRIPCION ---" << endl;
-    cout << "INGRESE EL DIA: ";
-    cin >> dia;
-    cout << "INGRESE EL MES: ";
-    cin >> mes;
-    cout << "INGRESE EL ANIO: ";
-    cin >> anio;
+    cout << "Ingrese fecha de inscripcion (DD/MM/ANIO):";
+    int x = 40, yStart = 11;
+    Fecha nuevaFecha;
+    nuevaFecha.cargarCompacta(x + 19, yStart + 9);
+    nuevaIns.setFechaInscripcion(nuevaFecha);
 
     int opcionMod;
     cout << "--- MODALIDAD ---" << endl;
     cout << "1 para Pase Libre, 2 para 3 veces por semana: ";
     cin >> opcionMod;
 
-    fechaInsc.setDia(dia);
-    fechaInsc.setMes(mes);
-    fechaInsc.setAnio(anio);
 
-    InscripcionActividad nuevaIns;
+
     nuevaIns.setNumeroSocio(nroSocio);
     nuevaIns.setIdAct(idAct);
-    nuevaIns.setFechaInscripcion(fechaInsc);
     nuevaIns.setLibre(opcionMod == 1);
     nuevaIns.setEstado(true);
 
@@ -208,7 +205,8 @@ void menuListarInscripciones()
     ArchivoInscripcion archInscripciones("inscripciones.dat");
 
     int cantIns = archInscripciones.contarInscripciones();
-    if(cantIns == 0){
+    if(cantIns == 0)
+    {
         mostrarMensaje("No hay inscripciones registradas", rlutil::YELLOW);
         rlutil::cls();
         imprimirMenuInscripciones();
