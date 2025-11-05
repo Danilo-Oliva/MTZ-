@@ -127,77 +127,104 @@ void nuevaInscripcion()
 
 void gestionarEstadoInscripcion()
 {
+    rlutil::cls();
     ArchivoInscripcion archInscripciones("inscripciones.dat");
-    int nroSocio, idAct, pos;
-    char confirmacion;
 
-    int cantInscrip = archInscripciones.contarInscripciones();
-    if(cantInscrip == 0)
+    int nroSocio = pedirNumSocio("GESTIONAR ESTADO DE INSCRIPCION:");
+    int idAct = pedirIdActividad();
+    int pos = archInscripciones.buscarInscripcionGlobal(nroSocio, idAct);
+
+    if (pos == -1)
     {
-        mostrarMensaje("No hay inscripciones registradas", rlutil::YELLOW);
-        rlutil::cls();
-        imprimirMenuInscripciones();
-        return;
-    }
-
-    cout << "Ingrese el Numero de Socio: ";
-    cin >> nroSocio;
-    cout << "Ingrese el ID de la actividad de la inscripcion a gestionar: ";
-    cin >> idAct;
-
-    pos = archInscripciones.buscarInscripcionGlobal(nroSocio, idAct);
-
-    if(pos == -1)
-    {
-        cout << "ERROR: No se encontro ninguna inscripcion para ese socio y actividad." << endl;
+        mostrarMensaje("No se encontro ninguna inscripcion para ese socio y actividad.", rlutil::LIGHTRED);
+        rlutil::anykey();
         return;
     }
 
     InscripcionActividad ins = archInscripciones.leerInscripcion(pos);
 
-    if (ins.getEstado() == true)
+    bool salir = false;
+    int seleccion = 0;
+
+    rlutil::cls();
+    while (!salir)
     {
-        cout << "\nLa inscripcion se encuentra ACTIVA." << endl;
-        cout << "Desea anularla en este momento? (S/N): ";
-        cin >> confirmacion;
-        if (confirmacion == 'S' || confirmacion == 's')
+        escribirTexto("GESTIONAR ESTADO DE INSCRIPCION", 5, 1);
+
+        rlutil::locate(5, 3);
+        cout << "NRO SOCIO    : " << ins.getNumeroSocio();
+        rlutil::locate(5, 4);
+        cout << "ID ACTIVIDAD : " << ins.getIdAct();
+
+
+        rlutil::locate(5, 6);
+        if (seleccion == 0)
         {
-            ins.setEstado(false);
-            if(archInscripciones.modificarInscripcion(ins, pos))
-            {
-                cout << "Inscripcion anulada con exito." << endl;
-            }
-            else
-            {
-                cout << "ERROR: No se pudo anular la inscripcion." << endl;
-            }
+            rlutil::setBackgroundColor(rlutil::LIGHTRED);
+            rlutil::setColor(rlutil::BLACK);
         }
         else
         {
-            cout << "Operacion cancelada." << endl;
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::setColor(rlutil::LIGHTRED);
         }
-    }
-    else
-    {
-        cout << "\nLa inscripcion se encuentra INACTIVA." << endl;
-        cout << "Desea reactivarla en este momento? (S/N): ";
-        cin >> confirmacion;
-        if (confirmacion == 'S' || confirmacion == 's')
+        cout << "ESTADO       : " << (ins.getEstado() ? "ACTIVA   " : "INACTIVA ");
+
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::LIGHTRED);
+
+        int btnX = 5;
+        int btnY = 8;
+        rlutil::locate(btnX, btnY);
+        if (seleccion == 1)
         {
-            ins.setEstado(true);
-            if(archInscripciones.modificarInscripcion(ins, pos))
-            {
-                cout << "Inscripcion reactivada con exito." << endl;
-            }
-            else
-            {
-                cout << "ERROR: No se pudo reactivar la inscripcion." << endl;
-            }
+            rlutil::setBackgroundColor(rlutil::LIGHTRED);
+            rlutil::setColor(rlutil::BLACK);
         }
         else
         {
-            cout << "Operacion cancelada." << endl;
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::setColor(rlutil::LIGHTRED);
         }
+        cout << "   GUARDAR Y VOLVER   ";
+
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::LIGHTRED);
+
+        int tecla = rlutil::getkey();
+
+        if (tecla == rlutil::KEY_UP)
+        {
+            if (seleccion > 0) seleccion--;
+        }
+        else if (tecla == rlutil::KEY_DOWN)
+        {
+            if (seleccion < 1) seleccion++;
+        }
+        else if (tecla == rlutil::KEY_ENTER)
+        {
+            if (seleccion == 0)
+            {
+                // Alternar estado en la vista (no guardado todavía)
+                ins.setEstado(!ins.getEstado());
+            }
+            else if (seleccion == 1)
+            {
+                // Guardar cambios en el archivo
+                if (archInscripciones.modificarInscripcion(ins, pos))
+                {
+                    mostrarMensaje("Estado de inscripcion modificado correctamente", rlutil::YELLOW);
+                }
+                else
+                {
+                    mostrarMensaje("Error al guardar cambios", rlutil::LIGHTRED);
+                }
+                rlutil::cls();
+                imprimirMenuInscripciones();
+                salir = true;
+            }
+        }
+        // si el usuario presiona ESC u otra tecla, se mantiene en el loop (consistente con otros menús)
     }
 }
 void menuListarInscripciones()

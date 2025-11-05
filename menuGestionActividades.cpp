@@ -11,7 +11,7 @@ using namespace std;
 void ingresarNuevaActividad()
 {
     system("cls");
-    ArchivoActividad arch("actividad.dat");
+    ArchivoActividad arch("actividades.dat");
     Actividad act;
 
     int proximoID = arch.contarActividades() + 1;
@@ -91,10 +91,10 @@ void modificarEstadoActividad()
 {
     rlutil::cls();
     Actividad act;
-    ArchivoActividad archAct("actividades.dat", act);
+    ArchivoActividad arch("actividades.dat", act);
 
     int id = pedirIdActividad();
-    int pos = archAct.buscarActividad(id);
+    int pos = arch.buscarActividad(id);
     if (pos == -1)
     {
         mostrarMensaje("Actividad no encontrada.", rlutil::LIGHTRED);
@@ -102,36 +102,84 @@ void modificarEstadoActividad()
         return;
     }
 
-    Actividad actividad = archAct.leerArchivo(pos);
+    Actividad actividad = arch.leerArchivo(pos);
 
     bool salir = false;
+    int seleccion = 0;
+
+    rlutil::cls();
     while (!salir)
     {
-        rlutil::cls();
+        escribirTexto("MODIFICAR ESTADO DE ACTIVIDAD", 5, 1);
+        rlutil::locate(5, 3);
+        cout << "ID ACTIVIDAD : " << actividad.getIdAct();
+        rlutil::locate(5, 4);
+        cout << "NOMBRE       : " << actividad.getNombre();
+        rlutil::locate(5, 6);
 
-        parteArribaMenu(20, 5, 52);
-        for (int i = 0; i < 6; i++) bordesMenu(20, 6 + i, 52);
-        parteAbajoMenu(20, 12, 52);
-        escribirTexto("MODIFICAR ESTADO ACTIVIDAD", 26, 6);
+        rlutil::locate(5, 5);
+        if (seleccion == 0)
+        {
+            rlutil::setBackgroundColor(rlutil::LIGHTRED);
+            rlutil::setColor(rlutil::BLACK);
+        }
+        else
+        {
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::setColor(rlutil::LIGHTRED);
+        }
+        cout << "ESTADO       : " << (actividad.getEstado() ? "ACTIVA   " : "INACTIVA ");
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::LIGHTRED);
 
-        rlutil::locate(22, 8); cout << "ID         : " << actividad.getIdAct();
-        rlutil::locate(22, 9); cout << "Actividad  : " << actividad.getNombre();
-        rlutil::locate(22, 10); cout << "Cuota base : $" << actividad.getCuotaBase();
-        rlutil::locate(22, 11); cout << "Estado     : " << (actividad.getEstado() ? "Activa" : "Inactiva");
+        int btnX = 5;
+        int btnY = 8;
+        rlutil::locate(btnX, btnY);
+        if (seleccion == 1)
+        {
+            rlutil::setBackgroundColor(rlutil::LIGHTRED);
+            rlutil::setColor(rlutil::BLACK);
+        }
+        else
+        {
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::setColor(rlutil::LIGHTRED);
+        }
+        cout << "   GUARDAR Y VOLVER   ";
 
-        rlutil::locate(22, 13);
-        cout << "Presione ENTER para cambiar estado o ESC para volver.";
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::LIGHTRED);
 
         int tecla = rlutil::getkey();
-        if (tecla == rlutil::KEY_ENTER)
+
+        if (tecla == rlutil::KEY_UP)
         {
-            actividad.setEstado(!actividad.getEstado());
+            if (seleccion > 0) seleccion--;
         }
-        else if (tecla == rlutil::KEY_ESCAPE)
+        else if (tecla == rlutil::KEY_DOWN)
         {
-            salir = true;
-            rlutil::cls();
-            imprimirMenuActividades();
+            if (seleccion < 1) seleccion++;
+        }
+        else if (tecla == rlutil::KEY_ENTER)
+        {
+            if (seleccion == 0)
+            {
+                actividad.setEstado(!actividad.getEstado());
+            }
+            else if (seleccion == 1)
+            {
+                if (arch.modificarActividad(actividad, pos))
+                {
+                    mostrarMensaje("Estado modificado correctamente", rlutil::YELLOW);
+                }
+                else
+                {
+                    mostrarMensaje("Error al guardar cambios", rlutil::LIGHTRED);
+                }
+                rlutil::cls();
+                imprimirMenuActividades();
+                salir = true;
+            }
         }
     }
 }
