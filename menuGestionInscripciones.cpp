@@ -137,7 +137,6 @@ void gestionarEstadoInscripcion()
     if (pos == -1)
     {
         mostrarMensaje("No se encontro ninguna inscripcion para ese socio y actividad.", rlutil::LIGHTRED);
-        rlutil::anykey();
         return;
     }
 
@@ -255,14 +254,14 @@ void menuListarInscripciones()
 
             archInscripciones.listar(1);
 
-            rlutil::anykey();
-            rlutil::cls();
+            rlutil::anykey();            rlutil::cls();
             imprimirMenuListarInscripciones();
             break;
         case 2:
             rlutil::cls();
 
             archInscripciones.listar(2);
+
             rlutil::anykey();
             rlutil::cls();
             imprimirMenuListarInscripciones();
@@ -273,8 +272,7 @@ void menuListarInscripciones()
 
             archInscripciones.listar(0);
 
-            rlutil::anykey();
-            rlutil::cls();
+            rlutil::anykey();            rlutil::cls();
             imprimirMenuListarInscripciones();
 
             break;
@@ -282,13 +280,12 @@ void menuListarInscripciones()
     }
     while (opcion != 0);
 
-    rlutil::anykey();
     rlutil::cls();
     imprimirMenuInscripciones();
 }
 void menuInscripciones() {
     int opcion, y = 0;
-    system("cls");
+    rlutil::cls();
 
     imprimirMenuInscripciones();
 
@@ -299,28 +296,30 @@ void menuInscripciones() {
 
         switch (opcion) {
             case 1:
-                system("cls");
+                rlutil::cls();
 
                 nuevaInscripcion();
 
-                system("cls");
+                rlutil::anykey();
+                rlutil::cls();
                 imprimirMenuInscripciones();
 
                 break;
             case 2:
-                system("cls");
+                rlutil::cls();
+
 
                 gestionarEstadoInscripcion();
 
-                rlutil::anykey();
-                system("cls");
+                rlutil::cls();
                 imprimirMenuInscripciones();
 
                 break;
             case 3:
                 menuListarInscripciones();
 
-                system("cls");
+                rlutil::anykey();
+                rlutil::cls();
                 imprimirMenuInscripciones();
 
                 break;

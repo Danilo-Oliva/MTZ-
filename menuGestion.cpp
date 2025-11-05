@@ -26,7 +26,7 @@ using namespace std;
 void accionarMenu()
 {
     int opcionMenu = -1, y = 0;
-    system("cls");
+    rlutil::cls();
 
     imprimirMenuGestion();
 
@@ -46,15 +46,15 @@ void accionarMenu()
         case 3:
             menuInscripciones();
 
-            system("cls");
+            rlutil::cls();
             imprimirMenuGestion();
             break;
         case 4:
-            system("cls");
+            rlutil::cls();
             cout << "Bob el constructor está trabajando en esta opcion." << endl;
 
             rlutil::anykey();
-            system("cls");
+            rlutil::cls();
             imprimirMenuGestion();
 
             break;
