@@ -42,8 +42,10 @@ void menuModificarActividad()
     Actividad obj = arc.leerArchivo(pos);
 
 while(true){
+    rlutil::cls();
     obj.mostrar();
 
+    ArchivoActividad arch("actividades.dat");
     int opcion;
     cout << endl;
     cout << "1- Cambiar nombre" <<endl;
@@ -57,11 +59,18 @@ while(true){
     {
     case 1:
         cout<<"Ingrese el nuevo nombre: ";
-        char nombre[30];
-        cargarCadena(nombre, 30);
+        char nombre[50];
+        cargarCadena(nombre, 49);
+    if (arch.buscarActividadPorNombre(nombre) != -1)
+    {
+        mostrarMensaje("ERROR: Ya existe una actividad con ese nombre.", rlutil::LIGHTRED);
+    }
+    else
+    {
 
         obj.setNombre(nombre);
         arc.modificarActividad(obj, pos);
+    }
         rlutil::cls();
         break;
     case 2:
@@ -77,6 +86,11 @@ while(true){
         rlutil::cls();
         imprimirMenuActividades();
         return;
+        break;
+    default:
+        cout << "Opcion Incorrecta" << endl;
+        rlutil::anykey();
+        rlutil::cls();
         break;
     }
 

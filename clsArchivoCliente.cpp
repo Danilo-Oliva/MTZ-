@@ -121,7 +121,7 @@ void ArchivoCliente::listar(int modoListado)
 
     const int filaInicial = 5;
 
-    system("cls");
+    rlutil::cls();
     dibujarTablaClientesHeader();
 
     if (contarCli > 0)

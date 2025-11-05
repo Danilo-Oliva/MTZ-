@@ -454,14 +454,14 @@ int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
              if (y == 0)
              {
                  rlutil::showcursor();
-                 char nuevoDniStr[12];
+                 int nuevoDniStr;
                  int yCampoActual = yStart + 4;
                  rlutil::locate(x + 19, yCampoActual);
                  cout << string(11, ' ');
                  rlutil::locate(x + 19, yCampoActual);
-                 cargarCadena(nuevoDniStr, 11);
-
-                 int nuevoDni = atoi(nuevoDniStr);
+                 //cargarCadena(nuevoDniStr, 11);
+                    cin>>nuevoDniStr;
+                 int nuevoDni = nuevoDniStr;
                  if (!(nuevoDni >= 1000000 && nuevoDni <= 99999999))
                  {
                      rlutil::hidecursor();
@@ -601,7 +601,7 @@ bool mostrarFormularioCargaCliente(Persona &reg)
 
     int x = 20, yStart = 5;
 
-    system("cls");
+    rlutil::cls();
     parteArribaMenu(x, yStart, 52);
     for (int i = 0; i < 12; i++) bordesMenu(x, yStart + 1 + i, 52);
     parteAbajoMenu(x, yStart + 13, 52);
@@ -653,7 +653,7 @@ void mostrarMensaje(const char* mensaje, int color = rlutil::WHITE)
     rlutil::resetColor();
     cout << endl << endl;
     rlutil::anykey();
-    system("cls");
+    rlutil::cls();
 }
 
 bool mostrarConfirmacion(const char* titulo, const char* cuerpo)

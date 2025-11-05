@@ -10,7 +10,7 @@ using namespace std;
 
 void ingresarNuevaActividad()
 {
-    system("cls");
+    rlutil::cls();
     ArchivoActividad arch("actividades.dat");
     Actividad act;
 
