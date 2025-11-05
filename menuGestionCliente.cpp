@@ -116,8 +116,11 @@ void modificarEstadoCliente()
     Persona cliente = archCli.leerArchivo(pos);
 
     bool salir = false;
+    int seleccion = 0;
 
         rlutil::cls();
+    while (!salir)
+    {
         escribirTexto("MODIFICAR ESTADO DE CLIENTE", 5, 1);
         rlutil::locate(5, 3);
         cout << "NRO DE SOCIO : " << cliente.getNumeroSocio();
@@ -126,31 +129,70 @@ void modificarEstadoCliente()
         rlutil::locate(5, 5);
         cout << "NOMBRE       : " << cliente.getNombre() << " " << cliente.getApellido();
         rlutil::locate(5, 8);
-        cout << "Presione ENTER para cambiar estado o ESC para volver.";
 
-    while (!salir)
-    {
         rlutil::locate(5, 6);
-        cout << "                       ";
-        rlutil::locate(5, 6);
-        rlutil::setBackgroundColor(rlutil::LIGHTRED);
-        rlutil::setColor(rlutil::BLACK);
-        cout << "ESTADO       : " << (cliente.getEstado() ? "ACTIVO" : "INACTIVO");
+        if (seleccion == 0)
+        {
+            rlutil::setBackgroundColor(rlutil::LIGHTRED);
+            rlutil::setColor(rlutil::BLACK);
+        }
+        else
+        {
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::setColor(rlutil::LIGHTRED);
+        }
+        cout << "ESTADO       : " << (cliente.getEstado() ? "ACTIVO  " : "INACTIVO");
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::LIGHTRED);
 
+        int btnX = 5;
+        int btnY = 8;
+        rlutil::locate(btnX, btnY);
+        if (seleccion == 1)
+        {
+            rlutil::setBackgroundColor(rlutil::LIGHTRED);
+            rlutil::setColor(rlutil::BLACK);
+        }
+        else
+        {
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::setColor(rlutil::LIGHTRED);
+        }
+        cout << "   GUARDAR Y VOLVER   ";
 
         rlutil::setBackgroundColor(rlutil::BLACK);
         rlutil::setColor(rlutil::LIGHTRED);
+
         int tecla = rlutil::getkey();
-        if (tecla == rlutil::KEY_ENTER)
+
+        if (tecla == rlutil::KEY_UP)
         {
-            cliente.setEstado(!cliente.getEstado());
+            if (seleccion > 0) seleccion--;
         }
-        else if (tecla == rlutil::KEY_ESCAPE)
+        else if (tecla == rlutil::KEY_DOWN)
         {
-            mostrarMensaje("Estado modificado correctamente", rlutil::YELLOW);
-            rlutil::cls();
-            imprimirMenuClientes();
-            salir = true;
+            if (seleccion < 1) seleccion++;
+        }
+        else if (tecla == rlutil::KEY_ENTER)
+        {
+            if (seleccion == 0)
+            {
+                cliente.setEstado(!cliente.getEstado());
+            }
+            else if (seleccion == 1)
+            {
+                if (archCli.modificarCliente(cliente, pos))
+                {
+                    mostrarMensaje("Estado modificado correctamente", rlutil::YELLOW);
+                }
+                else
+                {
+                    mostrarMensaje("Error al guardar cambios", rlutil::LIGHTRED);
+                }
+                rlutil::cls();
+                imprimirMenuClientes();
+                salir = true;
+            }
         }
     }
 }

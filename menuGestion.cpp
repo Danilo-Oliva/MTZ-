@@ -20,48 +20,7 @@ using namespace std;
 ///ACTIVIDAD
 
 ///MENU INSCRIPCIONES
-void menuInscripciones() {
-    int opcion, y = 0;
-    system("cls");
 
-    imprimirMenuInscripciones();
-
-    do {
-        opcion = -1;
-
-        interactuarMenuInscripciones(opcion, y);
-
-        switch (opcion) {
-            case 1:
-                system("cls");
-
-                nuevaInscripcion();
-
-                system("cls");
-                imprimirMenuInscripciones();
-
-                break;
-            case 2:
-                system("cls");
-
-                gestionarEstadoInscripcion();
-
-                rlutil::anykey();
-                system("cls");
-                imprimirMenuInscripciones();
-
-                break;
-            case 3:
-                menuListarInscripciones();
-
-                system("cls");
-                imprimirMenuInscripciones();
-
-                break;
-        }
-
-    } while (opcion != 0);
-}
 
 ///MENU PRINCIPAL
 void accionarMenu()
