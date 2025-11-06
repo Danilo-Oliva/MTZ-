@@ -12,6 +12,7 @@
 #include "menuGestionCliente.h"
 #include "menuGestionActividades.h"
 #include "menuGestionInscripciones.h"
+#include "reportes.h"
 #include "tunearMenu.h"
 
 using namespace std;
@@ -51,7 +52,9 @@ void accionarMenu()
             break;
         case 4:
             rlutil::cls();
-            cout << "Bob el constructor está trabajando en esta opcion." << endl;
+
+            actMasIngreso();
+            actMasRecurrida();
 
             rlutil::anykey();
             rlutil::cls();
