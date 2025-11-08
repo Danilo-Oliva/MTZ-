@@ -66,7 +66,7 @@ void InscripcionActividad::cargar()
     cin >> Estado;
 }
 
-float InscripcionActividad::calcularCuota(const Actividad &act)
+float InscripcionActividad::calcularCuota(Actividad act)
 {
     if (Libre == true) return act.getCuotaBase();
     return act.getCuotaBase() * 0.85f;

@@ -31,7 +31,7 @@ public:
     bool getLibre();
 
     // Métodos
-    float calcularCuota(const Actividad &act);
+    float calcularCuota(Actividad act);
     void cargar();
     void mostrar();
 };

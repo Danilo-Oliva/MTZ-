@@ -55,6 +55,7 @@ void accionarMenu()
 
             actMasIngreso();
             actMasRecurrida();
+            ingresoPorMesYModalidad();
 
             rlutil::anykey();
             rlutil::cls();

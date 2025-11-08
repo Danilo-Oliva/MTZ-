@@ -108,33 +108,33 @@ void ArchivoActividad::listar(int modoListado)
     }
 
     for (int i = 0; i < cantAct; i++)
-{
-    Actividad act = leerArchivo(i);
-
-    if (act.getIdAct() == 0) continue;
-
-    bool mostrar = false;
-
-    switch (modoListado)
     {
-    case 1:
-        if (act.getEstado() == true) mostrar = true;
-        break;
-    case 2:
-        if (act.getEstado() == false) mostrar = true;
-        break;
-    default:
-        mostrar = true;
-        break;
-    }
+        Actividad act = leerArchivo(i);
 
-    if (mostrar)
-    {
-        act.mostrar();
-        cout << endl;
-        contadorMostrados++;
+        if (act.getIdAct() == 0) continue;
+
+        bool mostrar = false;
+
+        switch (modoListado)
+        {
+        case 1:
+            if (act.getEstado() == true) mostrar = true;
+            break;
+        case 2:
+            if (act.getEstado() == false) mostrar = true;
+            break;
+        default:
+            mostrar = true;
+            break;
+        }
+
+        if (mostrar)
+        {
+            act.mostrar();
+            cout << endl;
+            contadorMostrados++;
+        }
     }
-}
 }
 
 bool ArchivoActividad::modificarActividad(Actividad act, int pos)

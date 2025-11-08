@@ -43,7 +43,7 @@ const char* Actividad::getNombre()
 {
     return Nombre;
 }
-float Actividad::getCuotaBase() const
+float Actividad::getCuotaBase()
 {
     return CuotaBase;
 }
@@ -52,12 +52,6 @@ bool Actividad::getEstado()
 {
     return Estado;
 }
-
-float Actividad::calcularCuota()
-{
-    return CuotaBase;
-}
-
 
 void Actividad::cargar(int proximoId)
 {
