@@ -3,6 +3,8 @@
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
 #include "clsArchivoInscripcion.h"
+#include "clsPersona.h"
+#include "clsActividad.h"
 #include "clsFecha.h"
 #include "menusVisual.h"
 #include "tunearMenu.h"
@@ -28,19 +30,19 @@ void nuevaInscripcion()
 
     Persona per;
 
-    int dni, idAct, posCliente;
+    int id, idAct, posCliente;
 
     cout << "--- LISTA DE CLIENTES DISPONIBLES ---" << endl;
     archClientes.listar();
     cout << "---------------------------------------" << endl;
 
-    cout << "Ingrese el DNI del cliente a inscribir: ";
-    cin >> dni;
+    cout << "Ingrese el ID del socio a inscribir: ";
+    cin >> id;
 
-    posCliente = archClientes.buscarCliente(dni);
+    posCliente = archClientes.buscarSocio(id);
     if (posCliente == -1)
     {
-        cout << "ERROR: No se encontro ningun cliente con ese DNI." << endl;
+        cout << "ERROR: No se encontro ningun cliente con ese ID." << endl;
         rlutil::anykey();
         return;
     }
@@ -55,7 +57,7 @@ void nuevaInscripcion()
         return;
     }
 
-    system("cls");
+    rlutil::cls();
 
     cout << endl << "--- LISTA DE ACTIVIDADES DISPONIBLES ---" << endl;
     archActividades.listar();
@@ -87,16 +89,16 @@ void nuevaInscripcion()
         return;
     }
 
-    system("cls");
+    rlutil::cls();
 
     Fecha fechaInsc;
     int dia, mes, anio;
 
     cout << "--- FECHA DE INSCRIPCION ---" << endl;
     cout << "Ingrese fecha de inscripcion (DD/MM/ANIO):";
-    int x = 40, yStart = 11;
+    int x = 0, yStart = 0;
     Fecha nuevaFecha;
-    nuevaFecha.cargarCompacta(x + 19, yStart + 9);
+    nuevaFecha.cargarCompacta(x , yStart );
     nuevaIns.setFechaInscripcion(nuevaFecha);
 
     int opcionMod;
@@ -114,7 +116,7 @@ void nuevaInscripcion()
 
     if (archInscripciones.grabarInscripcion(nuevaIns))
     {
-        rlutil::setColor(rlutil::GREEN);
+        rlutil::setColor(rlutil::YELLOW);
         cout << "\nInscripcion realizada con exito!" << endl;
     }
     else
@@ -122,13 +124,15 @@ void nuevaInscripcion()
         rlutil::setColor(rlutil::RED);
         cout << "\nERROR: No se pudo realizar la inscripcion." << endl;
     }
-    rlutil::anykey();
 }
 
 void gestionarEstadoInscripcion()
 {
     rlutil::cls();
     ArchivoInscripcion archInscripciones("inscripciones.dat");
+
+    archInscripciones.listar();
+    rlutil::anykey();
 
     int nroSocio = pedirNumSocio("GESTIONAR ESTADO DE INSCRIPCION:");
     int idAct = pedirIdActividad();
@@ -167,7 +171,20 @@ void gestionarEstadoInscripcion()
             rlutil::setBackgroundColor(rlutil::BLACK);
             rlutil::setColor(rlutil::LIGHTRED);
         }
-        cout << "ESTADO       : " << (ins.getEstado() ? "ACTIVA   " : "INACTIVA ");
+        cout << "ESTADO       : " << (ins.getEstado() ? "ACTIVA   " : "INACTIVA ") << endl;
+
+        rlutil::locate(5, 7);
+        if (seleccion == 1)
+        {
+            rlutil::setBackgroundColor(rlutil::LIGHTRED);
+            rlutil::setColor(rlutil::BLACK);
+        }
+        else
+        {
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::setColor(rlutil::LIGHTRED);
+        }
+        cout << "LIBRE        : " << (ins.getLibre() ? "SI" : "NO") ;
 
         rlutil::setBackgroundColor(rlutil::BLACK);
         rlutil::setColor(rlutil::LIGHTRED);
@@ -175,7 +192,7 @@ void gestionarEstadoInscripcion()
         int btnX = 5;
         int btnY = 8;
         rlutil::locate(btnX, btnY);
-        if (seleccion == 1)
+        if (seleccion == 2)
         {
             rlutil::setBackgroundColor(rlutil::LIGHTRED);
             rlutil::setColor(rlutil::BLACK);
@@ -198,18 +215,19 @@ void gestionarEstadoInscripcion()
         }
         else if (tecla == rlutil::KEY_DOWN)
         {
-            if (seleccion < 1) seleccion++;
+            if (seleccion < 2) seleccion++;
         }
         else if (tecla == rlutil::KEY_ENTER)
         {
             if (seleccion == 0)
             {
-                // Alternar estado en la vista (no guardado todavía)
                 ins.setEstado(!ins.getEstado());
             }
-            else if (seleccion == 1)
+            else if(seleccion == 1){
+                ins.setLibre(!ins.getLibre());
+            }
+            else if (seleccion == 2)
             {
-                // Guardar cambios en el archivo
                 if (archInscripciones.modificarInscripcion(ins, pos))
                 {
                     mostrarMensaje("Estado de inscripcion modificado correctamente", rlutil::YELLOW);
@@ -223,7 +241,6 @@ void gestionarEstadoInscripcion()
                 salir = true;
             }
         }
-        // si el usuario presiona ESC u otra tecla, se mantiene en el loop (consistente con otros menús)
     }
 }
 void menuListarInscripciones()

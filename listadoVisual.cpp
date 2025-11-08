@@ -8,36 +8,45 @@ using namespace std;
 void dibujarTablaClientesHeader()
 {
     rlutil::locate(1, 2);
-    cout << "------------------------------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
     rlutil::locate(2, 3);
     cout << "SOCIO";
-    rlutil::locate(10, 3);
+    rlutil::locate(8, 3);
     cout << "| DNI";
-    rlutil::locate(22, 3);
+    rlutil::locate(20, 3);
     cout << "| NOMBRE";
-    rlutil::locate(40, 3);
+    rlutil::locate(50, 3);
     cout << "| APELLIDO";
-    rlutil::locate(60, 3);
+    rlutil::locate(80,3);
+    cout << "| NACIMIENTO";
+    rlutil::locate(93, 3);
+    cout << "| TELEFONO";
+    rlutil::locate(108, 3);
     cout << "| EMAIL";
-    rlutil::locate(90, 3);
+    rlutil::locate(138, 3);
     cout << "| ESTADO";
     rlutil::locate(1, 4);
-    cout << "------------------------------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 void dibujarTablaClientesRow(Persona reg, int y)
 {
     rlutil::locate(2, y);
     cout << reg.getNumeroSocio();
-    rlutil::locate(10, y);
+    rlutil::locate(8, y);
     cout << "| " << reg.getDNI();
-    rlutil::locate(22, y);
+    rlutil::locate(20, y);
     cout << "| " << reg.getNombre();
-    rlutil::locate(40, y);
+    rlutil::locate(50, y);
     cout << "| " << reg.getApellido();
-    rlutil::locate(60, y);
+    rlutil::locate(80, y);
+    cout << "| ";
+    reg.getFechaNacimiento().mostrar();
+    rlutil::locate(93, y);
+    cout << "| " << reg.getTelefono();
+    rlutil::locate(108, y);
     cout << "| " << reg.getEmail();
-    rlutil::locate(90, y);
+    rlutil::locate(138, y);
     cout << "| " << (reg.getEstado() ? "Activo" : "Inactivo");
 }
 void dibujarFichaCliente(Persona reg)

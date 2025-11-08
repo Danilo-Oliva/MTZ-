@@ -6,7 +6,6 @@
 #include "clsPersona.h"
 #include "clsInscripcionActividad.h"
 
-
 using namespace std;
 
 void actMasIngreso()
@@ -51,7 +50,7 @@ void actMasIngreso()
             maximo = i;
         }
     }
-    cout << "La id de la actividad con mas ingresos es: " << maximo << endl;
+    cout << "La id de la actividad con mas ingresos es: " << maximo +1 << endl;
 }
 void actMasRecurrida()
 {
@@ -97,12 +96,10 @@ void actMasRecurrida()
     }
     cout << "La actividad con mas clientes es: " << maximo + 1 << endl;
 }
-
 void ingresoPorMesYModalidad()
 {
 
 }
-
 void clientesNoAnotadosAnioActual()
 {
 
