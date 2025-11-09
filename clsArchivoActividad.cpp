@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include "rlutil.h"
 #include "clsArchivoActividad.h"
 
 using namespace std;
@@ -103,7 +104,7 @@ void ArchivoActividad::listar(int modoListado)
     if (cantAct == 0)
     {
         cout << "No hay Actividades para mostrar." << endl;
-        system("pause");
+        rlutil::anykey();
         return;
     }
 

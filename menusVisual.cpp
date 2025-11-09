@@ -544,7 +544,7 @@ int pedirDNI(const char* titulo)
 {
     int dni;
     int x = 25, y = 8;
-    system("cls");
+    rlutil::cls();
     parteArribaMenu(x, y, 40);
     for(int i=0; i<4; i++) bordesMenu(x, y + 1 + i, 40);
     parteAbajoMenu(x, y + 5, 40);
@@ -562,7 +562,7 @@ int pedirNumSocio(const char* titulo)
 {
     int numSocio;
     int x = 25, y = 8;
-    system("cls");
+    rlutil::cls();
     parteArribaMenu(x, y, 40);
     for(int i=0; i<4; i++) bordesMenu(x, y + 1 + i, 40);
     parteAbajoMenu(x, y + 5, 40);
@@ -580,7 +580,7 @@ int pedirIdActividad()
 {
     int idActividad;
     int x = 25, y = 8;
-    system("cls");
+    rlutil::cls();
     parteArribaMenu(x, y, 40);
     for(int i=0; i<4; i++) bordesMenu(x, y + 1 + i, 40);
     parteAbajoMenu(x, y + 5, 40);
@@ -641,7 +641,7 @@ bool mostrarFormularioCargaCliente(Persona &reg)
 void mostrarMensaje(const char* mensaje, int color = rlutil::WHITE)
 {
     int x = 25, y = 10;
-    system("cls");
+    rlutil::cls();
     parteArribaMenu(x, y, 40);
     bordesMenu(x, y + 1, 40);
     bordesMenu(x, y + 2, 40);
@@ -661,7 +661,7 @@ bool mostrarConfirmacion(const char* titulo, const char* cuerpo)
     int tecla = 0;
     bool respuesta = false;
     int movimiento = 0;
-    system("cls");
+    rlutil::cls();
     do
     {
         int x = 25, y = 8;
@@ -691,7 +691,7 @@ bool mostrarConfirmacion(const char* titulo, const char* cuerpo)
         }
     }
     while(tecla != 1);
-    system("cls");
+    rlutil::cls();
     return respuesta;
 
 }

@@ -120,6 +120,7 @@ void ArchivoCliente::listar(int modoListado)
     int contadorMostrados = 0;
 
     const int filaInicial = 5;
+    int limiteTabla = 145;
 
     rlutil::cls();
     dibujarTablaClientesHeader();
@@ -150,6 +151,27 @@ void ArchivoCliente::listar(int modoListado)
                 contadorMostrados++;
             }
         }
+        rlutil::locate(1, filaInicial + contadorMostrados);
+        cout << char(200) << endl;
+        rlutil::locate(2, filaInicial + contadorMostrados);
+        for(int i = 0; i < limiteTabla; i++) cout << char(205);
+        cout << char(188) << endl;
+
+
+        rlutil::locate(8, filaInicial + contadorMostrados);
+        cout << char(202);
+        rlutil::locate(20, filaInicial + contadorMostrados);
+        cout << char(202);
+        rlutil::locate(50, filaInicial + contadorMostrados);
+        cout << char(202);
+        rlutil::locate(80, filaInicial + contadorMostrados);
+        cout << char(202);
+        rlutil::locate(93, filaInicial + contadorMostrados);
+        cout << char(202);
+        rlutil::locate(108, filaInicial + contadorMostrados);
+        cout << char(202);
+        rlutil::locate(138, filaInicial + contadorMostrados);
+        cout << char(202);
     }
 
     if (contadorMostrados == 0)

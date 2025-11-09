@@ -43,7 +43,6 @@ void nuevaInscripcion()
     if (posCliente == -1)
     {
         cout << "ERROR: No se encontro ningun cliente con ese ID." << endl;
-        rlutil::anykey();
         return;
     }
 
@@ -335,7 +334,6 @@ void menuInscripciones() {
             case 3:
                 menuListarInscripciones();
 
-                rlutil::anykey();
                 rlutil::cls();
                 imprimirMenuInscripciones();
 

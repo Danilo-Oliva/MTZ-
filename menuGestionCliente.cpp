@@ -61,7 +61,7 @@ void menuListarClientes()
     }
 
     int opcion, y = 0;
-    system("cls");
+    rlutil::cls();
     imprimirMenuListarClientes();
     do
     {
@@ -277,7 +277,7 @@ void buscarClientePorDNI()
 
     if (pos != -1)
     {
-        system("cls");
+        rlutil::cls();
         Persona per = arch.leerArchivo(pos);
         dibujarFichaCliente(per);
         rlutil::anykey();

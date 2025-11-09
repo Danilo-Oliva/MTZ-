@@ -86,7 +86,7 @@ void ArchivoInscripcion::listar(int modoListado)
     if (cantIns == 0)
     {
         cout << "No hay inscripciones para mostrar." << endl;
-        system("pause");
+        rlutil::anykey();
         return;
     }
 
