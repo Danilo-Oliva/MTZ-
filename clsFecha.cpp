@@ -87,23 +87,21 @@ bool Fecha::cargarCompacta(int xpos, int ypos)
 {
     rlutil::showcursor();
     int d, m, a;
+    int x = 44, y = 2;
 
     while (true)
     {
-        rlutil::locate(xpos, ypos);
+        rlutil::locate(x, y);
         cout << "                ";
-        rlutil::locate(xpos, ypos);
-
+        rlutil::locate(x, y);
         cin >> d;
-
-
-        rlutil::locate(xpos + 2, ypos);
-        cout << " / ";
+        rlutil::locate(x + 2, y);
+        cout << "/";
         cin >> m;
 
 
-        rlutil::locate(xpos + 7, ypos);
-        cout << " / ";
+        rlutil::locate(x + 4, y);
+        cout << "/";
         cin >> a;
 
 
@@ -126,6 +124,8 @@ bool Fecha::cargarCompacta(int xpos, int ypos)
             cout << "                                               ";
 
         }
+        cin.clear();
+        cin.ignore(1000, '\n');
     }
     rlutil::hidecursor();
     return false;

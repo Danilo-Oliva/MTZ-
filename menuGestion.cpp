@@ -53,9 +53,10 @@ void accionarMenu()
         case 4:
             rlutil::cls();
 
-            actMasIngreso();
-            actMasRecurrida();
-            ingresoPorMesYModalidad();
+//            actMasIngreso();
+//            actMasRecurrida();
+//            ingresoPorMesYModalidad();
+            clientesNoAnotadosAnioActual();
 
             rlutil::anykey();
             rlutil::cls();

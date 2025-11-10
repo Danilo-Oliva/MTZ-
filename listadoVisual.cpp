@@ -7,13 +7,13 @@ using namespace std;
 
 void dibujarTablaClientesHeader()
 {
-    int limiteTabla = 145;
+    int limiteTabla = 147;
 
     rlutil::locate(1, 2);
     cout << char(201) << endl;
     rlutil::locate(2, 2);
     for(int i = 0; i < limiteTabla; i++) cout << char(205);
-    rlutil::locate(147, 2);
+    rlutil::locate(149, 2);
     cout << char(187) << endl;
 
 
@@ -71,7 +71,7 @@ void dibujarTablaClientesHeader()
     rlutil::locate(108, 3);
     cout << char(186) << " EMAIL";
     rlutil::locate(138, 3);
-    cout << char(186) << " ESTADO " << char(186);
+    cout << char(186) << " ESTADO   " << char(186);
     cout << endl;
 }
 
@@ -93,8 +93,39 @@ void dibujarTablaClientesRow(Persona reg, int y)
     rlutil::locate(108, y);
     cout << char(186) << " " << reg.getEmail();
     rlutil::locate(138, y);
-    cout << char(186) << " " << (reg.getEstado() ? "Activo" : "Inactivo") << " " << char(186);
+    cout << char(186) << " " << (reg.getEstado() ? "Activo" : "Inactivo") << " ";
+    rlutil::locate(149, y);
+    cout << char(186);
 }
+
+void dibujarFinalTabla(int y)
+{
+    int limiteTabla = 147;
+
+
+    rlutil::locate(1, y);
+    cout << char(200) << endl;
+    rlutil::locate(2, y);
+    for(int i = 0; i < limiteTabla; i++) cout << char(205);
+    cout << char(188) << endl;
+
+
+    rlutil::locate(8, y);
+    cout << char(202);
+    rlutil::locate(20, y);
+    cout << char(202);
+    rlutil::locate(50, y);
+    cout << char(202);
+    rlutil::locate(80, y);
+    cout << char(202);
+    rlutil::locate(93, y);
+    cout << char(202);
+    rlutil::locate(108, y);
+    cout << char(202);
+    rlutil::locate(138, y);
+    cout << char(202);
+}
+
 void dibujarFichaCliente(Persona reg)
 {
 

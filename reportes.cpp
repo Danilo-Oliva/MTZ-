@@ -192,4 +192,30 @@ void ingresoPorMesYModalidad()
 }
 void clientesNoAnotadosAnioActual()
 {
+    ArchivoInscripcion archIns("inscripciones.dat");
+    ArchivoCliente archCli("clientes.dat");
+
+
+
+    int cantIns = archIns.contarInscripciones();
+    const int cantCli = archCli.contarClientes();
+    bool noInscripto[8] = {false};
+
+    for (int i = 0; i < cantCli; i++)
+    {
+        Persona cli = archCli.leerArchivo(i);
+        for (int j = 0; j < cantIns; j++)
+        {
+            InscripcionActividad ins = archIns.leerInscripcion(j);
+            if(cli.getNumeroSocio() == ins.getNumeroSocio() && ins.getFechaInscripcion().getAnio() == 2025)
+            {
+                cout << "Este chad si viene: " << cli.getNumeroSocio() << endl;
+                noInscripto[i] = true;
+            }
+        }
+        if(noInscripto[i] == false) cout << "Este puto no viene: " << cli.getNumeroSocio() << endl;
+
+
+    }
+
 }

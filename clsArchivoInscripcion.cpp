@@ -122,18 +122,12 @@ void ArchivoInscripcion::listar(int modoListado)
             Persona socio;
             if (posSocio != -1) {
                 socio = archCli.leerArchivo(posSocio);
-            } else {
-                socio.setNombre("Socio");
-                socio.setApellido("No Encontrado");
             }
 
             int posAct = archAct.buscarActividad(ins.getIdAct());
             Actividad act;
             if (posAct != -1) {
                 act = archAct.leerArchivo(posAct);
-            } else {
-                act.setNombre("Actividad No Encontrada");
-                act.setCuotaBase(0);
             }
 
             cout << "----------------------------------------" << endl;

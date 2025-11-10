@@ -52,7 +52,6 @@ void nuevaInscripcion()
     if (!per.getEstado())
     {
         cout << "ERROR: El cliente se encuentra INACTIVO. No se puede realizar la inscripcion." << endl;
-        rlutil::anykey();
         return;
     }
 
@@ -67,7 +66,6 @@ void nuevaInscripcion()
     if (archActividades.buscarActividad(idAct) == -1)
     {
         cout << "ERROR: El ID de actividad no existe." << endl;
-        rlutil::anykey();
         return;
     }
     int posAct = archActividades.buscarActividad(idAct);
@@ -76,7 +74,6 @@ void nuevaInscripcion()
     {
         rlutil::setColor(rlutil::YELLOW);
         cout << "ERROR: La actividad se encuentra INACTIVA. No se puede realizar la inscripcion." << endl;
-        rlutil::anykey();
         return;
     }
 
@@ -97,7 +94,7 @@ void nuevaInscripcion()
     cout << "Ingrese fecha de inscripcion (DD/MM/ANIO):";
     int x = 0, yStart = 0;
     Fecha nuevaFecha;
-    nuevaFecha.cargarCompacta(x , yStart );
+    nuevaFecha.cargarCompacta(x, yStart);
     nuevaIns.setFechaInscripcion(nuevaFecha);
 
     int opcionMod;
