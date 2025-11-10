@@ -209,7 +209,6 @@ void clientesNoAnotadosAnioActual()
             InscripcionActividad ins = archIns.leerInscripcion(j);
             if(cli.getNumeroSocio() == ins.getNumeroSocio() && ins.getFechaInscripcion().getAnio() == 2025)
             {
-                cout << "Este chad si viene: " << cli.getNumeroSocio() << endl;
                 noInscripto[i] = true;
             }
         }
