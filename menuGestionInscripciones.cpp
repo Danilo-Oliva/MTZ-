@@ -130,8 +130,8 @@ void gestionarEstadoInscripcion()
     archInscripciones.listar();
     rlutil::anykey();
 
-    int nroSocio = pedirNumSocio("GESTIONAR ESTADO DE INSCRIPCION:");
-    int idAct = pedirIdActividad();
+    int nroSocio = pedirNumSocio("GESTIONAR INSCRIPCION: ");
+    int idAct = pedirIdActividad("GESTIONAR INSCRIPCION: ");
     int pos = archInscripciones.buscarInscripcionGlobal(nroSocio, idAct);
 
     if (pos == -1)
@@ -148,7 +148,7 @@ void gestionarEstadoInscripcion()
     rlutil::cls();
     while (!salir)
     {
-        escribirTexto("GESTIONAR ESTADO DE INSCRIPCION", 5, 1);
+        escribirTexto("GESTIONAR INSCRIPCION", 5, 1);
 
         rlutil::locate(5, 3);
         cout << "NRO SOCIO    : " << ins.getNumeroSocio();
@@ -198,6 +198,25 @@ void gestionarEstadoInscripcion()
             rlutil::setBackgroundColor(rlutil::BLACK);
             rlutil::setColor(rlutil::LIGHTRED);
         }
+        cout << "FEC DE INS   : ";
+        ins.getFechaInscripcion().mostrar();
+
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::LIGHTRED);
+
+        btnX = 5;
+        btnY = 9;
+        rlutil::locate(btnX, btnY);
+        if (seleccion == 3)
+        {
+            rlutil::setBackgroundColor(rlutil::LIGHTRED);
+            rlutil::setColor(rlutil::BLACK);
+        }
+        else
+        {
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::setColor(rlutil::LIGHTRED);
+        }
         cout << "   GUARDAR Y VOLVER   ";
 
         rlutil::setBackgroundColor(rlutil::BLACK);
@@ -211,7 +230,7 @@ void gestionarEstadoInscripcion()
         }
         else if (tecla == rlutil::KEY_DOWN)
         {
-            if (seleccion < 2) seleccion++;
+            if (seleccion < 3) seleccion++;
         }
         else if (tecla == rlutil::KEY_ENTER)
         {
@@ -224,9 +243,14 @@ void gestionarEstadoInscripcion()
             }
             else if (seleccion == 2)
             {
+                Fecha fec;
+                fec.cargarCompacta(20, 8);
+                ins.setFechaInscripcion(fec);
+            }
+            else if(seleccion == 3){
                 if (archInscripciones.modificarInscripcion(ins, pos))
                 {
-                    mostrarMensaje("Estado de inscripcion modificado correctamente", rlutil::YELLOW);
+                    mostrarMensaje("Inscripcion modificada correctamente", rlutil::YELLOW);
                 }
                 else
                 {
@@ -235,6 +259,7 @@ void gestionarEstadoInscripcion()
                 rlutil::cls();
                 imprimirMenuInscripciones();
                 salir = true;
+
             }
         }
     }

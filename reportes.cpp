@@ -53,6 +53,11 @@ void actMasIngreso()
         }
     }
     cout << "La id de la actividad con mas ingresos es: " << maximo +1 << endl;
+
+    cout << endl;
+    int pos = archAct.buscarActividad(maximo + 1);
+    Actividad act = archAct.leerArchivo(pos);
+    act.mostrar();
 }
 //SEGUNDO REPORTE
 void actMasRecurrida()
@@ -99,6 +104,12 @@ void actMasRecurrida()
         }
     }
     cout << "La actividad con mas clientes es: " << maximo + 1 << endl;
+    cout << "Con un total de " << maxClientes << " clientes" << endl;
+
+    cout << endl;
+    int pos = archAct.buscarActividad(maximo + 1);
+    Actividad act = archAct.leerArchivo(pos);
+    act.mostrar();
 }
 //TERCER REPORTE
 void ingresoPorMesYModalidad()
@@ -196,11 +207,16 @@ void clientesNoAnotadosAnioActual()
     ArchivoInscripcion archIns("inscripciones.dat");
     ArchivoCliente archCli("clientes.dat");
 
-
-
     int cantIns = archIns.contarInscripciones();
     const int cantCli = archCli.contarClientes();
     bool noInscripto[8] = {false};
+
+    int anioActual;
+
+    cout << "Ingrese anio actual: ";
+    cin >> anioActual;
+
+    rlutil::cls();
 
     for (int i = 0; i < cantCli; i++)
     {
@@ -208,12 +224,16 @@ void clientesNoAnotadosAnioActual()
         for (int j = 0; j < cantIns; j++)
         {
             InscripcionActividad ins = archIns.leerInscripcion(j);
-            if(cli.getNumeroSocio() == ins.getNumeroSocio() && ins.getFechaInscripcion().getAnio() == 2025)
+            if(cli.getNumeroSocio() == ins.getNumeroSocio() && ins.getFechaInscripcion().getAnio() == anioActual)
             {
                 noInscripto[i] = true;
             }
         }
-        if(noInscripto[i] == false) cout << "Este no viene: " << cli.getNumeroSocio() << endl;
+        if(noInscripto[i] == false){
+            cout << "ID     : " << cli.getNumeroSocio() << endl;
+            cout << "Nombre : " << cli.getNombre() << " " << cli.getApellido() << endl;
+            cout << "--------------------------------------" << endl;
+        }
 
 
     }

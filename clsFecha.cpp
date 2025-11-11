@@ -115,12 +115,14 @@ bool Fecha::cargarCompacta(int xPos, int yPos)
         }
         else
         {
-            rlutil::locate(xPos, yPos + 1);
-            cout << "Fecha invalida. Reingrese (presione una tecla)...";
+            rlutil::locate(xPos, yPos);
+            rlutil::setColor(rlutil::YELLOW);
+            cout << "Fecha invalida";
             rlutil::anykey();
 
-            rlutil::locate(xPos, yPos + 1);
-            cout << "                                               ";
+            rlutil::locate(xPos, yPos);
+            cout << "              ";
+            rlutil::setColor(rlutil::LIGHTRED);
 
         }
         cin.clear();

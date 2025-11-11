@@ -20,12 +20,12 @@ void menuModificarCliente()
         return;
     }
 
-    int dni = pedirDNI("MODIFICAR CLIENTE: ");
-    int pos = arch.buscarCliente(dni);
+    int idSoc = pedirNumSocio("MODIFICAR CLIENTE: ");
+    int pos = arch.buscarSocio(idSoc);
 
 
     if (pos == -1) {
-        mostrarMensaje("No se encontro un cliente con ese DNI.", rlutil::LIGHTRED);
+        mostrarMensaje("No se encontro un cliente con ese ID.", rlutil::LIGHTRED);
         imprimirMenuClientes();
         return;
     }

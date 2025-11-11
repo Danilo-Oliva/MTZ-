@@ -70,7 +70,7 @@ void imprimirMenuInscripciones()
 
     escribirTexto("M E N U    I N S C R I P C I O N E S", 26, 6);
     escribirTexto(" INGRESAR NUEVA INSCRIPCION ", 30, 9);
-    escribirTexto("CAMBIAR  ESTADO  INSCRIPCION", 30, 11);
+    escribirTexto("    CAMBIAR INSCRIPCION", 30, 11);
     escribirTexto(" LISTAR  LAS  INSCRIPCIONES ", 30, 13);
     escribirTexto("VOLVER   AL   MENU   GESTION", 30, 15);
 }
@@ -501,7 +501,6 @@ int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
                  rlutil::locate(x + 19, yCampoActual);
                  cout << string(11, ' ');
                  rlutil::locate(x + 19, yCampoActual);
-                 //cargarCadena(nuevoDniStr, 11);
                  cin >> nuevoDni;
                  if (!(nuevoDni >= 1000000 && nuevoDni <= 99999999))
                  {
@@ -521,7 +520,6 @@ int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
                      {
                          reg.setDNI(nuevoDni);
                          rlutil::hidecursor();
-                         mostrarMensaje("DNI actualizado (RECUERDE GUARDAR).", rlutil::YELLOW);
                      }
                  }
                  rlutil::hidecursor();
@@ -664,7 +662,7 @@ int pedirNumSocio(const char* titulo)
     return numSocio;
 }
 
-int pedirIdActividad()
+int pedirIdActividad(const char* titulo)
 {
     int idActividad;
     int x = 25, y = 8;
@@ -672,6 +670,8 @@ int pedirIdActividad()
     parteArribaMenu(x, y, 40);
     for(int i=0; i<4; i++) bordesMenu(x, y + 1 + i, 40);
     parteAbajoMenu(x, y + 5, 40);
+    escribirTexto(titulo, x + 2, y +1);
+
     rlutil::locate(x + 5, y + 3);
     cout << "INGRESE ID DE LA ACTIVIDAD: ";
     rlutil::showcursor();

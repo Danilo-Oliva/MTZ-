@@ -26,9 +26,7 @@ void menuModificarActividad()
         return;
     }
 
-    int id;
-    cout << "Ingrese ID de la actividad a modificar ndeah anashe input baby yoda: ";
-    cin >> id;
+    int id = pedirIdActividad("MODIFICAR ACTIVIDAD: ");
     int pos = arc.buscarActividad(id);
 
 

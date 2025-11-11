@@ -93,7 +93,7 @@ void modificarEstadoActividad()
     Actividad act;
     ArchivoActividad arch("actividades.dat", act);
 
-    int id = pedirIdActividad();
+    int id = pedirIdActividad("MODIFICAR ESTADO DE ACTIVIDAD: ");
     int pos = arch.buscarActividad(id);
     if (pos == -1)
     {

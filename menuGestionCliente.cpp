@@ -105,8 +105,8 @@ void modificarEstadoCliente()
     Persona per;
     ArchivoCliente archCli("clientes.dat", per);
 
-    int dni = pedirDNI("MODIFICAR ESTADO DE CLIENTE:");
-    int pos = archCli.buscarCliente(dni);
+    int idSoc = pedirNumSocio("MODIFICAR ESTADO DE CLIENTE:");
+    int pos = archCli.buscarSocio(idSoc);
     if (pos == -1)
     {
         mostrarMensaje("Cliente no encontrado.", rlutil::LIGHTRED);

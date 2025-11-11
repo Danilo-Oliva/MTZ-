@@ -29,7 +29,7 @@ int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y);
 int pedirDNI(const char* titulo);
 int pedirNuevoDNI(const char* titulo);
 int pedirNumSocio(const char* titulo);
-int pedirIdActividad();
+int pedirIdActividad(const char* titulo);
 
 bool mostrarFormularioCargaCliente(Persona &reg);
 void mostrarMensaje(const char* mensaje, int color);
