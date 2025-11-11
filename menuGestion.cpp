@@ -47,7 +47,6 @@ void accionarMenu()
 
             menuReportes();
 
-            rlutil::anykey();
             rlutil::cls();
             imprimirMenuGestion();
 

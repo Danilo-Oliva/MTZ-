@@ -54,6 +54,7 @@ void actMasIngreso()
     }
     cout << "La id de la actividad con mas ingresos es: " << maximo +1 << endl;
 }
+//SEGUNDO REPORTE
 void actMasRecurrida()
 {
     ArchivoInscripcion archIns("inscripciones.dat");
@@ -99,6 +100,7 @@ void actMasRecurrida()
     }
     cout << "La actividad con mas clientes es: " << maximo + 1 << endl;
 }
+//TERCER REPORTE
 void ingresoPorMesYModalidad()
 {
     int anio;
@@ -179,17 +181,16 @@ void ingresoPorMesYModalidad()
         }
 
         cout << "==========================================" << endl;
-        cout << "           TOTALES GENERALES DEL ANIO " << anio << endl;
+        cout << "      TOTALES GENERALES DEL ANIO " << anio << endl;
         cout << "==========================================" << endl;
         cout << "Total 3 Veces por Semana: $ " << totalMod3Veces << endl;
         cout << "Total Pase Libre:         $ " << totalModPaseLibre << endl;
-        cout << "INGRESO TOTAL ANUAL:    $ " << totalGeneral << endl;
+        cout << "INGRESO TOTAL ANUAL:      $ " << totalGeneral << endl;
         cout << "==========================================" << endl;
 
-        rlutil::anykey();
-        rlutil::cls();
     }
 }
+//TERCER REPORTE
 void clientesNoAnotadosAnioActual()
 {
     ArchivoInscripcion archIns("inscripciones.dat");
@@ -212,7 +213,7 @@ void clientesNoAnotadosAnioActual()
                 noInscripto[i] = true;
             }
         }
-        if(noInscripto[i] == false) cout << "Este puto no viene: " << cli.getNumeroSocio() << endl;
+        if(noInscripto[i] == false) cout << "Este no viene: " << cli.getNumeroSocio() << endl;
 
 
     }

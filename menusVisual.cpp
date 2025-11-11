@@ -74,7 +74,21 @@ void imprimirMenuInscripciones()
     escribirTexto(" LISTAR  LAS  INSCRIPCIONES ", 30, 13);
     escribirTexto("VOLVER   AL   MENU   GESTION", 30, 15);
 }
+void imprimirMenuReportes()
+{
+    parteArribaMenu(24, 5, 37);
+    bordesMenu(24, 6, 37);
+    separarMenues(24, 7, 37);
+    for (int i = 0; i < 11; i ++) bordesMenu(24, 8 + i, 37);
+    parteAbajoMenu(24, 19, 37);
 
+    escribirTexto("M E N U  D E  R E P O R T E S", 30, 6);
+    escribirTexto(" ACTIVIDAD CON MAS INGRESOS", 30, 9);
+    escribirTexto("  ACTIVIDAD MAS RECURRIDA", 30, 11);
+    escribirTexto("INGRESO POR MES Y MODALIDAD", 30, 13);
+    escribirTexto("CLIENTES NO ANOTADOS EN EL ANIO ", 28, 15);
+    escribirTexto("          SALIR   ", 30, 17);
+}
 int interactuarMenuGestion(int &opcionMenu, int &y)
 {
     mostrarCursor(28, 58, 9, y);
@@ -177,7 +191,7 @@ int interactuarMenuActividades(int &opcionMenu, int &y)
             break;
         }
     }
-    else if(tecla > 13) y = accionarCursor(28, 55, 9, y, tecla, 4); // ahora 4 opciones (0..4)
+    else if(tecla > 13) y = accionarCursor(28, 55, 9, y, tecla, 4);
 
     return opcionMenu;
 }
@@ -215,7 +229,35 @@ int interactuarMenuInscripciones(int &opcionMenu, int &y)
     else if(tecla > 13) y = accionarCursor(28, 59, 9, y, tecla, 3);
 
     return opcionMenu;
+}
+int interactuarMenuReportes(int &opcionMenu, int &y)
+{
+    mostrarCursor(26, 60, 9, y);
+    int tecla = rlutil::getkey();
+    if(tecla == 1)
+    {
+        switch(y)
+        {
+        case 0:
+            opcionMenu = 1;// PRIMER REPORTE
+            break;
+        case 1:
+            opcionMenu = 2;// SEGUNDO REPORTE
+            break;
+        case 2:
+            opcionMenu = 3;// TERCER REPORTE
+            break;
+        case 3:
+            opcionMenu = 4;// CUARTO REPORTE
+            break;
+        case 4:
+            opcionMenu = 0; // SALIR
+            break;
+        }
+    }
+    else if(tecla > 13) y = accionarCursor(26, 60, 9, y, tecla, 4);
 
+    return opcionMenu;
 }
 void imprimirMenuListarClientes()
 {

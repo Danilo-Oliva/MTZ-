@@ -1,25 +1,22 @@
 #include<iostream>
+#include "menusVisual.h"
 #include "reportes.h"
 #include "rlutil.h"
 
 using namespace std;
 
 void menuReportes(){
-    int opcionReporte;
-
-    cout << " == REPORTES == " << endl;
-    cout << "1 - Actividad con mas ingresos" << endl;
-    cout << "2 - Actividad mas recurrida" << endl;
-    cout << "3 - Ingresos por mes y modalidad" << endl;
-    cout << "4 - Clientes no anotados en el anio actual" << endl;
-    cout << "Opcion: ";
-    cin >> opcionReporte;
-
     rlutil::cls();
-
+    imprimirMenuReportes();
+    int opcion, y = 0;
     do
     {
-        switch(opcionReporte)
+        opcion = -1;
+
+        opcion = interactuarMenuReportes(opcion, y);
+
+
+        switch (opcion)
         {
         case 1:
             rlutil::cls();
@@ -28,6 +25,7 @@ void menuReportes(){
 
             rlutil::anykey();
             rlutil::cls();
+            imprimirMenuReportes();
             break;
         case 2:
             rlutil::cls();
@@ -36,6 +34,7 @@ void menuReportes(){
 
             rlutil::anykey();
             rlutil::cls();
+            imprimirMenuReportes();
             break;
         case 3:
             rlutil::cls();
@@ -44,6 +43,7 @@ void menuReportes(){
 
             rlutil::anykey();
             rlutil::cls();
+            imprimirMenuReportes();
             break;
         case 4:
             rlutil::cls();
@@ -52,8 +52,11 @@ void menuReportes(){
 
             rlutil::anykey();
             rlutil::cls();
-
+            imprimirMenuReportes();
             break;
         }
-    }while(opcionReporte != 0);
+    }
+    while (opcion != 0);
+    rlutil::cls();
+    imprimirMenuGestion();
 }

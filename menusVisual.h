@@ -6,11 +6,13 @@ void imprimirMenuGestion();
 void imprimirMenuClientes();
 void imprimirMenuActividades();
 void imprimirMenuInscripciones();
+void imprimirMenuReportes();
 
 int interactuarMenuGestion(int &opcionMenu, int &y);
 int interactuarMenuClientes(int &opcionMenu, int &y);
 int interactuarMenuActividades(int &opcionMenu, int &y);
 int interactuarMenuInscripciones(int &opcionMenu, int &y);
+int interactuarMenuReportes(int &opcionMenu, int &y);
 
 void imprimirMenuListarInscripciones();
 int interactuarMenuListarInscripciones(int &opcionMenu, int &y);
