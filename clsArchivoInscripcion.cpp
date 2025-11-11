@@ -1,5 +1,4 @@
 #include <iostream>
-#include<cstring>
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
 #include "clsPersona.h"

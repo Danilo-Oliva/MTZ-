@@ -209,13 +209,23 @@ void clientesNoAnotadosAnioActual()
 
     int cantIns = archIns.contarInscripciones();
     const int cantCli = archCli.contarClientes();
-    bool noInscripto[8] = {false};
+
+    if (cantCli == 0)
+    {
+        cout << "No hay clientes registrados." << endl;
+        return;
+    }
+
+    bool* noInscripto = new bool[cantCli];
+
+    for (int i = 0; i < cantCli; i++)
+    {
+        noInscripto[i] = false;
+    }
 
     int anioActual;
-
     cout << "Ingrese anio actual: ";
     cin >> anioActual;
-
     rlutil::cls();
 
     for (int i = 0; i < cantCli; i++)
@@ -234,8 +244,7 @@ void clientesNoAnotadosAnioActual()
             cout << "Nombre : " << cli.getNombre() << " " << cli.getApellido() << endl;
             cout << "--------------------------------------" << endl;
         }
-
-
     }
 
+    delete[] noInscripto;
 }

@@ -9,13 +9,6 @@
 
 using namespace std;
 
-
-///ACTIVIDAD
-
-///MENU INSCRIPCIONES
-
-
-///MENU PRINCIPAL
 void accionarMenu()
 {
     int opcionMenu = -1, y = 0;
@@ -25,7 +18,6 @@ void accionarMenu()
 
     do
     {
-
         interactuarMenuGestion(opcionMenu, y);
 
         switch(opcionMenu)

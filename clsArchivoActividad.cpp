@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstring>
 #include "rlutil.h"
 #include "clsArchivoActividad.h"
 #include "listadoVisual.h"
@@ -104,7 +103,7 @@ void ArchivoActividad::listar(int modoListado)
     int cantAct = contarActividades();
     int contadorMostrados = 0;
 
-    const int filaInicial = 5; // coincide con el header en listadoVisual.cpp
+    const int filaInicial = 5;
 
     rlutil::cls();
     dibujarTablaActividadesHeader();
@@ -118,20 +117,19 @@ void ArchivoActividad::listar(int modoListado)
 
             switch (modoListado)
             {
-            case 1: // sólo activos
+            case 1:
                 if (reg.getEstado() == true) mostrar = true;
                 break;
-            case 2: // sólo inactivos
+            case 2:
                 if (reg.getEstado() == false) mostrar = true;
                 break;
-            default: // todos
+            default:
                 mostrar = true;
                 break;
             }
 
             if (mostrar)
             {
-                // dibuja la fila usando la misma alineación que el listado de clientes
                 dibujarTablaActividadesRow(reg, filaInicial + contadorMostrados);
                 contadorMostrados++;
             }

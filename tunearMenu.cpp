@@ -53,15 +53,15 @@ void parteAbajoMenu(int posX, int posY, int espacios)
 
 void mostrarCursor(int posX1, int posX2, int posY, int y)
 {
-    rlutil::locate(posX1, posY + y * 2); ///y CONTROLA LA POSICION DEL CURSOR (arriba y abajo)
+    rlutil::locate(posX1, posY + y * 2);
     cout << (char)175 << endl;
-    rlutil::locate(posX2, posY + y * 2); ///y CONTROLA LA POSICION DEL CURSOR (arriba y abajo)
+    rlutil::locate(posX2, posY + y * 2);
     cout << (char)174 << endl;
 }
 
 void mostrarSoloUnCursor(int posX, int posY, int y)
 {
-    rlutil::locate(posX, posY + y * 2); ///y CONTROLA LA POSICION DEL CURSOR (arriba y abajo)
+    rlutil::locate(posX, posY + y * 2);
     cout << (char)175 << endl;
 }
 
@@ -70,7 +70,7 @@ int accionarCursor(int posX1, int posX2, int posY, int y, int tecla, int limiteC
 {
     switch(tecla)
     {
-    case rlutil::KEY_UP: /// ARRIBA
+    case rlutil::KEY_UP:
     {
         rlutil::locate(posX1, posY + y * 2);
         cout << " " << endl;
@@ -120,17 +120,17 @@ int accionarCursorCambios(int posX, int posY, int y, int tecla, int limiteCursor
 
 void mostrarCursorConfirmacion(int posX1, int posX2, int posY, int x)
 {
-    rlutil::locate(posX1 + x * 22, posY); ///x CONTROLA LA POSICION DEL CURSOR (izquierda y derecha)
+    rlutil::locate(posX1 + x * 22, posY);
     cout << (char)175 << endl;
-    rlutil::locate(posX2 + x * 22, posY); ///x CONTROLA LA POSICION DEL CURSOR (izquierda y derecha)
+    rlutil::locate(posX2 + x * 22, posY);
     cout << (char)174 << endl;
 }
 
 int accionarCursorConfirmacion(int posX1, int posX2, int posY, int x, int tecla, int limiteCursor)
 {
-    switch(tecla) /// VALORES EN ASCII
+    switch(tecla)
     {
-    case rlutil::KEY_LEFT: /// IZQUIERDA
+    case rlutil::KEY_LEFT:
     {
         rlutil::locate(posX1 + x * 22, posY);
         cout << " " << endl;
@@ -140,7 +140,7 @@ int accionarCursorConfirmacion(int posX1, int posX2, int posY, int x, int tecla,
         if (x < 0) x = limiteCursor;
         break;
     }
-    case rlutil::KEY_RIGHT: /// DERECHA
+    case rlutil::KEY_RIGHT:
     {
         rlutil::locate(posX1 + x * 22, posY);
         cout << " " << endl;

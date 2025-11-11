@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdio>
 #include "clsArchivoCliente.h"
 #include "clsArchivoActividad.h"
 #include "clsArchivoInscripcion.h"

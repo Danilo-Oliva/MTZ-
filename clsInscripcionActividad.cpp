@@ -1,4 +1,5 @@
 #include "clsInscripcionActividad.h"
+
 using namespace std;
 
 InscripcionActividad::InscripcionActividad(int numSoc, int idA, Fecha f, bool libre, bool est)
