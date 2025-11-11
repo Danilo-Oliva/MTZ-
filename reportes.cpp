@@ -14,29 +14,40 @@ void actMasIngreso()
     ArchivoInscripcion archIns("inscripciones.dat");
     ArchivoActividad archAct("actividades.dat");
 
-    const int cantAct = 40;
+    const int cantAct = archAct.contarActividades();
 
-    float totalIngreso[cantAct] = {};
+    if (cantAct == 0)
+    {
+        cout << "No hay actividades registradas." << endl;
+        return;
+    }
+
+    float* totalIngreso = new float[cantAct];
+
+    for (int i = 0; i < cantAct; i++)
+    {
+        totalIngreso[i] = 0.0f;
+    }
 
     int totalInsc = archIns.contarInscripciones();
 
     if (totalInsc == 0)
     {
         cout << "No hay inscripciones registradas" << endl;
+        delete[] totalIngreso;
         return;
     }
 
     for (int i = 0; i < totalInsc; i++)
     {
         InscripcionActividad ins = archIns.leerInscripcion(i);
-
         int idAct = ins.getIdAct();
 
         if (idAct >= 1 && idAct <= cantAct)
         {
-            Actividad act = archAct.leerArchivo(idAct - 1);
-
-            totalIngreso[idAct - 1] += ins.calcularCuota(act);
+            int indice = idAct - 1;
+            Actividad act = archAct.leerArchivo(indice);
+            totalIngreso[indice] += ins.calcularCuota(act);
         }
     }
 
@@ -46,19 +57,22 @@ void actMasIngreso()
     cout << "--- INGRESOS TOTALES POR ACTIVIDAD ---" << endl;
     for (int i = 1; i < cantAct; i++)
     {
-        if (totalIngreso[i] > maximo)
+        if (totalIngreso[i] > maxIngresos)
         {
             maxIngresos = totalIngreso[i];
             maximo = i;
         }
     }
-    cout << "La id de la actividad con mas ingresos es: " << maximo +1 << endl;
+    cout << "La id de la actividad con mas ingresos es: " << maximo + 1 << endl;
 
     cout << endl;
     int pos = archAct.buscarActividad(maximo + 1);
     Actividad act = archAct.leerArchivo(pos);
     act.mostrar();
+
+    delete[] totalIngreso;
 }
+
 //SEGUNDO REPORTE
 void actMasRecurrida()
 {
