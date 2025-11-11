@@ -151,7 +151,7 @@ void ArchivoCliente::listar(int modoListado)
             }
         }
         int y = filaInicial + contadorMostrados;
-        dibujarFinalTabla(y);
+        dibujarFinalTablaClientes(y);
     }
 
     if (contadorMostrados == 0)

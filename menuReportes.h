@@ -1,0 +1,6 @@
+#ifndef MENUREPORTES_H_INCLUDED
+#define MENUREPORTES_H_INCLUDED
+
+void menuReportes();
+
+#endif // MENUREPORTES_H_INCLUDED

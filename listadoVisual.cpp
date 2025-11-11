@@ -98,7 +98,7 @@ void dibujarTablaClientesRow(Persona reg, int y)
     cout << char(186);
 }
 
-void dibujarFinalTabla(int y)
+void dibujarFinalTablaClientes(int y)
 {
     int limiteTabla = 147;
 
@@ -174,4 +174,106 @@ void dibujarFichaCliente(Persona reg)
     cout << "ESTADO        : " << (reg.getEstado() ? "Activo" : "Inactivo");
 
     cout << endl << endl << endl << endl;
+}
+void dibujarTablaActividadesHeader()
+{
+    int limiteTabla = 63;
+
+    rlutil::locate(1, 2);
+    cout << char(201);
+    rlutil::locate(2, 2);
+    for(int i = 0; i < limiteTabla - 2; i++) cout << char(205);
+    rlutil::locate(limiteTabla, 2);
+    cout << char(187);
+
+    rlutil::locate(8, 2);
+    cout << char(203);
+    rlutil::locate(38, 2);
+    cout << char(203);
+    rlutil::locate(52, 2);
+    cout << char(203);
+
+    rlutil::locate(1, 3);
+    cout << char(186) << " ID";
+    rlutil::locate(8, 3);
+    cout << char(186) << " NOMBRE";
+    rlutil::locate(38, 3);
+    cout << char(186) << " CUOTA BASE";
+    rlutil::locate(52, 3);
+    cout << char(186) << " ESTADO ";
+    rlutil::locate(limiteTabla, 3);
+    cout << char(186);
+
+    rlutil::locate(1, 4);
+    cout << char(204);
+    rlutil::locate(2, 4);
+
+    for(int i = 0; i < limiteTabla - 2; i++) cout << char(205);
+    rlutil::locate(limiteTabla, 4);
+    cout << char(185);
+
+    rlutil::locate(8, 4);
+    cout << char(206);
+    rlutil::locate(38, 4);
+    cout << char(206);
+    rlutil::locate(52, 4);
+    cout << char(206);
+}
+
+void dibujarTablaActividadesRow(Actividad reg, int y)
+{
+    int limiteTabla = 63;
+
+    rlutil::locate(1, y);
+    cout << char(186) << " " << reg.getIdAct();
+    rlutil::locate(8, y);
+    cout << char(186) << " " << reg.getNombre();
+    rlutil::locate(38, y);
+    cout << char(186) << " " << reg.getCuotaBase();
+    rlutil::locate(52, y);
+    cout << char(186) << " " << (reg.getEstado() ? "Activo" : "Inactivo") << " ";
+    rlutil::locate(limiteTabla, y);
+    cout << char(186);
+}
+void dibujarFinalTabla(int y)
+{
+    int limiteTabla = 63;
+
+    rlutil::locate(1, y);
+    cout << char(200);
+    rlutil::locate(2, y);
+
+    for(int i = 0; i < limiteTabla - 2; i++) cout << char(205);
+    rlutil::locate(limiteTabla, y);
+    cout << char(188);
+
+    rlutil::locate(8, y);
+    cout << char(202);
+    rlutil::locate(38, y);
+    cout << char(202);
+    rlutil::locate(52, y);
+    cout << char(202);
+
+    cout << endl;
+}
+void dibujarFinalTablaActividades(int y)
+{
+    int limiteTabla = 63;
+
+    rlutil::locate(1, y);
+    cout << char(200);
+    rlutil::locate(2, y);
+
+    for(int i = 0; i < limiteTabla - 2; i++) cout << char(205);
+    rlutil::locate(limiteTabla, y);
+    cout << char(188);
+
+    rlutil::locate(8, y);
+    cout << char(202);
+    rlutil::locate(38, y);
+    cout << char(202);
+    rlutil::locate(52, y);
+    cout << char(202);
+
+    cout << endl;
 }

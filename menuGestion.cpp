@@ -1,18 +1,10 @@
 #include <iostream>
-#include "clsArchivoCliente.h"
-#include "clsArchivoActividad.h"
-#include "clsArchivoInscripcion.h"
-#include "clsPersona.h"
-#include "clsActividad.h"
-#include "clsInscripcionActividad.h"
-#include "menuGestionCliente.h"
-#include "menuGestionActividades.h"
 #include "rlutil.h"
 #include "menusVisual.h"
 #include "menuGestionCliente.h"
 #include "menuGestionActividades.h"
 #include "menuGestionInscripciones.h"
-#include "reportes.h"
+#include "menuReportes.h"
 #include "tunearMenu.h"
 
 using namespace std;
@@ -53,10 +45,7 @@ void accionarMenu()
         case 4:
             rlutil::cls();
 
-//            actMasIngreso();
-//            actMasRecurrida();
-//            ingresoPorMesYModalidad();
-            clientesNoAnotadosAnioActual();
+            menuReportes();
 
             rlutil::anykey();
             rlutil::cls();

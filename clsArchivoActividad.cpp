@@ -2,6 +2,8 @@
 #include <cstring>
 #include "rlutil.h"
 #include "clsArchivoActividad.h"
+#include "listadoVisual.h"
+#include "clsActividad.h"
 
 using namespace std;
 
@@ -98,44 +100,54 @@ bool ArchivoActividad::inscribirActividad(Actividad act)
 
 void ArchivoActividad::listar(int modoListado)
 {
+    rlutil::cls();
     int cantAct = contarActividades();
     int contadorMostrados = 0;
 
-    if (cantAct == 0)
+    const int filaInicial = 5; // coincide con el header en listadoVisual.cpp
+
+    rlutil::cls();
+    dibujarTablaActividadesHeader();
+
+    if (cantAct > 0)
     {
-        cout << "No hay Actividades para mostrar." << endl;
-        rlutil::anykey();
-        return;
-    }
-
-    for (int i = 0; i < cantAct; i++)
-    {
-        Actividad act = leerArchivo(i);
-
-        if (act.getIdAct() == 0) continue;
-
-        bool mostrar = false;
-
-        switch (modoListado)
+        for (int i = 0; i < cantAct; i++)
         {
-        case 1:
-            if (act.getEstado() == true) mostrar = true;
-            break;
-        case 2:
-            if (act.getEstado() == false) mostrar = true;
-            break;
-        default:
-            mostrar = true;
-            break;
+            Actividad reg = leerArchivo(i);
+            bool mostrar = false;
+
+            switch (modoListado)
+            {
+            case 1: // sólo activos
+                if (reg.getEstado() == true) mostrar = true;
+                break;
+            case 2: // sólo inactivos
+                if (reg.getEstado() == false) mostrar = true;
+                break;
+            default: // todos
+                mostrar = true;
+                break;
+            }
+
+            if (mostrar)
+            {
+                // dibuja la fila usando la misma alineación que el listado de clientes
+                dibujarTablaActividadesRow(reg, filaInicial + contadorMostrados);
+                contadorMostrados++;
+            }
         }
 
-        if (mostrar)
-        {
-            act.mostrar();
-            cout << endl;
-            contadorMostrados++;
-        }
+        int y = filaInicial + contadorMostrados;
+        dibujarFinalTablaActividades(y);
     }
+
+    if (contadorMostrados == 0)
+    {
+        rlutil::locate(5, filaInicial);
+        cout << "No hay actividades que coincidan con el filtro seleccionado." << endl;
+    }
+
+    rlutil::locate(1, filaInicial + contadorMostrados + 2);
 }
 
 bool ArchivoActividad::modificarActividad(Actividad act, int pos)

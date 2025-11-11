@@ -53,7 +53,7 @@ void imprimirMenuActividades()
     for (int i = 0; i < 10; i ++) bordesMenu(24, 8 + i, 34);
     parteAbajoMenu(24, 18, 34);
 
-    escribirTexto("M E N U   A C T I V I D A D E S", 25, 6);
+    escribirTexto(" M E N U   A C T I V I D A D E S", 25, 6);
     escribirTexto("INGRESAR NUEVA ACTIVIDAD", 30, 9);
     escribirTexto(" MODIFICAR    ACTIVIDAD ", 30, 11);
     escribirTexto("CAMBIAR ESTADO ACTIVIDAD", 30, 13);
