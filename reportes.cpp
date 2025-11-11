@@ -54,7 +54,7 @@ void actMasIngreso()
     float maxIngresos = totalIngreso[0];
     int maximo = 0;
 
-    cout << "--- INGRESOS TOTALES POR ACTIVIDAD ---" << endl;
+    cout << "--- ACTIVIDAD CON MAS INGRESOS ---" << endl;
     for (int i = 1; i < cantAct; i++)
     {
         if (totalIngreso[i] > maxIngresos)
@@ -79,36 +79,45 @@ void actMasRecurrida()
     ArchivoInscripcion archIns("inscripciones.dat");
     ArchivoActividad archAct("actividades.dat");
 
-    const int cantAct = 40;
+    const int cantAct = archAct.contarActividades();
 
-    float totalClientes[cantAct] = {};
+    if (cantAct == 0)
+    {
+        cout << "No hay actividades registradas." << endl;
+        return;
+    }
+
+    int* totalClientes = new int[cantAct];
+
+    for (int i = 0; i < cantAct; i++)
+    {
+        totalClientes[i] = 0;
+    }
 
     int totalInsc = archIns.contarInscripciones();
 
     if (totalInsc == 0)
     {
         cout << "No hay inscripciones registradas" << endl;
+        delete[] totalClientes;
         return;
     }
 
     for (int i = 0; i < totalInsc; i++)
     {
         InscripcionActividad ins = archIns.leerInscripcion(i);
-
         int idAct = ins.getIdAct();
 
         if (idAct >= 1 && idAct <= cantAct)
         {
-            Actividad act = archAct.leerArchivo(idAct - 1);
-
-            totalClientes[idAct - 1] ++;
+            totalClientes[idAct - 1]++;
         }
     }
 
-    float maxClientes = totalClientes[0];
+    int maxClientes = totalClientes[0];
     int maximo = 0;
 
-    cout << "--- INGRESOS TOTALES POR ACTIVIDAD ---" << endl;
+    cout << "--- ACTIVIDAD MAS RECURRIDA ---" << endl;
     for (int i = 1; i < cantAct; i++)
     {
         if (totalClientes[i] > maxClientes)
@@ -124,6 +133,8 @@ void actMasRecurrida()
     int pos = archAct.buscarActividad(maximo + 1);
     Actividad act = archAct.leerArchivo(pos);
     act.mostrar();
+
+    delete[] totalClientes;
 }
 //TERCER REPORTE
 void ingresoPorMesYModalidad()
