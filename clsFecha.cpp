@@ -83,24 +83,23 @@ bool Fecha::esValida()
     if (dia < 1 || dia > maxDia) return false;
     return true;
 }
-bool Fecha::cargarCompacta(int xpos, int ypos)
+bool Fecha::cargarCompacta(int xPos, int yPos)
 {
     rlutil::showcursor();
     int d, m, a;
-    int x = 44, y = 2;
 
     while (true)
     {
-        rlutil::locate(x, y);
+        rlutil::locate(xPos, yPos);
         cout << "                ";
-        rlutil::locate(x, y);
+        rlutil::locate(xPos, yPos);
         cin >> d;
-        rlutil::locate(x + 2, y);
+        rlutil::locate(xPos + 2, yPos);
         cout << "/";
         cin >> m;
 
 
-        rlutil::locate(x + 4, y);
+        rlutil::locate(xPos + 5, yPos);;
         cout << "/";
         cin >> a;
 
@@ -116,11 +115,11 @@ bool Fecha::cargarCompacta(int xpos, int ypos)
         }
         else
         {
-            rlutil::locate(xpos, ypos + 1);
+            rlutil::locate(xPos, yPos + 1);
             cout << "Fecha invalida. Reingrese (presione una tecla)...";
             rlutil::anykey();
 
-            rlutil::locate(xpos, ypos + 1);
+            rlutil::locate(xPos, yPos + 1);
             cout << "                                               ";
 
         }

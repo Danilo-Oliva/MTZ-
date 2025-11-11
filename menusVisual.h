@@ -25,6 +25,7 @@ void mostrarMenuModificarCliente();
 int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y);
 
 int pedirDNI(const char* titulo);
+int pedirNuevoDNI(const char* titulo);
 int pedirNumSocio(const char* titulo);
 int pedirIdActividad();
 

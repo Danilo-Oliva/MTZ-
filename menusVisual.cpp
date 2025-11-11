@@ -454,14 +454,13 @@ int interactuarMenuModificarCliente(Persona &reg, int &opcionMenu, int &y)
              if (y == 0)
              {
                  rlutil::showcursor();
-                 int nuevoDniStr;
+                 int nuevoDni;
                  int yCampoActual = yStart + 4;
                  rlutil::locate(x + 19, yCampoActual);
                  cout << string(11, ' ');
                  rlutil::locate(x + 19, yCampoActual);
                  //cargarCadena(nuevoDniStr, 11);
-                    cin>>nuevoDniStr;
-                 int nuevoDni = nuevoDniStr;
+                 cin >> nuevoDni;
                  if (!(nuevoDni >= 1000000 && nuevoDni <= 99999999))
                  {
                      rlutil::hidecursor();
@@ -555,7 +554,54 @@ int pedirDNI(const char* titulo)
     rlutil::showcursor();
     cin >> dni;
     rlutil::hidecursor();
+
     return dni;
+}
+
+int pedirNuevoDNI(const char* titulo)
+{
+    int nuevoDni;
+    int x = 25, y = 8;
+    rlutil::cls();
+    parteArribaMenu(x, y, 40);
+    for(int i=0; i<4; i++) bordesMenu(x, y + 1 + i, 40);
+    parteAbajoMenu(x, y + 5, 40);
+    escribirTexto(titulo, x + 2, y + 1);
+
+    rlutil::locate(x + 5, y + 3);
+    cout << "INGRESE EL DNI: ";
+    rlutil::showcursor();
+     cin >> nuevoDni;
+    rlutil::hidecursor();
+
+
+     ArchivoCliente archCli("clientes.dat");
+     Persona reg;
+
+     if (!(nuevoDni >= 1000000 && nuevoDni <= 99999999))
+     {
+         rlutil::hidecursor();
+         mostrarMensaje("Formato DNI invalido (7-8 digitos).", rlutil::LIGHTRED);
+         return -1;
+     }
+     else
+     {
+         int posActual = archCli.buscarCliente(reg.getDNI());
+         int posExistente = archCli.buscarCliente(nuevoDni);
+         if (posExistente != -1 && posExistente != posActual)
+         {
+             rlutil::hidecursor();
+             mostrarMensaje("Ese DNI ya pertenece a otro cliente.", rlutil::LIGHTRED);
+             return -1;
+         }
+         else
+         {
+             reg.setDNI(nuevoDni);
+             rlutil::hidecursor();
+             return nuevoDni;
+         }
+     }
+
 }
 
 int pedirNumSocio(const char* titulo)

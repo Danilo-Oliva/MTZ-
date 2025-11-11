@@ -13,11 +13,11 @@ using namespace std;
 void ingresarNuevoCliente()
 {
     ArchivoCliente arch("clientes.dat");
-    int dni = pedirDNI("NUEVO CLIENTE:");
+    int dni = pedirNuevoDNI("NUEVO CLIENTE:");
 
-    if (arch.buscarCliente(dni) != -1)
+
+    if(dni == -1)
     {
-        mostrarMensaje("ERROR: Ya existe un cliente con ese DNI.", rlutil::LIGHTRED);
         rlutil::cls();
         imprimirMenuClientes();
         return;
@@ -25,6 +25,7 @@ void ingresarNuevoCliente()
 
     Persona per;
     per.setDNI(dni);
+
 
     if (mostrarFormularioCargaCliente(per))
     {

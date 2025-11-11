@@ -92,7 +92,7 @@ void nuevaInscripcion()
 
     cout << "--- FECHA DE INSCRIPCION ---" << endl;
     cout << "Ingrese fecha de inscripcion (DD/MM/ANIO):";
-    int x = 0, yStart = 0;
+    int x = 44, yStart = 2;
     Fecha nuevaFecha;
     nuevaFecha.cargarCompacta(x, yStart);
     nuevaIns.setFechaInscripcion(nuevaFecha);
